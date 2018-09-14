@@ -1,6 +1,6 @@
 <?php
 // router
-require 'Router/Router.php';
+require 'Router/Router-v1.php';
 
 // controllers
 
@@ -15,9 +15,10 @@ require 'Router/Router.php';
 // require_once 'Model/SessionModel.php';
 // require_once 'Model/TemplatingSystem-v1.php';
 
+$Router = new Router(3);
 
-$Router = new Router(5);
-
-echo $Router->return;
+echo $Router->run();
+echo $Router->errorMessage. "<br>";
+var_dump($Router->filteredPackets);
 
 ?>
