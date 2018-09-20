@@ -9,6 +9,9 @@
             if ($params != FALSE) {
                 $this->params = $params;
             }
+
+            $this->DataHandler = new DataHandler("Gameplayparties", "root", "", "localhost", "mysql");
+            $this->TemplatingSystem = new TemplatingSystem("View/bios_view.tpl");
         }
 
         public function runController() {
@@ -41,7 +44,26 @@
         }
 
         public function read() {
-            return "The method read is called";
+            $sql = "SELECT * FROM bioscopen";
+            $result = $this->DataHandler->ReadData($sql);
+
+            $return = "";
+            for ($i=0; $i < count($result); $i++) {
+                $return .= "<div class='col-m-3 float-l border'>";
+                $row = $result[$i];
+                foreach ($row as $key => $value) {
+                    $return .= "<div>";
+                    $return .= "$value";
+                    $return .= "</div>";
+                }
+
+                $return .= "</div>";
+            }
+
+            $this->TemplatingSystem->setTemplateData("grid", $return);
+            $return = $this->TemplatingSystem->GetParsedTemplate();
+
+            return $return;
         }
 
         public function update() {
@@ -49,6 +71,7 @@
         }
 
         public function delete() {
+
             return "The method delete is called";
         }
     }
