@@ -49,7 +49,7 @@
 
             $return = "";
             for ($i=0; $i < count($result); $i++) {
-                $return .= "<div class='col-m-3 float-l border'>";
+                $return .= "<div class='col-xs-12 col-s-6 col-m-4 col-m-3 float-l border'>";
                 $row = $result[$i];
                 foreach ($row as $key => $value) {
                     $return .= "<div>";
