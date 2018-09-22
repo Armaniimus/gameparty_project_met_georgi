@@ -2,9 +2,9 @@
 // router
 require 'Router/Router-v1.php';
 
-// controllers
+// controllers (are dynamicly called)
 
-// models
+// genericModels
 require_once "Model/traits\ValidatePHP_ID.php";
 require_once 'Model/DataHandler-v3.2.php';
 require_once 'Model/DataValidator-v3.2.php';
@@ -14,6 +14,10 @@ require_once 'Model/PhpUtilities-v2.php';
 require_once 'Model/SecurityHeaders-v1.php';
 require_once 'Model/SessionModel.php';
 require_once 'Model/TemplatingSystem-v1.php';
+
+// customModels
+require_once 'Model/ModelRedacteur.php';
+
 
 $Router = new Router(3);
 

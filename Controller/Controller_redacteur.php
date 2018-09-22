@@ -4,7 +4,13 @@
      */
     class Controller_redacteur
     {
+        private $ModelRedacteur;
+        private $method;
+        private $params;
+
         function __construct($method, $params = FALSE) {
+            $this->ModelRedacteur = new ModelRedacteur();
+
             $this->method = $method;
             if ($params != FALSE) {
                 $this->params = $params;
@@ -46,23 +52,23 @@
         }
 
         public function inhoud_toe() {
-            return "The method inhoud toevoegen is called";
+            return $this->ModelRedacteur->inhoud_toe();
         }
 
         public function inhoud_aan() {
-            return "The method inhoud aanpassen is called";
+            return $this->ModelRedacteur->inhoud_aan();
         }
 
         public function inhoud_del() {
-            return "The method inhoud deleten is called";
+            return $this->ModelRedacteur->inhoud_del();
         }
 
         public function bios_toe() {
-            return "The method bioscoop toevoegen is called";
+            return $this->ModelRedacteur->bios_toe();
         }
 
         public function overzicht() {
-            return "The method overzicht is called";
+            return $this->ModelRedacteur->overzicht();
         }
     }
 ?>
