@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 20 sep 2018 om 13:55
+-- Gegenereerd op: 22 sep 2018 om 20:06
 -- Serverversie: 10.1.30-MariaDB
 -- PHP-versie: 7.2.2
 
@@ -53,11 +53,18 @@ INSERT INTO `bioscopen` (`id`, `name`, `phone`, `email`, `location`) VALUES
 --
 
 CREATE TABLE `gebruikers` (
-  `Id` int(10) UNSIGNED NOT NULL,
-  `Username` varchar(24) NOT NULL,
-  `UserHash` varchar(255) NOT NULL,
-  `UserRolls_id` int(10) UNSIGNED NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `gebruikersNaam` varchar(24) NOT NULL,
+  `passwordHash` varchar(255) NOT NULL,
+  `gebruikers_rollen_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `gebruikers`
+--
+
+INSERT INTO `gebruikers` (`id`, `gebruikersNaam`, `passwordHash`, `gebruikers_rollen_id`) VALUES
+(1, 'redacteur', '$2y$10$wmUWkfsHWeDTxKELfflTcerz7GQwP1CKFUClVe688Wh63QJZM0B5S', 1);
 
 -- --------------------------------------------------------
 
@@ -77,6 +84,13 @@ CREATE TABLE `gebruikers_rollen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Gegevens worden geëxporteerd voor tabel `gebruikers_rollen`
+--
+
+INSERT INTO `gebruikers_rollen` (`id`, `rolType`, `perm_bios_toevoegen`, `perm_bios_wijzigen`, `perm_bios_verwijderen`, `perm_content_toevoegen`, `perm_content_wijzigen`, `perm_content_verwijderen`) VALUES
+(1, 'redacteur', 1, 0, 0, 1, 1, 1);
+
+--
 -- Indexen voor geëxporteerde tabellen
 --
 
@@ -90,7 +104,7 @@ ALTER TABLE `bioscopen`
 -- Indexen voor tabel `gebruikers`
 --
 ALTER TABLE `gebruikers`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `gebruikers_rollen`
@@ -112,13 +126,13 @@ ALTER TABLE `bioscopen`
 -- AUTO_INCREMENT voor een tabel `gebruikers`
 --
 ALTER TABLE `gebruikers`
-  MODIFY `Id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `gebruikers_rollen`
 --
 ALTER TABLE `gebruikers_rollen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
