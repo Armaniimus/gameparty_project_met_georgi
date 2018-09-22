@@ -9,7 +9,9 @@
         private $params;
 
         function __construct($method, $params = FALSE) {
+            $this->AuthenticationModel = new AuthenticationModel("Gameplayparties", "root", "", "localhost", "mysql");
             $this->ModelRedacteur = new ModelRedacteur("Gameplayparties", "root", "", "localhost", "mysql");
+
 
             $this->method = $method;
             if ($params != FALSE) {
@@ -45,6 +47,10 @@
                     // }
                     break;
 
+                case 'login':
+                    return $this->login();
+                    break;
+
                 default:
                     return $this->overzicht();
                     break;
@@ -68,13 +74,21 @@
         }
 
         public function overzicht() {
-            $redacteurArray = $this->ModelRedacteur->overzicht();
-            $gebruiker = $redacteurArray[0];
+            return $redacteurArray = $this->ModelRedacteur->overzicht();
+        }
+
+        public function login() {
+            $redacteurArray = $this->AuthenticationModel->login();
+            $gebruikersNaam = $redacteurArray[0];
+            $loginInfo = $redacteurArray[1];
+            $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
             //control view
             $this->TemplatingSystem = new TemplatingSystem("view/basicLoginForm.tpl");
-            $this->TemplatingSystem->setTemplateData("page", '../../redacteur/overzicht');
-            $this->TemplatingSystem->setTemplateData("gebruiker", $gebruiker);
+            $this->TemplatingSystem->setTemplateData("page", '../../redacteur/login');
+            $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
+            $this->TemplatingSystem->setTemplateData("info", $loginInfo);
+
             $return = $this->TemplatingSystem->GetParsedTemplate();
 
             return $return;

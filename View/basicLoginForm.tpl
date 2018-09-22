@@ -16,6 +16,7 @@
             </div>
             <div class="float-l col-xs-2"><br></div>
         </form>
+        <div>{info}</div>
     </main>
 </body>
 </html>

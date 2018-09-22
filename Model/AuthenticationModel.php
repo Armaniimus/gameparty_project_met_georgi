@@ -25,16 +25,16 @@
             if (!isset($_POST['username']) ) {
                 $_POST['username'] = "";
             }
-            $this->gebruikerNaam = $_POST['username'];
+            $this->gebruikersNaam = $_POST['username'];
         }
 
         private function getPasswordHash() {
-            $gebruikersNaam = $this->gebruikerNaam;
+            $gebruikersNaam = $this->gebruikersNaam;
 
             $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruikersNaam'";
-            $gebruikerData = $this->DataHandler->readSingleData($sql);
-            if ($gebruikerData) {
-                $this->passwordHash = $gebruikerData['passwordHash'];
+            $gebruikersData = $this->DataHandler->readSingleData($sql);
+            if ($gebruikersData) {
+                $this->passwordHash = $gebruikersData['passwordHash'];
             } else {
                 $this->passwordHash = "";
             }
@@ -47,8 +47,19 @@
             // echo "<br>";
             // echo $this->SessionModel->HashPassword($this->password);
             // echo "<br>";
-            $loginInfo = $this->SessionModel->Login($this->gebruikerNaam, $this->password, $this->passwordHash);
-            return $loginInfo[0];
+            $loginInfo = $this->SessionModel->Login($this->gebruikersNaam, $this->password, $this->passwordHash);
+            return [$this->gebruikersNaam, $loginInfo[0]];
+
+
+            // temp testing data
+            if ($loggedInfo[0]) {
+                echo "You are Logged in";
+            } else {
+                echo "You are Logged off";
+            }
+            $this->SessionModel->Logout();
+
+            return $loggedIn;
         }
     }
  ?>

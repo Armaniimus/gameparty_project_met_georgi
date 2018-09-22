@@ -38,17 +38,6 @@
         }
 
         public function overzicht() {
-            $this->authentication();
-        }
-
-        private function authentication() {
-            $loggedIn = $this->AuthenticationModel->login();
-
-            if ($loggedIn) {
-                echo "You are Logged in";
-            } else {
-                echo "You are Logged off";
-            }
-            $this->SessionModel->Logout();
+            return "The method overzicht is called";
         }
     }
