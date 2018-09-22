@@ -5,74 +5,45 @@ class SessionModel {
     public function __destruct() {}
 
 
+    public function HashPassword($password = FALSE) {
+        if ($password) {
+            $passHash = password_hash($password, PASSWORD_DEFAULT);
+            return $passHash;
+        }
+
+        return FALSE;
+    }
+
     /***
     * @Description
     * Controls login System (needs to be revisited)*/
-    public function AdminLogin() {
-        $AdminSesionName = "admin";
-
+    public function Login($userName = FALSE, $password = FALSE, $passHash = FALSE) {
         $message = NULL;
         $loggedIn = NULL;
-        $admin_input = NULL;
+        $passCheck = FALSE;
 
         // check if Admin is allready logged in
-        if (isset($_SESSION['user']) && $_SESSION['user'] == $AdminSesionName) {
+        if (isset($_SESSION['user']) ) {
             $loggedIn = 1;
 
         // Checks if login info is good
         } else {
-            // boolean checks
-            $UserConf = 0;
-            $PassConf = 0;
-
-
-            $adminHash = '$argon2i$v=19$m=1024,t=2,p=2$VkZFWnhaMEk2SDlRcmgyMg$A1OoUq05TSuSsaZDnohAlF+2ZG9A9dYVAhVHl+Lzjjw';
-            $passHash = '$argon2i$v=19$m=1024,t=2,p=2$eEtsTU9RLlZDbVozMTFhbQ$PZ0fsLrf4m3w11yMyHRCKT8u859GwrdEJe9CuG9xPfc';
-
-            $UserTry = "";
-            $PassTry = "";
-
-            $username = NULL;
-            $password = NULL;
-
-            if (isset($_POST['username'])) {
-                $username = $_POST['username'];
-                $UserTry = password_hash($username, 2);
-
-                if (isset($_POST['password'])) {
-                    $password = $_POST['password'];
-                    $PassTry = password_hash($password, 2);
-                }
-            }
-
-            // check for Username
-            if ($username != NULL) {
-                if (password_verify($username, $adminHash)) {
-                    $UserConf = 1;
-                } else {
-                    $admin_input = $username;
-                }
-            }
-
             // check for password
             if ($password != NULL) {
                 if (password_verify($password, $passHash)) {
-                    $PassConf = 1;
+                    $passCheck = 1;
+                    $loggedIn = 1;
+                    $_SESSION["user"] = $userName;
                 }
             }
 
             // check if all login information == correct
-            if ($UserConf && $PassConf) {
-                $loggedIn = 1;
-                $_SESSION["user"] = $AdminSesionName;
-            } else {
-                if ($username != NULL || $password != NULL) {
-                    $message = "gebruikersnaam of wachtwoord is foutief";
-                }
+            if (!$passCheck) {
+                $message = "gebruikersnaam of wachtwoord is foutief";
             }
         }
 
-        return [$loggedIn, $admin_input ,$message];
+        return [$loggedIn, $message];
     }
 
 

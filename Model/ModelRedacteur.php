@@ -6,14 +6,18 @@
         private $DateHandler;
         private $DataValidator;
         private $SessionModel;
+        private $Authentication;
 
-        public function __construct() {
-            $this->DataHandler = new DataHandler("Gameplayparties", "root", "", "localhost", "mysql");
+        public function __construct($dbName, $username, $pass, $serverAdress, $dbType) {
+            $this->DataHandler = new DataHandler($dbName, $username, $pass, $serverAdress, $dbType);
+            $this->AuthenticationModel = new AuthenticationModel($dbName, $username, $pass, $serverAdress, $dbType);
             $this->DataValidator = new DataValidator();
-            $this->SessionModel = new SessionModel();
+            $this->SessionModel = new SessionModel($this->DataHandler);
+
 
             // starts or continues the session
             $this->SessionModel->SessionSupport();
+            $this->SessionModel->Login();
         }
 
 
@@ -34,6 +38,17 @@
         }
 
         public function overzicht() {
-            return "The method overzicht is called";
+            $this->authentication();
+        }
+
+        private function authentication() {
+            $loggedIn = $this->AuthenticationModel->login();
+
+            if ($loggedIn) {
+                echo "You are Logged in";
+            } else {
+                echo "You are Logged off";
+            }
+            $this->SessionModel->Logout();
         }
     }

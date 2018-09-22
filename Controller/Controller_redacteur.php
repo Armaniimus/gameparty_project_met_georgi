@@ -9,7 +9,7 @@
         private $params;
 
         function __construct($method, $params = FALSE) {
-            $this->ModelRedacteur = new ModelRedacteur();
+            $this->ModelRedacteur = new ModelRedacteur("Gameplayparties", "root", "", "localhost", "mysql");
 
             $this->method = $method;
             if ($params != FALSE) {
@@ -68,7 +68,16 @@
         }
 
         public function overzicht() {
-            return $this->ModelRedacteur->overzicht();
+            $redacteurArray = $this->ModelRedacteur->overzicht();
+            $gebruiker = $redacteurArray[0];
+
+            //control view
+            $this->TemplatingSystem = new TemplatingSystem("view/basicLoginForm.tpl");
+            $this->TemplatingSystem->setTemplateData("page", '../../redacteur/overzicht');
+            $this->TemplatingSystem->setTemplateData("gebruiker", $gebruiker);
+            $return = $this->TemplatingSystem->GetParsedTemplate();
+
+            return $return;
         }
     }
 ?>
