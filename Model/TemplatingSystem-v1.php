@@ -13,11 +13,11 @@ class TemplatingSystem {
             $this->ThrowError("No string is given"); // "if No string is given";
 
         // test if the extension is tpl
-    } else if (!preg_match("#(.+?).tpl#si", $tplUrl)) {
+        } else if (!preg_match("#(.+?).tpl#si", $tplUrl)) {
             $this->ThrowError("File Extention is wrong");// "if Wrong extention";
 
         // test if file exists
-    } else if (!file_exists($tplUrl)) {
+        } else if (!file_exists($tplUrl)) {
             $this->ThrowError("File doesn't Exist"); // "if file doesnt exists";
         }
 
