@@ -44,5 +44,10 @@ class dbhandler
 
 		return $stmt->lastInsertId();
 	}
-	
+	function DeleteData($query){
+		$stmt = $this->connection;
+		$stmt->query($query);
+
+		
+	}
 }
