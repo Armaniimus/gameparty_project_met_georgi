@@ -25,4 +25,11 @@ class dbhandler
 		    echo "Connection failed: " . $e->getMessage();
 		    }
 	}
+	function QueryRead($query){
+		$stmt = $this->connection->query($query);
+		$array = $stmt->fetchAll(PDO::FETCH_ASSOC );
+
+		return $array;
+	}
+	
 }
