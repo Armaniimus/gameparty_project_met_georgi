@@ -31,5 +31,12 @@ class dbhandler
 
 		return $array;
 	}
+	function createData($query){
+		$stmt = $this->connection;
+		$stmt->query($query);
+
+		return $stmt->lastInsertId();
+
+	}
 	
 }
