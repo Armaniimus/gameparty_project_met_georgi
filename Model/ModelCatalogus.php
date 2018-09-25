@@ -38,5 +38,11 @@ class dbhandler
 		return $stmt->lastInsertId();
 
 	}
+	function UpdateData($query){
+		$stmt = $this->connection;
+		$stmt->query($query);
+
+		return $stmt->lastInsertId();
+	}
 	
 }
