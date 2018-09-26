@@ -5,6 +5,9 @@
         <link rel="stylesheet" type="text/css" href="../View/css/grid-v1.3.1.css">        
     </head>
     <body>
+        <header class="headerBiosToevoegen">
+            Bioscoop Toevoegen
+        </header>
         <main>
             <div class="float-l col-xs-2"><br></div>
             <div class="float-l col-xs-8 login--center" style="border: 1px solid">

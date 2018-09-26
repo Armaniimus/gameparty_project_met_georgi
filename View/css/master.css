@@ -16,3 +16,12 @@
 .knopjes{
 	margin-left: 35%;
 }
+.headerBiosToevoegen{
+	width: 66.66%;
+	padding: 30px;
+	border: 1px solid;
+	margin-left: 16.65%;
+	padding-left: 22%;
+	vertical-align: center;
+	font-size: 30px;
+}
