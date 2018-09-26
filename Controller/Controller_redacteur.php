@@ -9,8 +9,8 @@
         private $params;
 
         function __construct($method, $params = FALSE) {
-            $this->AuthenticationModel = new AuthenticationModel("Gameplayparties", "root", "", "localhost", "mysql");
-            $this->ModelRedacteur = new ModelRedacteur("Gameplayparties", "root", "", "localhost", "mysql");
+            $this->AuthenticationModel = new AuthenticationModel(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
+            $this->ModelRedacteur = new ModelRedacteur(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
 
 
             $this->method = $method;

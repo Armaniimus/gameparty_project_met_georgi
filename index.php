@@ -1,6 +1,7 @@
 <?php
 // router
 require 'Router/Router-v1.php';
+require 'config.php';
 
 // controllers (are dynamicly called)
 
@@ -19,8 +20,7 @@ require_once 'Model/TemplatingSystem-v1.php';
 require_once 'Model/AuthenticationModel.php';
 require_once 'Model/ModelRedacteur.php';
 
-
-$Router = new Router(3);
+$Router = new Router(BESTAND_DIEPTE);
 
 echo $Router->run();
 // echo $Router->error. "<br>";

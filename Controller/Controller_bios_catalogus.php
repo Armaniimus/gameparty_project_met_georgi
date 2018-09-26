@@ -10,7 +10,7 @@
                 $this->params = $params;
             }
 
-            $this->DataHandler = new DataHandler("Gameplayparties", "root", "", "localhost", "mysql");
+            $this->DataHandler = new DataHandler(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
             $this->TemplatingSystem = new TemplatingSystem("View/bios_view.tpl");
         }
 

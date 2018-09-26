@@ -7,13 +7,16 @@
         private $DataValidator;
         private $SessionModel;
         private $Authentication;
+        
         public $loggedInBool;
 
         public function __construct($dbName, $username, $pass, $serverAdress, $dbType) {
             $this->DataHandler = new DataHandler($dbName, $username, $pass, $serverAdress, $dbType);
-            $this->AuthenticationModel = new AuthenticationModel($dbName, $username, $pass, $serverAdress, $dbType);
             $this->DataValidator = new DataValidator();
-            $this->SessionModel = new SessionModel($this->DataHandler);
+
+            $this->AuthenticationModel = new AuthenticationModel($dbName, $username, $pass, $serverAdress, $dbType);
+            $this->SessionModel = new SessionModel();
+
 
 
             // starts or continues the session
