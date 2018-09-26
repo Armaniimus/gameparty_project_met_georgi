@@ -2,3 +2,17 @@
     border: solid black 1px;
     padding: 10px;
 }
+
+.login--center{
+	padding: 30px;
+}
+
+.formulier-buttons{
+	margin-left: 30px;
+}
+.form-blok label{
+	margin-left: 30%;
+}
+.knopjes{
+	margin-left: 35%;
+}
