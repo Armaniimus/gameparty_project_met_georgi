@@ -47,17 +47,16 @@
             // echo "<br>";
             // echo $this->SessionModel->HashPassword($this->password);
             // echo "<br>";
-            $loginInfo = $this->SessionModel->Login($this->gebruikersNaam, $this->password, $this->passwordHash);
+            $loginInfo = $this->SessionModel->Login($this->gebruikersNaam, $this->password, $this->passwordHash);          
 
 
-
-            // temp testing data
-            if ($loginInfo[0]) {
-                echo "You are Logged in";
-            } else {
-                echo "You are Logged off";
-            }
-            $this->SessionModel->Logout();
+            // // temp testing data
+            // if ($loginInfo[0]) {
+            //     echo "You are Logged in";
+            // } else {
+            //     echo "You are Logged off";
+            // }
+            // $this->SessionModel->Logout();
 
             return [$this->gebruikersNaam, $loginInfo[0]];
         }

@@ -74,7 +74,21 @@
         }
 
         public function overzicht() {
-            return $redacteurArray = $this->ModelRedacteur->overzicht();
+
+            // check login Info
+            if ($this->ModelRedacteur->loggedInBool == 1) {
+                $this->TemplatingSystem = new TemplatingSystem("view/redacteurOverzicht.tpl");
+                // $this->TemplatingSystem->setTemplateData("page", '../../redacteur/login');
+
+                $return = $this->TemplatingSystem->GetParsedTemplate();
+
+            // moet naar de catalogus
+            } else {
+                echo "permission denied";
+                $return = '';
+            }
+
+            return $return;
         }
 
         public function login() {
