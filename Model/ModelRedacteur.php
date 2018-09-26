@@ -7,6 +7,7 @@
         private $DataValidator;
         private $SessionModel;
         private $Authentication;
+        public $loggedInBool;
 
         public function __construct($dbName, $username, $pass, $serverAdress, $dbType) {
             $this->DataHandler = new DataHandler($dbName, $username, $pass, $serverAdress, $dbType);
@@ -17,7 +18,9 @@
 
             // starts or continues the session
             $this->SessionModel->SessionSupport();
-            $this->SessionModel->Login();
+
+            $login = $this->SessionModel->Login();
+            $this->loggedInBool = $login[0];
         }
 
 
@@ -38,6 +41,6 @@
         }
 
         public function overzicht() {
-            return "The method overzicht is called";
+            // return $this->loggedInBool;
         }
     }
