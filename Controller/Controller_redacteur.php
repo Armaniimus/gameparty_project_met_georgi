@@ -70,6 +70,13 @@
         }
 
         public function bios_toe() {
+            if ($this->ModelRedacteur->loggedInBool == 1) {
+                echo "ingelogd<br>";
+
+            } else {
+                echo "uitgelogd<br>";
+            }
+
             return $this->ModelRedacteur->bios_toe();
         }
 
