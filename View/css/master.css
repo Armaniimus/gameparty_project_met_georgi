@@ -9,13 +9,14 @@
 
 .formulier-buttons{
 	margin-left: 30px;
-}
-.form-blok label{
+}.form-blok label{
 	margin-left: 30%;
 }
+
 .knopjes{
 	margin-left: 35%;
 }
+
 .headerBiosToevoegen{
 	width: 66.66%;
 	padding: 30px;
@@ -24,4 +25,29 @@
 	padding-left: 22%;
 	vertical-align: center;
 	font-size: 30px;
+}
+
+.beheer_overzicht_knop_wrap {
+    padding: 15px;
+}
+
+.beheer_overzicht_knop {
+    width: 100%;
+    padding: 40px 15px;
+    display: block;
+    border-radius: 5px;
+    border: 4px solid #009432;
+    background-color: #A3CB38;
+    color: #34495e;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.beheer_overzicht_knop:hover {
+    padding: 39px 14px;
+    color: #394e64;
+    font-size: 19px;
+    background-color: #b3dB46;
 }
