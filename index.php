@@ -19,6 +19,7 @@ require_once 'Model/TemplatingSystem-v1.php';
 // customModels
 require_once 'Model/AuthenticationModel.php';
 require_once 'Model/ModelRedacteur.php';
+require_once 'Model/ModelCatalogus.php';
 
 $Router = new Router(BESTAND_DIEPTE);
 

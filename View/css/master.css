@@ -3,21 +3,19 @@
     padding: 10px;
 }
 
-.login--center{
-	padding: 30px;
+.formulier-buttons {
+	margin-left: 30px;
 }
 
-.formulier-buttons{
-	margin-left: 30px;
-}.form-blok label{
+.form-blok label {
 	margin-left: 30%;
 }
 
-.knopjes{
+.knopjes {
 	margin-left: 35%;
 }
 
-.headerBiosToevoegen{
+.headerBiosToevoegen {
 	width: 66.66%;
 	padding: 30px;
 	border: 1px solid;
@@ -47,7 +45,44 @@
 
 .beheer_overzicht_knop:hover {
     padding: 39px 14px;
-    color: #394e64;
     font-size: 19px;
     background-color: #b3dB46;
+}
+
+.form--center {
+    display: block;
+}
+
+.form--center--form {
+    width: 100%;
+    border: solid 1px black;
+    display: block;
+    padding: 30px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form--center--form input,
+.form--center--form textarea {
+    display: block;
+    min-width: 200px;
+}
+
+.form--verzend_knop {
+    background-color: #A3CB38;
+    color: #34495e;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 3px;
+    border-width: 1px 2px 2px 1px;
+    border-color: #008422 #009432 #009432 #008422;
+}
+
+.form--verzend_knop:hover {
+    background-color: #b3dB46;
+    border-width: 2px 1px 1px 2px;
+    border-color: #009432  #008422 #008422 #009432;
 }

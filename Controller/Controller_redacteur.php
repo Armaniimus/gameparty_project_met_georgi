@@ -4,6 +4,7 @@
      */
     class Controller_redacteur
     {
+        private $AuthenticationModel;
         private $ModelRedacteur;
         private $method;
         private $params;
