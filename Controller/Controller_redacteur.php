@@ -118,7 +118,7 @@
 
             $main = file_get_contents("view/partials/basicLoginForm.html");
             $this->TemplatingSystem->setTemplateData("main", $main);
-            $this->TemplatingSystem->setTemplateData("page", '../../partials/redacteur/login');
+            $this->TemplatingSystem->setTemplateData("page", '../../redacteur/login');
             $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
             $this->TemplatingSystem->setTemplateData("info", $loginInfo);
 
