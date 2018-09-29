@@ -90,8 +90,10 @@
 
             // check login Info
             if ($this->ModelRedacteur->loggedInBool == 1) {
-                $this->TemplatingSystem = new TemplatingSystem("view/redacteurOverzicht.tpl");
-                // $this->TemplatingSystem->setTemplateData("page", '../../redacteur/login');
+                $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
+
+                $main = file_get_contents("view/partials/redacteur_overzicht.html");
+                $this->TemplatingSystem->setTemplateData("main", $main);
 
                 $return = $this->TemplatingSystem->GetParsedTemplate();
 
@@ -111,8 +113,11 @@
             $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
             //control view
-            $this->TemplatingSystem = new TemplatingSystem("view/basicLoginForm.tpl");
-            $this->TemplatingSystem->setTemplateData("page", '../../redacteur/login');
+            $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
+
+            $main = file_get_contents("view/partials/basicLoginForm.html");
+            $this->TemplatingSystem->setTemplateData("main", $main);
+            $this->TemplatingSystem->setTemplateData("page", '../../partials/redacteur/login');
             $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
             $this->TemplatingSystem->setTemplateData("info", $loginInfo);
 

@@ -2,16 +2,16 @@
 <html lang="nl" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
-        <link rel="stylesheet" href="../../view/master.css">
-        <link rel="stylesheet" href="../../view/grid-v-1.3.1.css">
+        <link rel="stylesheet" href="../view/css/master.css">
+        <link rel="stylesheet" href="../view/css/grid-v1.3.1.css">
+        <title>{title}</title>
     </head>
     <body>
         <header>
         </header>
 
         <main>
-            {content}
+            {main}
         </main>
 
         <footer>
