@@ -8,13 +8,15 @@
     </head>
     <body>
         <header>
+            <!-- hier komt de header -->
         </header>
 
-        <main>
+        <main class="main">
             {main}
         </main>
 
-        <footer>
+        <footer class="footer">
+            &copy;copyright gameplay parties
         </footer>
     </body>
 </html>
