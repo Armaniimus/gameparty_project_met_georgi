@@ -2,7 +2,7 @@
     /**
      *
      */
-    class Controller_bios_catalogus
+    class Controller_bioscoop
     {
         function __construct($method, $params = FALSE) {
             $this->method = $method;
