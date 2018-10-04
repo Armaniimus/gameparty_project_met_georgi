@@ -44,7 +44,7 @@
         }
 
         public function read() {
-            $sql = "SELECT * FROM bioscopen";
+            $sql = "SELECT * FROM bioscoop";
             $result = $this->DataHandler->ReadData($sql);
 
             $return = "";
