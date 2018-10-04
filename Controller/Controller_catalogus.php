@@ -1,6 +1,6 @@
 <?php
 
-class Controller_catalogus{
+class Controller_catalogus {
 	private $method;
 	private $params;
 	private $connection;
@@ -19,6 +19,9 @@ class Controller_catalogus{
             case 'contact':
                 return $this->contact();
                 break;
+			case 'home':
+				echo 'homepage';
+				break;
 
             default:
                 return $this->catalogus();
