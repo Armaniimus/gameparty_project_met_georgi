@@ -19,8 +19,9 @@ class Controller_catalogus {
             case 'contact':
                 return $this->contact();
                 break;
+
 			case 'home':
-				echo 'homepage';
+				return $this->home();
 				break;
 
             default:
@@ -42,7 +43,17 @@ class Controller_catalogus {
 		$this->TemplatingSystem->setTemplateData("page", '../../catalogus/contact');
 
 		$return = $this->TemplatingSystem->GetParsedTemplate();
+		return $return;
+	}
 
+	public function home() {
+		$this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
+
+		$main = file_get_contents("view/partials/homePage.html");
+		$this->TemplatingSystem->setTemplateData("main", $main);
+		$this->TemplatingSystem->setTemplateData("page", '../../catalogus/contact');
+
+		$return = $this->TemplatingSystem->GetParsedTemplate();
 		return $return;
 	}
 }
