@@ -12,6 +12,8 @@ class Controller_catalogus {
 		if ($params != FALSE) {
 			$this->params = $params;
 		}
+		$this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
+		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 	}
 
 	public function runController() {
@@ -36,28 +38,22 @@ class Controller_catalogus {
 
 	public function contact() {
 		//control view
-		$this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
 
 		$main = file_get_contents("view/partials/contact_form.html");
 		$this->TemplatingSystem->setTemplateData("main", $main);
-		$this->TemplatingSystem->setTemplateData("page", '../../catalogus/contact');
+		$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
 
 		$return = $this->TemplatingSystem->GetParsedTemplate();
 		return $return;
 	}
 
 	public function home() {
-		$this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
-
 		$main = file_get_contents("view/partials/homePage.html");
 		$this->TemplatingSystem->setTemplateData("main", $main);
-		$this->TemplatingSystem->setTemplateData("page", '../../catalogus/contact');
 
 		$return = $this->TemplatingSystem->GetParsedTemplate();
 		return $return;
 	}
 }
 
-
-
- ?>
+?>

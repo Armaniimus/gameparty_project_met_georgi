@@ -18,6 +18,8 @@
             if ($params != FALSE) {
                 $this->params = $params;
             }
+            $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
+    		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
         }
 
         public function runController() {
@@ -60,11 +62,11 @@
 
         public function inhoud_toe() {
             if ($this->ModelRedacteur->loggedInBool == 1) {
-                $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
                 $main = file_get_contents("view/partials/bios_toevoegen.html");
 
                 $this->TemplatingSystem->setTemplateData("main", $main);
-                $this->TemplatingSystem->setTemplateData("page", '../../redacteur/bios_toe');
+                $this->TemplatingSystem->setTemplateData("page", APP_DIR . 'redacteur/bios_toe');
+                $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
                 return $this->TemplatingSystem->GetParsedTemplate();
 
             } else {
@@ -84,11 +86,11 @@
 
         public function bios_toe() {
             if ($this->ModelRedacteur->loggedInBool == 1) {
-                $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
                 $main = file_get_contents("view/partials/bios_toevoegen.html");
 
                 $this->TemplatingSystem->setTemplateData("main", $main);
-                $this->TemplatingSystem->setTemplateData("page", '../../redacteur/bios_toe');
+                $this->TemplatingSystem->setTemplateData("page",  APP_DIR . '/redacteur/bios_toe');
+                $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
                 return $this->TemplatingSystem->GetParsedTemplate();
             } else {
                 echo "uitgelogd<br>";
@@ -101,10 +103,9 @@
 
             // check login Info
             if ($this->ModelRedacteur->loggedInBool == 1) {
-                $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
-
                 $main = file_get_contents("view/partials/redacteur_overzicht.html");
                 $this->TemplatingSystem->setTemplateData("main", $main);
+                $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 
                 $return = $this->TemplatingSystem->GetParsedTemplate();
 
@@ -124,11 +125,9 @@
             $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
             //control view
-            $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
-
             $main = file_get_contents("view/partials/basicLoginForm.html");
             $this->TemplatingSystem->setTemplateData("main", $main);
-            $this->TemplatingSystem->setTemplateData("page", '../../redacteur/login');
+            $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/redacteur/login');
             $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
             $this->TemplatingSystem->setTemplateData("info", $loginInfo);
 
