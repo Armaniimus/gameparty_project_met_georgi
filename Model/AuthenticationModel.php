@@ -23,7 +23,7 @@
                 $_SESSION["gebruikersNaam"] = NULL;
             }
 
-            if (!isset($_SESSION["loginBool"]) ) {
+            if (!isset($_SESSION["gebruikerRol"]) ) {
                 $_SESSION["gebruikerRol"] = NULL;
             }
 
@@ -56,6 +56,15 @@
             }
         }
 
+        private function setGebruikerRol() {
+            $gebruikersNaam = $this->gebruikersNaam;
+
+            // $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$gebruikersNaam'";
+            // $gebruikersData = $this->DataHandler->readSingleData($sql);
+
+            $_SESSION["gebruikerRol"]
+        }
+
         public function login() {
             $this->getData();
             $this->getPasswordHash();
@@ -64,6 +73,10 @@
             // echo $this->SessionModel->HashPassword($this->password);
             // echo "<br>";
             $loginInfo = $this->SessionModel->Login($this->gebruikersNaam, $this->password, $this->passwordHash);
+
+            if ($_SESSION["loginBool" === 1]) {
+                $this->setGebruikerRol();
+            }
 
             return [$this->gebruikersNaam, $loginInfo[0]];
         }
