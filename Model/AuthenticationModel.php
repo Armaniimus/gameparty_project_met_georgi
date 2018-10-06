@@ -15,8 +15,24 @@
             $this->SessionModel = new SessionModel();
         }
 
+        public function SessionSupport() {
+            $this->SessionModel->SessionSupport();
+            $this->login();
 
-        private function GetData() {
+            if (!isset($_SESSION["gebruikersNaam"]) ) {
+                $_SESSION["gebruikersNaam"] = NULL;
+            }
+
+            if (!isset($_SESSION["loginBool"]) ) {
+                $_SESSION["gebruikerRol"] = NULL;
+            }
+
+            if (!isset($_SESSION["loginBool"]) ) {
+                $_SESSION["loginBool"] = NULL;
+            }
+        }
+
+        private function getData() {
             if (!isset($_POST['password']) ) {
                 $_POST['password'] = "";
             }
@@ -47,16 +63,7 @@
             // echo "<br>";
             // echo $this->SessionModel->HashPassword($this->password);
             // echo "<br>";
-            $loginInfo = $this->SessionModel->Login($this->gebruikersNaam, $this->password, $this->passwordHash);          
-
-
-            // // temp testing data
-            // if ($loginInfo[0]) {
-            //     echo "You are Logged in";
-            // } else {
-            //     echo "You are Logged off";
-            // }
-            // $this->SessionModel->Logout();
+            $loginInfo = $this->SessionModel->Login($this->gebruikersNaam, $this->password, $this->passwordHash);
 
             return [$this->gebruikersNaam, $loginInfo[0]];
         }

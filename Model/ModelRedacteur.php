@@ -5,25 +5,10 @@
     class ModelRedacteur {
         private $DateHandler;
         private $DataValidator;
-        private $SessionModel;
-        private $Authentication;
-        
-        public $loggedInBool;
 
         public function __construct($dbName, $username, $pass, $serverAdress, $dbType) {
             $this->DataHandler = new DataHandler($dbName, $username, $pass, $serverAdress, $dbType);
             $this->DataValidator = new DataValidator();
-
-            $this->AuthenticationModel = new AuthenticationModel($dbName, $username, $pass, $serverAdress, $dbType);
-            $this->SessionModel = new SessionModel();
-
-
-
-            // starts or continues the session
-            $this->SessionModel->SessionSupport();
-
-            $login = $this->SessionModel->Login();
-            $this->loggedInBool = $login[0];
         }
 
 

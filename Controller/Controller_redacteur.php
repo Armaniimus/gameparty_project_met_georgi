@@ -4,17 +4,11 @@
      */
     class Controller_redacteur
     {
-        private $AuthenticationModel;
-        private $ModelRedacteur;
         private $templatingSystem;
         private $method;
         private $params;
 
         function __construct($method, $params = FALSE) {
-            $this->AuthenticationModel = new AuthenticationModel(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
-            $this->ModelRedacteur = new ModelRedacteur(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
-
-
             $this->method = $method;
             if ($params != FALSE) {
                 $this->params = $params;
@@ -62,7 +56,7 @@
         }
 
         public function inhoud_toe() {
-            if ($this->ModelRedacteur->loggedInBool == 1) {
+            if ($_SESSION["loginBool"] === 1) {
                 $main = file_get_contents("view/partials/bios_toevoegen.html");
 
                 $this->TemplatingSystem->setTemplateData("main", $main);
@@ -86,7 +80,7 @@
         }
 
         public function bios_toe() {
-            if ($this->ModelRedacteur->loggedInBool == 1) {
+            if ($_SESSION["loginBool"] === 1) {
                 $main = file_get_contents("view/partials/bios_toevoegen.html");
 
                 $this->TemplatingSystem->setTemplateData("main", $main);
@@ -103,7 +97,7 @@
         public function overzicht() {
 
             // check login Info
-            if ($this->ModelRedacteur->loggedInBool == 1) {
+            if ($_SESSION["loginBool"] === 1) {
                 $main = file_get_contents("view/partials/redacteur_overzicht.html");
                 $this->TemplatingSystem->setTemplateData("main", $main);
                 $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
@@ -120,9 +114,14 @@
         }
 
         public function login() {
-            $redacteurArray = $this->AuthenticationModel->login();
-            $gebruikersNaam = $redacteurArray[0];
-            $loginInfo = $redacteurArray[1];
+            $gebruikersNaam = $_SESSION["gebruikersNaam"];
+            if (!$gebruikersNaam) {
+                if (isset($_POST["username"]) ) {
+                    $gebruikersNaam = $_POST["username"];
+                }
+            }
+
+            $loginInfo = $_SESSION["loginBool"];
             $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
             //control view

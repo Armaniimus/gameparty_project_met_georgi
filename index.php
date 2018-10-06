@@ -21,6 +21,11 @@ require_once 'Model/AuthenticationModel.php';
 require_once 'Model/ModelRedacteur.php';
 require_once 'Model/ModelCatalogus.php';
 
+// Authentication
+$Authentication = new AuthenticationModel(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
+$Authentication->SessionSupport();
+
+// Router and return
 $Router = new Router(BESTAND_DIEPTE);
 $echo = $Router->run();
 
@@ -31,4 +36,5 @@ if ($Router->error) {
 }
 
 echo $echo;
+// var_dump($_SESSION);
 ?>
