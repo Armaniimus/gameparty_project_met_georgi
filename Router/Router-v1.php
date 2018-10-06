@@ -40,6 +40,7 @@ class Router {
         } else if ($result == "E2") {
             $this->error = "E2";
             $this->errorMessage = "no Method Defined";
+            $controller = new Controller_bios_catalogus("read");
             return FALSE;
 
         } else {
@@ -65,6 +66,7 @@ class Router {
             return $this->sendToDestination($filteredPackets, $path, $name);
 
         } else {
+          $controller = new Controller_bios_catalogus("read");
             return "E1";
         }
     }
@@ -82,6 +84,7 @@ class Router {
                 $controller = new $name($method);
             }
         } else {
+            $controller = new Controller_bios_catalogus("read");
             return "E2";
         }
 
