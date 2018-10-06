@@ -4,6 +4,7 @@ class Controller_catalogus {
 	private $method;
 	private $params;
 	private $connection;
+	private $templatingSystem;
 
 	function __construct($method, $params = FALSE) {
 		$this->connection = new dbhandler(DB_NAME, DB_USERNAME, DB_PASS);
