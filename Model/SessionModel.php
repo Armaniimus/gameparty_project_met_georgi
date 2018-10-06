@@ -23,7 +23,7 @@ class SessionModel {
         $passCheck = FALSE;
 
         // check if Admin is allready logged in
-        if (isset($_SESSION['user']) ) {
+        if (isset($_SESSION["loginBool"]) && $_SESSION["loginBool"] === 1) {
             $loggedIn = 1;
 
         // Checks if login info is good
@@ -33,7 +33,8 @@ class SessionModel {
                 if (password_verify($password, $passHash)) {
                     $passCheck = 1;
                     $loggedIn = 1;
-                    $_SESSION["user"] = $userName;
+                    $_SESSION["loginBool"] = 1;
+                    $_SESSION["gebruikersNaam"] = $userName;
                 }
             }
 
