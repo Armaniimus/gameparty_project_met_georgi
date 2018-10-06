@@ -8,11 +8,11 @@
         private $password;
         private $gebruikersNaam;
 
-        private $DateHandler;
+        private $DataHandler;
         private $SessionModel;
         function __construct($dbName, $username, $pass, $serverAdress, $dbType) {
             $this->DataHandler = new DataHandler($dbName, $username, $pass, $serverAdress, $dbType);
-            $this->SessionModel = new SessionModel($this->DataHandler);
+            $this->SessionModel = new SessionModel();
         }
 
 
