@@ -6,6 +6,7 @@
     {
         private $AuthenticationModel;
         private $ModelRedacteur;
+        private $templatingSystem;
         private $method;
         private $params;
 
