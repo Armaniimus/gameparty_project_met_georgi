@@ -7,8 +7,16 @@
         <title>{title}</title>
     </head>
     <body>
-        <header>
-            <!-- hier komt de header -->
+        <header class="mainHeader">
+            <button class="col-xs-1 float minHeight" type="button" name="menu">Menu</button>
+            <h2 class="col-xs-7 float minHeight">GameplayParties</h2>
+
+            <form class="col-xs-4 float minHeight" action="" method="post">
+                <input type="text" name="username" placeholder="Gebruikersnaam">
+                <input type="password" name="password" placeholder="Wachtwoord">
+                <input type="submit" value="Login">
+                <input type="submit" name="logout" value="Logout">
+            </form>
         </header>
 
         <main class="main">

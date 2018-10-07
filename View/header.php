@@ -13,7 +13,7 @@
 
   <form class="col-xs-4 float minHeight" action="<?php $_SERVER['REQUEST_URI']; ?>" method="post">
     <input type="text" name="username" placeholder="Gebruikersnaam">
-    <input type="password" name="username" placeholder="Wachtwoord">
+    <input type="password" name="password" placeholder="Wachtwoord">
     <input type="submit" value="Login">
   </form>
 
