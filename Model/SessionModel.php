@@ -32,15 +32,14 @@ class SessionModel {
             if ($password != NULL) {
                 if (password_verify($password, $passHash)) {
                     $passCheck = 1;
-                    $loggedIn = 1;
-                    $_SESSION["loginBool"] = 1;
-                    $_SESSION["gebruikersNaam"] = $userName;
+                    $loggedIn = 2;
                 }
             }
 
             // check if all login information == correct
             if (!$passCheck) {
-                $message = "gebruikersnaam of wachtwoord is foutief";
+                //login info incorrect
+                $message = "E1";
             }
         }
 
