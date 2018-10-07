@@ -62,6 +62,10 @@
             return [$this->gebruikersNaam, $loginInfo[0]];
         }
 
+        public function logout() {
+            $this->SessionModel->logout();
+        }
+
         private function getPostData() {
             if (!isset($_POST['password']) ) {
                 $_POST['password'] = "";

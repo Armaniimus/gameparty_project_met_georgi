@@ -24,6 +24,10 @@ require_once 'Model/ModelCatalogus.php';
 // Authentication
 $Authentication = new SessionContextModel(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
 $Authentication->SessionSupport();
+if (isset($_POST["logout"])) {
+    $Authentication->logout();
+}
+
 
 // Router and return
 $Router = new Router(BESTAND_DIEPTE);
@@ -36,5 +40,5 @@ if ($Router->error) {
 }
 
 echo $echo;
-print_r($_SESSION);
+// print_r($_SESSION);
 ?>
