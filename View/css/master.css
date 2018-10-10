@@ -1,3 +1,7 @@
+*{
+  //border: 1px solid red;
+  font-family: 'Roboto', sans-serif;
+}
 .border {
     border: solid black 1px;
     padding: 10px;
@@ -107,4 +111,58 @@ html, body {
 .main {
     clear: both;
     min-height: 50%;
+}
+ul{
+  list-style: none;
+}
+*{
+  //border: 1px solid red;
+  font-family: 'Roboto', sans-serif;
+}
+.content{
+  width:70%;
+  margin:auto;
+}
+.siteHeader{
+  position: fixed;
+  top:-10px;
+  width: 69%;
+}
+html{
+  background-color: #cccccc;
+}
+
+.siteTitle{
+  text-align: center;
+}
+img{
+  width: 100%;
+}
+.homeText1{
+  padding: 1%;
+  text-align: center;
+
+}
+
+div{
+
+  min-height: 75px;
+}
+.homeButton1{
+  margin-top: 30px;
+  width:100%;
+  min-height: 70px;
+}
+.homeButton2{
+float: right;
+  min-width: 55px;
+  min-height: 70px;
+}
+.homeTitle2{
+  padding: 5%;
+  text-align: center;
+}
+.textAHome{
+  width:100%;
+  min-height: 250px;
 }
