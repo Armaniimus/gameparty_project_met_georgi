@@ -15,6 +15,16 @@
 						
 						 <?php echo $value['bioscoop_naam']; ?>
 
+						 <div class="buttons">
+						 	<div class="button-container">
+						 		<a href="">Reserveer</a>
+						 	</div>
+						 	<div class="button-container">
+						 		<a href="">Detail</a>
+						 	</div>
+						 
+						 </div>
+
 					</div>
 
 				</div>
