@@ -131,7 +131,7 @@ margin:auto;
   position: fixed;
   top:-10px;
   width: 1080px;
-
+z-index: 9999 !important;
 
 }
 .siteShadow{
