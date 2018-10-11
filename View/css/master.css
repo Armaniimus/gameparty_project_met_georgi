@@ -120,13 +120,13 @@ ul{
   font-family: 'Roboto', sans-serif;
 }
 .content{
-  width:70%;
+  width:1080px;
   margin:auto;
 }
 .siteHeader{
   position: fixed;
   top:-10px;
-  width: 69%;
+  width: 1080px;
 }
 html{
   background-color: #cccccc;
