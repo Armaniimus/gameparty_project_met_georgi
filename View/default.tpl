@@ -10,10 +10,19 @@
   </head>
   <body>
 
+
+
     <div class="content">
+
+
+
       <header class="siteHeader">
         <img src="{appdir}/view/images/gpp.svg">
       </header>
+      <header class="siteShadow">
+
+      </header>
+
 <div class="col-xs-12">
 
 </div>
@@ -59,7 +68,7 @@
 </div>
 <div class="col-xs-12 col-s-10">
 
-<button class="homeButton2 col-xs-12 col-s-1" type="button" disabled="true" >Wijzig inhoud</button>
+<button class="homeButton2 col-xs-12 col-s-1" type="button" >Wijzig inhoud</button>
 </div>
 <div class="col-xs-12 col-s-2">
 
@@ -69,7 +78,18 @@
 
 </div>
 <div class="col-xs-12 col-s-8">
-<textarea class="textAHome" name="name" ></textarea>
+<span>
+  <h3>Wie zijn wij?</h3>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+</span>
 </div>
 <div class="col-xs-12 col-s-2">
 
@@ -82,6 +102,7 @@
 </div>
 
 </div>
+
 <footer>
 <div class="content">
   <div class="col-xs-4">
@@ -108,6 +129,7 @@
 </div>
 </div>
 </footer>
+
   </body>
 
 
