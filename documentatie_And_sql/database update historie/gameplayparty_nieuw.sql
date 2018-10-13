@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Gegenereerd op: 13 okt 2018 om 15:42
+-- Gegenereerd op: 13 okt 2018 om 16:49
 -- Serverversie: 5.7.17
 -- PHP-versie: 7.1.16
 
@@ -52,6 +52,24 @@ INSERT INTO `bioscopen` (`bioscoopID`, `bioscoop_naam`, `straatnaam`, `postcode`
 (2, 'Cinerama', 'Westblaak 18', '3012 KL ', 'Rotterdam', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'Huizen', 'Plein 2000 nr. 5', '1271 KK', 'Huizen', 'Noord-holland', 'Voor de schoolvakantie\'s en feestdagen gelden aangepaste openingstijden. De kassa van Wolff Huizen is een half uur voor aanvang van de eerste film open.', NULL, NULL, NULL, NULL, NULL),
 (4, 'Kinepolis Almere', 'Forum 16', '1315 TH ', 'Almere', 'Flevoland', NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `content`
+--
+
+CREATE TABLE `content` (
+  `id` varchar(16) NOT NULL,
+  `content_inhoud` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `content`
+--
+
+INSERT INTO `content` (`id`, `content_inhoud`) VALUES
+('overons', 'dit is een test text voor de overons sectie');
 
 -- --------------------------------------------------------
 
@@ -219,6 +237,12 @@ CREATE TABLE `zalen` (
 --
 ALTER TABLE `bioscopen`
   ADD PRIMARY KEY (`bioscoopID`);
+
+--
+-- Indexen voor tabel `content`
+--
+ALTER TABLE `content`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `diensten`
