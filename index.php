@@ -34,7 +34,7 @@ $Router = new Router(BESTAND_DIEPTE);
 $echo = $Router->run();
 
 if ($Router->error) {
-    require_once "Controller/Controller_catalogus.php ";
+    require_once "Controller/Controller_catalogus.php";
     $Controller = new Controller_catalogus("home");
     $echo = $Controller->runController();
 }
