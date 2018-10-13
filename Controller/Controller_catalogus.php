@@ -50,7 +50,7 @@ class Controller_catalogus {
 			
 		}else{
 			$main = file_get_contents("view/partials/contact_form.html");
-			$this->TemplatingSystem->setTemplateData("main", $main);
+			$this->TemplatingSystem->setTemplateData("main-content", $main);
 			$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
 			$return = $this->TemplatingSystem->GetParsedTemplate();
 			return $return;
@@ -62,7 +62,7 @@ class Controller_catalogus {
 		$main = file_get_contents("view/partials/homePage.html");
 		$content = $this->connection->QueryRead("SELECT content_inhoud FROM content WHERE id='overons' ");
 		$result = implode($content[0]);
-		$this->TemplatingSystem->setTemplateData("main", $main);
+		$this->TemplatingSystem->setTemplateData("main-content", $main);
 		$this->TemplatingSystem->setTemplateData("content", $result);
 
 		$return = $this->TemplatingSystem->GetParsedTemplate();
