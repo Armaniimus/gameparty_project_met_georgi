@@ -6,15 +6,13 @@
         <link rel="stylesheet" href="{appdir}/view/css/grid-v1.3.1.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <meta charset="utf-8">
-    <title></title>
+    <title>GamePlayParty</title>
   </head>
   <body>
 
 
 
     <div class="content">
-
-
 
       <header class="siteHeader">
         <img src="{appdir}/view/images/gpp.svg">
@@ -23,79 +21,9 @@
 
       </header>
 
-<div class="col-xs-12">
+      {main-content}
 
-</div>
-<div class="col-xs-12">
-
-</div>
-<div class="col-xs-12 whiteLine">
-
-</div>
-
-<div class="col-xs-12">
-  <h1 class="siteTitle">Welkom op GamePlayParty.nl!</h1>
-</div>
-
-<div class="col-xs-12 col-s-9">
-  <h2 class="homeText1">Gamen op een bioscoopscherm?</h3>
-</div>
-<div class="col-xs-12 col-s-3">
-<img src="{appdir}/view/images/gameshowcase.jpg">
-</div>
-
-<div class="col-xs-12 col-s-3">
-<img src="{appdir}/view/images/gamenOpBioscoopScherm.jpg">
-</div>
-<div class="col-xs-12 col-s-9">
-  <h2 class="homeText1">Een game showcasen aan een publiek?</h3>
-</div>
-<div class="col-xs-12">
-<h3 class="homeText1">DAT KAN! Klik hier onder om de bioscopen catalogus te zien!</h3>
-</div>
-<div class="col-xs-12 col-s-4">
-
-</div>
-<div class="col-xs-12 col-s-4">
-  <button type="button" class="homeButton1">Naar de catalogus!</button>
-</div>
-<div class="col-xs-12 col-s-4">
-
-</div>
-
-<div class="col-xs-12">
-<h2 class="homeTitle2">Over ons!</h3>
-</div>
-<div class="col-xs-12 col-s-10">
-
-<button class="homeButton2 col-xs-12 col-s-1" type="button" >Wijzig inhoud</button>
-</div>
-<div class="col-xs-12 col-s-2">
-
-
-</div>
-<div class="col-xs-12 col-s-2">
-
-</div>
-<div class="col-xs-12 col-s-8">
-<span>
-  <h3>Wie zijn wij?</h3>
-  <p class="overOnsText">
-{content}
-</p>
-</span>
-</div>
-<div class="col-xs-12 col-s-2">
-
-</div>
-<div class="col-xs-12">
-
-</div>
-<div class="col-xs-12">
-
-</div>
-
-</div>
+    </div>
 
 <footer>
 <div class="content">
