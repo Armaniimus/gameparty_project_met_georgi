@@ -34,18 +34,28 @@ class Controller_catalogus {
     }
 
 	public function catalogus(){
-		$sample = $this->connection->QueryRead("SELECT * FROM bioscoop");
+		$sample = $this->connection->QueryRead("SELECT * FROM bioscopen");
+
+		require_once('View/catalogus.php');
 	}
 
 	public function contact() {
-		//control view
 
-		$main = file_get_contents("view/partials/contact_form.html");
-		$this->TemplatingSystem->setTemplateData("main", $main);
-		$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
+		if (!empty($_POST['submit'])) {
+			$naam = $_POST['naam'];
+			$email = $_POST['email'];
+			$telefoon = $_POST['telefoon'];
+			$bericht = $_POST['bericht'];
+			unset($_POST);
+			
+		}else{
+			$main = file_get_contents("view/partials/contact_form.html");
+			$this->TemplatingSystem->setTemplateData("main", $main);
+			$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
+			$return = $this->TemplatingSystem->GetParsedTemplate();
+			return $return;
+		}
 
-		$return = $this->TemplatingSystem->GetParsedTemplate();
-		return $return;
 	}
 
 	public function home() {
