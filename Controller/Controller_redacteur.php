@@ -59,7 +59,7 @@
             if ($_SESSION["loginBool"] === 1) {
                 $main = file_get_contents("view/partials/bios_toevoegen.html");
 
-                $this->TemplatingSystem->setTemplateData("main", $main);
+                $this->TemplatingSystem->setTemplateData("main-content", $main);
                 $this->TemplatingSystem->setTemplateData("page", APP_DIR . 'redacteur/bios_toe');
                 $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
                 return $this->TemplatingSystem->GetParsedTemplate();
@@ -83,7 +83,7 @@
             if ($_SESSION["loginBool"] === 1) {
                 $main = file_get_contents("view/partials/bios_toevoegen.html");
 
-                $this->TemplatingSystem->setTemplateData("main", $main);
+                $this->TemplatingSystem->setTemplateData("main-content", $main);
                 $this->TemplatingSystem->setTemplateData("page",  APP_DIR . '/redacteur/bios_toe');
                 $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
                 return $this->TemplatingSystem->GetParsedTemplate();
@@ -99,7 +99,7 @@
             // check login Info
             if ($_SESSION["loginBool"] === 1) {
                 $main = file_get_contents("view/partials/redacteur_overzicht.html");
-                $this->TemplatingSystem->setTemplateData("main", $main);
+                $this->TemplatingSystem->setTemplateData("main-content", $main);
                 $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 
                 $return = $this->TemplatingSystem->GetParsedTemplate();
@@ -126,7 +126,7 @@
 
             //control view
             $main = file_get_contents("view/partials/basicLoginForm.html");
-            $this->TemplatingSystem->setTemplateData("main", $main);
+            $this->TemplatingSystem->setTemplateData("main-content", $main);
             $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/redacteur/login');
             $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
             $this->TemplatingSystem->setTemplateData("info", $loginInfo);
