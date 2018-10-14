@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class dbhandler
 {
@@ -8,7 +8,7 @@ class dbhandler
 	private $userName;
 	private $password;
 	private $connection;
-	
+
 	function __construct($databaseName,$userName,$password,$servername = 'localhost'){
 		$this->databaseName   = $databaseName;
 		$this->userName       = $userName;
@@ -19,7 +19,7 @@ class dbhandler
 		  	$conn = $this->connection;
 		    // set the PDO error mode to exception
 		    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		    
+
 		    }
 		catch(PDOException $e){
 		    echo "Connection failed: " . $e->getMessage();
@@ -48,6 +48,6 @@ class dbhandler
 		$stmt = $this->connection;
 		$stmt->query($query);
 
-		
+
 	}
 }

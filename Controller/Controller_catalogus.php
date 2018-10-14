@@ -34,7 +34,7 @@ class Controller_catalogus {
     }
 
 	public function catalogus(){
-		$sample = $this->connection->QueryRead("SELECT * FROM bioscopen");
+		$sample = $this->connection->QueryRead("SELECT * FROM bioscoop");
 	}
 
 	public function contact() {
@@ -50,7 +50,10 @@ class Controller_catalogus {
 
 	public function home() {
 		$main = file_get_contents("view/partials/homePage.html");
+		$content = $this->connection->QueryRead("SELECT content_inhoud FROM content WHERE id='overons' ");
+		$result = implode($content[0]);
 		$this->TemplatingSystem->setTemplateData("main", $main);
+		$this->TemplatingSystem->setTemplateData("content", $result);
 
 		$return = $this->TemplatingSystem->GetParsedTemplate();
 		return $return;
