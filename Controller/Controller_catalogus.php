@@ -32,6 +32,10 @@ class Controller_catalogus {
 				return $this->home();
 				break;
 
+			case 'bedankt':
+				return $this->bedankt();
+				break;
+
             default:
                 return $this->catalogus();
                 break;
@@ -93,13 +97,10 @@ class Controller_catalogus {
 				    $mail->AltBody = $bericht;
 
 
-				    $mail->send();
-
-				   	$main = file_get_contents("view/partials/bedankt.html");
-	   				$this->TemplatingSystem->setTemplateData("main-content", $main);
-	   				$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
-	   				$return = $this->TemplatingSystem->GetParsedTemplate();
-	   				return $return;
+				    if ($mail->send()) {
+				    	unset($_POST);
+				    	header("Location: http://localhost/shelter/gameparty_project_met_georgi/catalogus/bedankt");
+				    }
 
 
 				} catch (Exception $e) {
@@ -107,7 +108,7 @@ class Controller_catalogus {
 				}
 
 
-				unset($_POST);
+				
 			
 		}else{
 			$main = file_get_contents("view/partials/contact_form.html");
@@ -116,6 +117,16 @@ class Controller_catalogus {
 			$return = $this->TemplatingSystem->GetParsedTemplate();
 			return $return;
 		}
+
+	}
+
+	public function bedankt(){
+
+   		$main = file_get_contents("view/partials/bedankt.html");
+		$this->TemplatingSystem->setTemplateData("main-content", $main);
+		$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
+		$return = $this->TemplatingSystem->GetParsedTemplate();
+		return $return;
 
 	}
 
