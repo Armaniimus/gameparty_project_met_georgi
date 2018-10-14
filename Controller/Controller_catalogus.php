@@ -68,6 +68,42 @@ class Controller_catalogus {
 				require_once "Model/vendor/phpmailer/phpmailer/src/SMTP.php";
 				require_once "Model/vendor/phpmailer/phpmailer/src/Exception.php";
 
+
+				//mail to customer
+				$mailcustomer = new PHPMailer(true);                              // Passing `true` enables exceptions
+				try {
+				 //Server settings
+				    // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+				    $mailcustomer->isSMTP();                                      // Set mailer to use SMTP
+				    $mailcustomer->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+				    $mailcustomer->SMTPAuth = true;                               // Enable SMTP authentication
+				    $mailcustomer->Username = 'gameplaypartyNL@gmail.com';                 // SMTP username
+				    $mailcustomer->Password = 'GamePlayPartyNL';                           // SMTP password
+				    $mailcustomer->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+				    $mailcustomer->Port = 587;                                    // TCP port to connect to
+
+				    //Recipients
+				    $mailcustomer->setFrom('gameplaypartyNL@gmail.com' , 'Contact form GamePlayPartyNL');
+				    $mailcustomer->addAddress($email);     // Add a recipient
+				    $mailcustomer->addReplyTo('gameplaypartyNL@gmail.com');
+				   
+
+				    //Content
+				    $mailcustomer->isHTML(true);                                  // Set email format to HTML
+				    $mailcustomer->Subject = "Bericht ontvangen.";
+				    $mailcustomer->Body    = "Uw bericht is ontvangen en word zo spoedig mogelijk verwerkt!";
+
+				    $mailcustomer->send();
+
+
+				} catch (Exception $e) {
+				    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+				}
+
+
+
+
+				//mail to customer care
 				$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 				try {
 				 //Server settings
