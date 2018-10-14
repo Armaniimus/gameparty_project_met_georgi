@@ -58,6 +58,7 @@ class Controller_catalogus {
 			$email = $_POST['email'];
 			$telefoon = $_POST['telefoon'];
 			$bericht = $_POST['bericht'];
+			$onderwerp = $_POST['onderwerp'];
 
 				require_once "Model/vendor/phpmailer/phpmailer/src/phpmailer.php";
 				require_once "Model/vendor/phpmailer/phpmailer/src/SMTP.php";
@@ -66,7 +67,7 @@ class Controller_catalogus {
 				$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 				try {
 				 //Server settings
-				    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+				    // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
 				    $mail->isSMTP();                                      // Set mailer to use SMTP
 				    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 				    $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -78,30 +79,35 @@ class Controller_catalogus {
 				    //Recipients
 				    $mail->setFrom($email , 'Contact form GamePlayPartyNL');
 				    $mail->addAddress('gameplaypartyNL@gmail.com');     // Add a recipient
-				    $mail->addAddress('ellen@example.com');               // Name is optional
-				    $mail->addReplyTo($email, 'Information');
+				    $mail->addReplyTo($email, 'Contact');
 				   
-
-					   // Optional name
 
 				    //Content
 				    $mail->isHTML(true);                                  // Set email format to HTML
-				    $mail->Subject = 'Here is the subject';
-				    $mail->Body    = $bericht;
+				    $mail->Subject = $onderwerp;
+				    $mail->Body    =
+
+						"Naam: ".$naam."<br>"."Email: ".$email."<br>"."Telefoonnummer: ".$telefoon."<br><br>"."Onderwerp: ".$onderwerp."<br><br>".$bericht;
+
+
 				    $mail->AltBody = $bericht;
 
 
 				    $mail->send();
-				    echo 'Message has been sent';
+
+				   	$main = file_get_contents("view/partials/bedankt.html");
+	   				$this->TemplatingSystem->setTemplateData("main-content", $main);
+	   				$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
+	   				$return = $this->TemplatingSystem->GetParsedTemplate();
+	   				return $return;
+
+
 				} catch (Exception $e) {
 				    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 				}
 
 
-
-
-
-			unset($_POST);
+				unset($_POST);
 			
 		}else{
 			$main = file_get_contents("view/partials/contact_form.html");
