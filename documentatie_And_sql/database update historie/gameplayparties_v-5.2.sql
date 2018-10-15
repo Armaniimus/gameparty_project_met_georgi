@@ -90,13 +90,20 @@ CREATE TABLE `diensten` (
 -- Tabelstructuur voor tabel `gebruikers`
 --
 
-CREATE TABLE `gebruikers` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `gebruikersNaam` varchar(24) NOT NULL,
-  `passwordHash` varchar(255) NOT NULL,
-  `gebruikers_rollen_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- CREATE TABLE `gebruikers` (
+--   `id` int(10) UNSIGNED NOT NULL,
+--   `gebruikersNaam` varchar(24) NOT NULL,
+--   `passwordHash` varchar(255) NOT NULL,
+--   `gebruikers_rollen_id` int(10) UNSIGNED NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `gameplayParties`.`gebruikers` (
+  `Id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `gebruikersNaam` VARCHAR(24) NOT NULL UNIQUE,
+  `passwordHash` VARCHAR(255) NOT NULL,
+  `gebruikers_rollen_id` INT NOT NULL,
+  PRIMARY KEY (`Id`)
+);
 --
 -- Gegevens worden geëxporteerd voor tabel `gebruikers`
 --
@@ -113,14 +120,14 @@ INSERT INTO `gebruikers` (`id`, `gebruikersNaam`, `passwordHash`, `gebruikers_ro
 
 CREATE TABLE `gebruikers_rollen` (
   `id` int(10) UNSIGNED NOT NULL,
-  `rolType` varchar(45) NOT NULL,
+  `rolType` varchar(45) NOT NULL UNIQUE,
   `perm_bios_toevoegen` tinyint(4) DEFAULT NULL,
   `perm_bios_wijzigen` tinyint(4) DEFAULT NULL,
   `perm_bios_verwijderen` tinyint(4) DEFAULT NULL,
   `perm_content_toevoegen` tinyint(4) DEFAULT NULL,
   `perm_content_wijzigen` tinyint(4) DEFAULT NULL,
   `perm_content_verwijderen` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `gebruikers_rollen`
