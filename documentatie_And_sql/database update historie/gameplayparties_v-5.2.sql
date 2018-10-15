@@ -63,16 +63,15 @@ INSERT INTO `bioscopen` (`bioscoopID`, `bioscoop_naam`, `straatnaam`, `postcode`
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
-  `id` varchar(16) NOT NULL,
-  `content_inhoud` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Gegevens worden geëxporteerd voor tabel `content`
---
-
-INSERT INTO `content` (`id`, `content_inhoud`) VALUES
-('overons', 'dit is een test text voor de overons sectie');
+  `contentID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `content_naam` VARCHAR(80) NOT NULL UNIQUE,
+  `tab_titel` VARCHAR(60) NOT NULL,
+  `pagina_titel` VARCHAR(60) NOT NULL,
+  `content` VARCHAR(400) NULL,
+  `pagina_beschrijving` VARCHAR(400) NOT NULL,
+  `steekwoorden` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`contentID`)
+);
 
 -- --------------------------------------------------------
 
