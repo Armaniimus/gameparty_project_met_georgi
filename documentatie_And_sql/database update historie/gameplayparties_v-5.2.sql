@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `gameplayparty`
 --
+DROP Database IF EXISTS GameplayParties;
+DROP Database IF EXISTS GameplayParty;
+CREATE Database IF NOT EXISTS gameplayparty;
 
 -- --------------------------------------------------------
 
@@ -28,7 +31,7 @@ SET time_zone = "+00:00";
 -- Tabelstructuur voor tabel `bioscopen`
 --
 
-CREATE TABLE `bioscopen` (
+CREATE TABLE IF NOT EXISTS `bioscopen` (
   `bioscoopID` int(11) NOT NULL,
   `bioscoop_naam` varchar(100) DEFAULT NULL,
   `straatnaam` varchar(100) DEFAULT NULL,
@@ -59,7 +62,7 @@ INSERT INTO `bioscopen` (`bioscoopID`, `bioscoop_naam`, `straatnaam`, `postcode`
 -- Tabelstructuur voor tabel `content`
 --
 
-CREATE TABLE `content` (
+CREATE TABLE IF NOT EXISTS `content` (
   `id` varchar(16) NOT NULL,
   `content_inhoud` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -77,7 +80,7 @@ INSERT INTO `content` (`id`, `content_inhoud`) VALUES
 -- Tabelstructuur voor tabel `diensten`
 --
 
-CREATE TABLE `diensten` (
+CREATE TABLE IF NOT EXISTS `diensten` (
   `dienstID` int(11) NOT NULL,
   `dienstnaam` varchar(100) DEFAULT NULL,
   `tarieven_tariefID` int(11) NOT NULL,
