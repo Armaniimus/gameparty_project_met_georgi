@@ -15,7 +15,8 @@
     <div class="content">
 
       <header class="siteHeader">
-        <img src="{appdir}/view/images/gpp.svg">
+
+        <img src="{appdir}/view/images/gpp.svg"><a href="{appdir}" ><button class="goHomeButton"  type="button" name="button"></button></a></img>
       </header>
       <header class="siteShadow">
 
@@ -32,7 +33,7 @@
   <div class="col-xs-4">
   <ul>
 
-    <li><a href="#">Contact</a></li>
+    <li><a href="{appdir}/catalogus/contact">Contact</a></li>
     <li><a href="#">Login</a></li>
     <li><a href="#">Reserveren</a></li>
   </ul>

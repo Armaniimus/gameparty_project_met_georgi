@@ -1,3 +1,12 @@
+.goHomeButton{
+height: 200px !important;
+width:190px !important;
+position: relative;
+top:-280px;
+z-index: 2000;
+opacity: 0;
+
+}
 .marginner{
   margin-top: 220px;
 }
@@ -137,8 +146,8 @@ margin:auto;
   position: fixed;
   top:-10px;
   width: 1080px;
-z-index: 9999 !important;
-
+z-index: 2001;
+max-height: 350px;
 }
 .siteShadow{
   z-index: -10;

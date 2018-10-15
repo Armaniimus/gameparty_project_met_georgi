@@ -86,7 +86,7 @@ class Controller_catalogus {
 				    $mailcustomer->setFrom('gameplaypartyNL@gmail.com' , 'Contact form GamePlayPartyNL');
 				    $mailcustomer->addAddress($email);     // Add a recipient
 				    $mailcustomer->addReplyTo('gameplaypartyNL@gmail.com');
-				   
+
 
 				    //Content
 				    $mailcustomer->isHTML(true);                                  // Set email format to HTML
@@ -120,7 +120,7 @@ class Controller_catalogus {
 				    $mail->setFrom($email , 'Contact form GamePlayPartyNL');
 				    $mail->addAddress('gameplaypartyNL@gmail.com');     // Add a recipient
 				    $mail->addReplyTo($email, 'Contact');
-				   
+
 
 				    //Content
 				    $mail->isHTML(true);                                  // Set email format to HTML
@@ -144,8 +144,8 @@ class Controller_catalogus {
 				}
 
 
-				
-			
+
+
 		}else{
 			$main = file_get_contents("view/partials/contact_form.html");
 			$this->TemplatingSystem->setTemplateData("main-content", $main);
@@ -172,7 +172,7 @@ class Controller_catalogus {
 		$result = implode($content[0]);
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
 		$this->TemplatingSystem->setTemplateData("content", $result);
-
+		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 		$return = $this->TemplatingSystem->GetParsedTemplate();
 		return $return;
 	}
