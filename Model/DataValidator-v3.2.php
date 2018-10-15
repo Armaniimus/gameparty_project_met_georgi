@@ -1,5 +1,5 @@
 <?php
-    require_once "traits\ValidatePHP_ID.php";
+    require_once "traits/ValidatePHP_ID.php";
     class DataValidator {
         private $dataTypesArray;
         private $nullDataArray;

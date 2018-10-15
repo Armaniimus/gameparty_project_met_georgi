@@ -14,6 +14,10 @@
     float: left;
 }
 
+[class*="col-"] {
+    float: left;
+}
+
 .float-r {
     float: right;
 }
@@ -23,7 +27,7 @@
     border: solid green 1px;
 } */
 
-// set defaults for display classes
+/* set defaults for display classes */
 .display-xs-block,
 .display-s-block,
 .display-m-block,
