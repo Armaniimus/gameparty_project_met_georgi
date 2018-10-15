@@ -14,7 +14,7 @@ opacity: 0;
 
 }
 .marginner{
-  margin-top: 200px;
+  margin-top: 150px;
 }
 .overOnsText{
   color: white;
@@ -240,10 +240,11 @@ background:rgba(255,255,255,0.1);
 }
 .homeButton2{
 float: right !important;
-  min-width: 55px;
+  min-width: 85px;
   min-height: 70px;
   font-size: 20px;
   display: none;
+  margin: 4px;
 }
 .homeTitle2{
 
