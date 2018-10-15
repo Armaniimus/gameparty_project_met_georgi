@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `gameplayparty`
 --
-DROP Database IF EXISTS GameplayParties;
-DROP Database IF EXISTS GameplayParty;
+-- DROP Database IF EXISTS GameplayParties;
+-- DROP Database IF EXISTS GameplayParty;
 CREATE Database IF NOT EXISTS gameplayparty;
 
 -- --------------------------------------------------------
