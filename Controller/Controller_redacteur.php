@@ -117,8 +117,8 @@
         }
 
         public function login() {
-          $loginMsg="";
-          $loginBool = $_SESSION["loginBool"];
+            $loginMsg="";
+            $loginBool = $_SESSION["loginBool"];
 
             $gebruikersNaam = $_SESSION["gebruikersNaam"];
             if (!$gebruikersNaam) {
@@ -130,35 +130,30 @@
             $loginInfo = $_SESSION["loginBool"];
             $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
-            if($loginBool == 1){
-              $loginMsg = "<h4>U bent ingelogd als rol: ".$_SESSION["gebruikersRol"]."</h4> ";
+            if ($loginBool == 1) {
+                $loginMsg = "<h4>U bent ingelogd als rol: ".$_SESSION["gebruikersRol"]."</h4> ";
 
-            }else if($loginBool == 0){
-            $loginMsg = "U bent nu niet ingelogd";
+            } else if($loginBool == 0) {
+                $loginMsg = "U bent nu niet ingelogd";
             }
             //control view
 
             $main = file_get_contents("view/partials/basicLoginForm.html");
-            if($loginBool == 1){
-              $main = file_get_contents("view/partials/loguitPagina.html");
-              $this->TemplatingSystem->setTemplateData("main-content", $main);
-              $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
-              $this->TemplatingSystem->setTemplateData("loginText", $loginMsg);
-            }else{
-              $this->TemplatingSystem->setTemplateData("main-content", $main);
+            if ($loginBool == 1) {
+                $main = file_get_contents("view/partials/loguitPagina.html");
+                $this->TemplatingSystem->setTemplateData("main-content", $main);
+                $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
+                $this->TemplatingSystem->setTemplateData("loginText", $loginMsg);
+            } else {
+                $this->TemplatingSystem->setTemplateData("main-content", $main);
             }
 
-
-
             $loginButtonText = "Login";
-            if($loginBool == 1){
+            if ($loginBool == 1) {
             	$loginButtonText = "Loguit";
             }
 
             $this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
-
-
-
             $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/redacteur/login');
             $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
             $this->TemplatingSystem->setTemplateData("info", $loginInfo);
@@ -168,10 +163,9 @@
 
             return $return;
         }
-        private function logout()
-        {
-        session_destroy();
-        header("Location: ".APP_DIR."/redacteur/login ");
+        private function logout() {
+            session_destroy();
+            header("Location: ".APP_DIR."/redacteur/login ");
         }
     }
 ?>
