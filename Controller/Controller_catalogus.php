@@ -149,6 +149,19 @@ class Controller_catalogus {
 		}else{
 			$main = file_get_contents("view/partials/contact_form.html");
 			$this->TemplatingSystem->setTemplateData("main-content", $main);
+
+
+
+			$loginButtonText = "Login";
+			if($_SESSION["loginBool"] == 1){
+				$loginButtonText = "Loguit";
+			}
+
+			$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
+
+
+
+
 			$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
 			$return = $this->TemplatingSystem->GetParsedTemplate();
 			return $return;
@@ -160,6 +173,19 @@ class Controller_catalogus {
 
    		$main = file_get_contents("view/partials/bedankt.html");
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
+
+
+
+		$loginButtonText = "Login";
+		if($_SESSION["loginBool"] == 1){
+			$loginButtonText = "Loguit";
+		}
+
+		$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
+
+
+
+
 		$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
 		$return = $this->TemplatingSystem->GetParsedTemplate();
 		return $return;
@@ -170,9 +196,11 @@ class Controller_catalogus {
 	public function home() {
 		$selectQuery = "SELECT tab_titel,pagina_titel,content_naam,content,pagina_beschrijving,steekwoorden FROM content WHERE contentID='1' ";
 
+
+
 		$main = file_get_contents("view/partials/homePage.html");
 		$content = $this->connection->QueryRead($selectQuery);
-	
+
 		$tab_titel = $content[0]["tab_titel"];
 		$pagina_titel = $content[0]["pagina_titel"];
 		$content_naam = $content[0]["content_naam"];
@@ -181,6 +209,16 @@ class Controller_catalogus {
 		$steekwoorden = $content[0]["steekwoorden"];
 
 $this->TemplatingSystem->setTemplateData("main-content", $main);
+
+
+$loginButtonText = "Login";
+if($_SESSION["loginBool"] == 1){
+	$loginButtonText = "Loguit";
+}
+
+$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
+
+
 
 
 		$this->TemplatingSystem->setTemplateData("tab_titel", $tab_titel);

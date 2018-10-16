@@ -22,7 +22,7 @@
 <button class="headerButtonSingle1" type="button" name="button">Contact</button>
 </a>
 <a class="headerButtonSingle " href="{appdir}/redacteur/login">
-<button class="headerButtonSingle2" type="button" name="button">Login</button>
+<button class="headerButtonSingle2" type="button" name="button"> {loginButtonText} </button>
 </a>
 <a class="headerButtonSingle " href="{appdir}/catalogus/catalogus">
 <button class="headerButtonSingle3" type="button" name="button">Catalogus</button>
