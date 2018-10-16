@@ -503,3 +503,9 @@ z-index: -200;
 
 height:50px;
 }
+.admin-menu{
+  border: 2px solid #fff;
+}
+.admin-menu.menu{
+padding-top: 100px;
+}
