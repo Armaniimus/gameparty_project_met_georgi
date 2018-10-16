@@ -250,6 +250,7 @@ float: right !important;
 color:WHITE;
   background:none;
 border: 3px solid WHITE;
+z-index: 9999 !important;
 }
 .homeButton2:hover{
 
@@ -475,4 +476,11 @@ color:#FFC312;
 /* background:none; */
 border: 5px solid #FFC312;
 background:rgba(255,255,255,0.1);
+}
+h4{
+  color: white;
+  font-size: 1.5em;
+}
+.contentNaam{
+  width:500px;
 }

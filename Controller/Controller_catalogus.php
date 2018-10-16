@@ -166,12 +166,31 @@ class Controller_catalogus {
 
 	}
 
+
 	public function home() {
+		$selectQuery = "SELECT tab_titel,pagina_titel,content_naam,content,pagina_beschrijving,steekwoorden FROM content WHERE contentID='1' ";
+
 		$main = file_get_contents("view/partials/homePage.html");
-		$content = $this->connection->QueryRead("SELECT content_inhoud FROM content WHERE id='overons' ");
-		$result = implode($content[0]);
-		$this->TemplatingSystem->setTemplateData("main-content", $main);
-		$this->TemplatingSystem->setTemplateData("content", $result);
+		$content = $this->connection->QueryRead($selectQuery);
+	
+		$tab_titel = $content[0]["tab_titel"];
+		$pagina_titel = $content[0]["pagina_titel"];
+		$content_naam = $content[0]["content_naam"];
+		$content0 = $content[0]["content"];
+		$pagina_beschrijving = $content[0]["pagina_beschrijving"];
+		$steekwoorden = $content[0]["steekwoorden"];
+
+$this->TemplatingSystem->setTemplateData("main-content", $main);
+
+
+		$this->TemplatingSystem->setTemplateData("tab_titel", $tab_titel);
+		$this->TemplatingSystem->setTemplateData("pagina_titel", $pagina_titel);
+		$this->TemplatingSystem->setTemplateData("content_naam", $content_naam);
+		$this->TemplatingSystem->setTemplateData("content0", $content0);
+		$this->TemplatingSystem->setTemplateData("pagina_beschrijving", $pagina_beschrijving);
+		$this->TemplatingSystem->setTemplateData("steekwoorden", $steekwoorden);
+
+
 		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 		$return = $this->TemplatingSystem->GetParsedTemplate();
 		return $return;
