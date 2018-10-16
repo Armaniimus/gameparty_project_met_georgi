@@ -50,7 +50,7 @@
                     break;
 
                 default:
-                    return $this->overzicht();
+                    return $this->login();
                     break;
             }
         }
