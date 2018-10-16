@@ -21,7 +21,7 @@
 <a class="headerButtonSingle" href="{appdir}/catalogus/contact">
 <button class="headerButtonSingle1" type="button" name="button">Contact</button>
 </a>
-<a class="headerButtonSingle " href="{appdir}/login/login">
+<a class="headerButtonSingle " href="{appdir}/login/logout">
 <button class="headerButtonSingle2" type="button" name="button"> {loginButtonText} </button>
 </a>
 <a class="headerButtonSingle " href="{appdir}/catalogus/catalogus">
@@ -38,18 +38,19 @@
   </div>
 </button>
         </div>
-        <div class="adminMenuTriangle">
-          <label class="col-xs-12 adminMenuContent"></label>
+    <!--     <div class="adminMenuTriangle"> -->
+        <!--   {adminContent} -->
+         <!--  <label class="col-xs-12 adminMenuContent"></label>
           <label class="col-xs-12 adminMenuContent"></label>
           <label class="col-xs-9 adminMenuContent"></label>
-          <label class="col-xs-3 adminMenuContent">{adminContent0}</label>
+          <label class="col-xs-3 adminMenuContent">{adminContent}</label>
           <label class="col-xs-7 adminMenuContent"></label>
           <label class="col-xs-5 adminMenuContent">{adminContent1}</label>
           <label class="col-xs-5 adminMenuContent"></label>
           <label class="col-xs-7 adminMenuContent">{adminContent2}</label>
           <label class="col-xs-3 adminMenuContent"></label>
-          <label class="col-xs-9 adminMenuContent">{adminContent3}</label>
-        </div>
+          <label class="col-xs-9 adminMenuContent">{adminContent3}</label> -->
+       <!--  </div> -->
       </header>
       <header class="siteShadow">
 
