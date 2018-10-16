@@ -39,12 +39,12 @@ CREATE TABLE IF NOT EXISTS `bioscopen` (
   `postcode` varchar(20) DEFAULT NULL,
   `plaats` varchar(100) DEFAULT NULL,
   `provincie` varchar(100) DEFAULT NULL,
-  `informatie` tinytext,
+  `informatie` text,
   `openingstijden` varchar(100) DEFAULT NULL,
-  `bereikbaarheid_auto` tinytext,
-  `bereikbaarheid_ov` tinytext,
-  `bereikbaarheid_fiets` tinytext,
-  `rolstoeltoegankelijkheid` tinytext,
+  `bereikbaarheid_auto` text,
+  `bereikbaarheid_ov` text,
+  `bereikbaarheid_fiets` text,
+  `rolstoeltoegankelijkheid` text,
   PRIMARY KEY (`bioscoopID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
