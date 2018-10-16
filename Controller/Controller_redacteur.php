@@ -124,12 +124,19 @@
             $loginInfo = $_SESSION["loginBool"];
             $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
+            if($loginInfo = 1){
+              $loginMsg = "U bent succesvol ingelogd!<br> U bent ingelogd als rol: ".$_SESSION["gebruikersRol"]." ";
+
+            }else{
+              $loginMsg = "U bent nu niet ingelogd";
+            }
             //control view
             $main = file_get_contents("view/partials/basicLoginForm.html");
             $this->TemplatingSystem->setTemplateData("main-content", $main);
             $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/redacteur/login');
             $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
             $this->TemplatingSystem->setTemplateData("info", $loginInfo);
+            $this->TemplatingSystem->setTemplateData("loginText", $loginMsg);
 
             $return = $this->TemplatingSystem->GetParsedTemplate();
 
