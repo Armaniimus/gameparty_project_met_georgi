@@ -48,7 +48,7 @@ class Controller_login {
         $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
         if($loginBool == 1){
-            $loginMsg = "<h4>U bent ingelogd als rol: ".$_SESSION["gebruikersRol"]."</h4> ";
+            $loginMsg = "<h4>Welkom: ".$_SESSION["gebruikersRol"]."</h4> ";
 
         } else if($loginBool == 0){
             $loginMsg = "U bent nu niet ingelogd";
@@ -57,7 +57,7 @@ class Controller_login {
 
         $main = file_get_contents("view/partials/basicLoginForm.html");
         if ($loginBool == 1) {
-            $main = file_get_contents("view/partials/loguitPagina.html");
+            $main = file_get_contents("view/partials/admin.html");
             $this->TemplatingSystem->setTemplateData("main-content", $main);
             $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
             $this->TemplatingSystem->setTemplateData("loginText", $loginMsg);
