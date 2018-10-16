@@ -131,7 +131,7 @@
             $loginInfo = '<br>$loginInfo = ' . $loginInfo;
 
             if($loginBool == 1){
-              $loginMsg = "<h4>U bent succesvol ingelogd!</h4> <h4>U bent ingelogd als rol: ".$_SESSION["gebruikersRol"]."</h4> ";
+              $loginMsg = "<h4>U bent ingelogd als rol: ".$_SESSION["gebruikersRol"]."</h4> ";
 
             }else if($loginBool == 0){
             $loginMsg = "U bent nu niet ingelogd";
