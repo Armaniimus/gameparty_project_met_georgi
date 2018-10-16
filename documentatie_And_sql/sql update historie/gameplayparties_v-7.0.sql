@@ -31,7 +31,6 @@ USE gameplayparty;
 --
 -- Tabelstructuur voor tabel `bioscopen`
 --
-
 CREATE TABLE IF NOT EXISTS `bioscopen` (
   `bioscoopID` int(11) NOT NULL AUTO_INCREMENT,
   `bioscoop_naam` varchar(100) DEFAULT NULL,
@@ -48,10 +47,6 @@ CREATE TABLE IF NOT EXISTS `bioscopen` (
   PRIMARY KEY (`bioscoopID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Gegevens worden geëxporteerd voor tabel `bioscopen`
---
-
 INSERT INTO `bioscopen` (`bioscoopID`, `bioscoop_naam`, `straatnaam`, `postcode`, `plaats`, `provincie`, `informatie`, `openingstijden`, `bereikbaarheid_auto`, `bereikbaarheid_ov`, `bereikbaarheid_fiets`, `rolstoeltoegankelijkheid`) VALUES
 (1, 'Kinepolis Almere', 'Forum 16', '1315 TH ', 'Almere', 'Flevoland', 'Kinepolis Almere is sinds 2004 gevestigd in het levendige centrum van Almere. Het ontwerp van het imposante gebouw is van de bekroonde architect Rem Koolhaas. De megabioscoop telt 8 zalen met in totaal 2137 comfortabele stoelen. Bij binnenkomst is de trap die diagonaal door het gebouw loopt, de eerste blikvanger. Kinepolis Almere is sinds november 2017 verbouwd om meer aan te sluiten bij de look-and-feel van Kinepolis. Dit betekent dat alle zetels zijn vernieuwd,  dat er automatische ticket machines (ATM’s) op de trap zijn geplaatst en er een volledige nieuwe shop met een ruimer assortiment is gekomen.\r\n', NULL, 'Met de auto bereikt u Kinepolis Almere door richting \'Centrum\' te volgen. Rondom Kinepolis Almere is volop parkeergelegenheid. De P6 Hospitaalgarage of P7 Schippersgarage zijn het gunstigst gelegen t.o.v. de bioscoop. Parkeert u na 18:00 uur, dan geldt het maximale avondtarief van €5,25 voor de hele avond. \r\n', 'U kunt ons met de trein en bus zeer makkelijk bereiken. Vanaf station Almere Centrum loopt u in circa 5 minuten in zuidelijke richting richting naar Almere Citymall. Kinepolis Almere is tevens goed bereikbaar per bus via haltes Passage (buslijn M1 & M4) en Flevoziekenhuis (buslijn M5 en M7). Voor actuele bustijden kijkt u op 9292.nl.\r\n', 'Citymall Almere heeft diverse (bewaakte) fietsenstallingen, bijvoorbeeld aan de Hospitaaldreef.\r\n', 'Kinepolis Almere heeft in elke zaal mindervalide plaatsen. Tevens zijn er mindervalide toiletten en een lift aanwezig.\r\n'),
 (2, 'Kinepolis Breda\r\n', 'Westblaak 18Bavelseparklaan 4\r\n', '4817 ZX\r\n\r\n', 'Breda', 'Brabant', 'Kinepolis Breda op het Breepark is dé plek waar een filmbezoek een ware beleving wordt. Alle 10 de zalen hebben luxe bioscoopstoelen met extra brede armleuningen en royale beenruimte. Voor nog meer comfort zijn er speciale Cosy Seats te boeken. Bovendien is Kinepolis Breda de eerste volledige laserprojectie-bioscoop van Europa, wat betekent dat de beeldkwaliteit in elke zaal superscherp is. Uniek voor Nederland is dat de grootste zaal is uitgerust met Kinepolis Laser ULTRA, een exclusieve combinatie van spectaculair laserbeeld en het ruimtelijke geluid van Dolby Atmos. Parkeren is GRATIS. \r\n', NULL, 'Met de auto kunt u de bioscoop makkelijk bereiken. LET OP: stel uw navigatiesysteem in op het adres \'Minervum, Breda\'. Zodra u vanuit Breda-centrum de A27 kruist of vanaf de snelweg afslag 15-Breda hebt genomen, zet u uw navigatie uit en volgt u de gele bordjes richting \'Breepark\'. Houd de borden richting \'Mc Donalds\' aan en neem op de rotonde de rechterbaan. De bioscoop bevindt zich aan uw rechterzijde. De parkeergarage zit onder de bioscoop. U kunt bij Kinepolis Breda GRATIS parkeren!\r\n', 'Kinepolis Breda is goed bereikbaar met het openbaar vervoer. De bussen stoppen direct naast de bioscoop (bushalte Breepark). Plan uw reis op www.9292.nl of bekijk hier de actuele vertrektijden vanaf halte Breepark. De laatste bus naar Station Breda vertrekt om 00:16 uur. Vanaf 9 december 2018 vertrekt de laatste bus zaterdagnacht om 00:46 uur. Reis met uw eigen OV-Chipkaart óf pin uw kaartje bij de buschauffeur. Let op: contant geld wordt niet geaccepteerd.\r\n', 'De gratis en overdekte parkeergarage heeft tevens een zeer grote fietsenstalling.\r\n', 'Kinepolis Breda heeft rolstoelplaatsen in elke zaal. Lift en mindervalidentoilet zijn ook aanwezig.\r\n'),
@@ -67,7 +62,6 @@ INSERT INTO `bioscopen` (`bioscoopID`, `bioscoop_naam`, `straatnaam`, `postcode`
 --
 -- Tabelstructuur voor tabel `content`
 --
-
 CREATE TABLE IF NOT EXISTS `content` (
   `contentID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `content_naam` VARCHAR(80) NOT NULL UNIQUE,
@@ -91,9 +85,6 @@ CREATE TABLE IF NOT EXISTS `gebruikers` (
   `gebruikers_rollen_id` INT NOT NULL,
   PRIMARY KEY (`id`)
 );
---
--- Gegevens worden geëxporteerd voor tabel `gebruikers`
---
 
 INSERT INTO `gebruikers` (`gebruikersNaam`, `passwordHash`, `gebruikers_rollen_id`) VALUES
 ('redacteur', '$2y$10$wmUWkfsHWeDTxKELfflTcerz7GQwP1CKFUClVe688Wh63QJZM0B5S', 1),
@@ -104,7 +95,6 @@ INSERT INTO `gebruikers` (`gebruikersNaam`, `passwordHash`, `gebruikers_rollen_i
 --
 -- Tabelstructuur voor tabel `gebruikers_rollen`
 --
-
 CREATE TABLE `gebruikers_rollen` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `rolType` varchar(45) NOT NULL UNIQUE,
@@ -119,10 +109,6 @@ CREATE TABLE `gebruikers_rollen` (
   `perm_reserverings_overzicht_totaal` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
-
---
--- Gegevens worden geëxporteerd voor tabel `gebruikers_rollen`
---
 
 INSERT INTO `gebruikers_rollen` (
     `rolType`,
@@ -140,4 +126,82 @@ VALUES
 ('redacteur', 1, 0, 0, 1, 1, 1, 0, 0, 0),
 ('bioscoop', 0, 1, 0, 0, 0, 0, 1, 1, 0);
 
--- --------------------------------------------------------
+--
+-- Tabelstructuur voor tabel `zalen`
+--
+CREATE TABLE IF NOT EXISTS `zalen` (
+  `zaalID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `bioscoop_id` INT NOT NULL,
+  `zaal` INT NULL,
+  `aantal stoelen` INT NULL,
+  `rolstoelplaatsen` INT NULL,
+  `schermgroote` VARCHAR(45) NULL,
+  `facaliteiten` VARCHAR(45) NULL,
+  `versies` VARCHAR(45) NULL,
+  PRIMARY KEY (`zaalID`)
+);
+
+--
+-- Tabelstructuur voor tabel `beschikbaarheid_bioscopen`
+--
+CREATE TABLE IF NOT EXISTS `beschikbaarheid_bioscopen` (
+  `Beschikbaarheid_bioscopenID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `zalen_zaalID` INT UNSIGNED NOT NULL,
+  `beginDatum` DATETIME NULL,
+  `eindDatum` DATETIME NULL,
+  PRIMARY KEY (`Beschikbaarheid_bioscopenID`)
+);
+
+--
+-- Tabelstructuur voor tabel `reserveringen`
+--
+CREATE TABLE IF NOT EXISTS `reserveringen` (
+  `reserveringenID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Beschikbaarheid_bioscopenID` INT UNSIGNED NOT NULL,
+  `betalingen_betalingenID` INT UNSIGNED NOT NULL,
+  `TotaalVerschuldigd` DECIMAL(8,2) NULL,
+  PRIMARY KEY (`reserveringenID`)
+);
+
+--
+-- Tabelstructuur voor tabel `betalingen`
+--
+CREATE TABLE IF NOT EXISTS `betalingen` (
+  `betalingenID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `BetaaldBedrag` DECIMAL(8,2) NULL,
+  `BetaalDatum` DATETIME NULL,
+  `BetalingsMethode` VARCHAR(45) NULL,
+  PRIMARY KEY (`betalingenID`)
+);
+
+--
+-- Tabelstructuur voor tabel `bioscoop_afbeeldingen`
+--
+CREATE TABLE IF NOT EXISTS `bioscoop_afbeeldingen` (
+  `id` INT NOT NULL,
+  `bioscoop_id` INT NOT NULL,
+  `afbeelding` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`)
+);
+
+--
+-- Tabelstructuur voor tabel `tarieven`
+--
+CREATE TABLE IF NOT EXISTS `tarieven` (
+  `tariefID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `naam` VARCHAR(45) NULL,
+  `prijsPerPersoon` DECIMAL(5,2) NULL,
+  `bioscopen_id` INT NOT NULL,
+  PRIMARY KEY (`tariefID`)
+);
+
+--
+-- Tabelstructuur voor tabel `toeslagen`
+--
+CREATE TABLE IF NOT EXISTS `toeslagen` (
+  `toeslagenID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `bioscopen_id` INT NOT NULL,
+  `naam` VARCHAR(45) NULL,
+  `prijs` DECIMAL(5,2) NULL,
+  PRIMARY KEY (`toeslagenID`)
+);
