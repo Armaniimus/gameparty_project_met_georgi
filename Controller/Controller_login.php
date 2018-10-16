@@ -6,8 +6,10 @@ class Controller_login {
     private $templatingSystem;
     private $method;
     private $params;
+    private $SessionModel;
 
     function __construct($method, $params = FALSE) {
+        $this->SessionModel = new SessionModel;
         $this->method = $method;
         if ($params != FALSE) {
             $this->params = $params;
@@ -80,7 +82,7 @@ class Controller_login {
     }
 
     private function logout() {
-        session_destroy();
+        $this->SessionModel->logout();
         header("Location: ".APP_DIR."/redacteur/login ");
     }
 }
