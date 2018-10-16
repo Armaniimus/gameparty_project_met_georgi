@@ -21,7 +21,7 @@
 <a class="headerButtonSingle" href="{appdir}/catalogus/contact">
 <button class="headerButtonSingle1" type="button" name="button">Contact</button>
 </a>
-<a class="headerButtonSingle " href="{appdir}/redacteur/login">
+<a class="headerButtonSingle " href="{appdir}/login/login">
 <button class="headerButtonSingle2" type="button" name="button"> {loginButtonText} </button>
 </a>
 <a class="headerButtonSingle " href="{appdir}/catalogus/catalogus">

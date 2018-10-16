@@ -16,10 +16,16 @@ class Controller_content {
 		if ($params != FALSE) {
 			$this->params = $params;
 		}
-
+$loginBool = $_SESSION["loginBool"];
 
 		$this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
 		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
+		$loginButtonText = "Login";
+		if ($loginBool == 1) {
+				$loginButtonText = "Loguit";
+		}
+
+		$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
 	}
 
 	public function runController() {

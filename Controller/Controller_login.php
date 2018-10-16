@@ -71,7 +71,7 @@ class Controller_login {
         }
 
         $this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
-        $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/redacteur/login');
+        $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/login/login');
         $this->TemplatingSystem->setTemplateData("gebruiker", $gebruikersNaam);
         $this->TemplatingSystem->setTemplateData("info", $loginInfo);
         $this->TemplatingSystem->setTemplateData("loginText", $loginMsg);
@@ -83,7 +83,7 @@ class Controller_login {
 
     private function logout() {
         $this->SessionModel->logout();
-        header("Location: ".APP_DIR."/redacteur/login ");
+        header("Location: ".APP_DIR."/login/login ");
     }
 }
 ?>
