@@ -44,26 +44,33 @@
         }
 
         public function read() {
-            $sql = "SELECT * FROM bioscoop";
-            $result = $this->DataHandler->ReadData($sql);
+            $loginBool = $_SESSION["loginBool"];
 
-            $return = "";
-            for ($i=0; $i < count($result); $i++) {
-                $return .= "<div class='col-xs-12 col-s-6 col-m-4 col-m-3 float-l border'>";
-                $row = $result[$i];
-                foreach ($row as $key => $value) {
-                    $return .= "<div>";
-                    $return .= "$value";
+            if($loginBool == 1){
+                $sql = "SELECT * FROM bioscopen";
+                $result = $this->DataHandler->ReadData($sql);
+
+                $return = "";
+                for ($i=0; $i < count($result); $i++) {
+                    $return .= "<div class='col-xs-12 col-s-6 col-m-4 col-m-3 float-l border'>";
+                    $row = $result[$i];
+                    foreach ($row as $key => $value) {
+                        $return .= "<div>";
+                        $return .= "$value";
+                        $return .= "</div>";
+                    }
+
                     $return .= "</div>";
                 }
 
-                $return .= "</div>";
+                $this->TemplatingSystem->setTemplateData("grid", $return);
+                $return = $this->TemplatingSystem->GetParsedTemplate();
+
+                return $return;
+                
+            } else if($loginBool == 0){
+               header("Location: http://localhost/shelter/gameparty_project_met_georgi");
             }
-
-            $this->TemplatingSystem->setTemplateData("grid", $return);
-            $return = $this->TemplatingSystem->GetParsedTemplate();
-
-            return $return;
         }
 
         public function update() {

@@ -38,6 +38,18 @@
   </div>
 </button>
         </div>
+        <div class="adminMenuTriangle">
+          <label class="col-xs-12 adminMenuContent"></label>
+          <label class="col-xs-12 adminMenuContent"></label>
+          <label class="col-xs-9 adminMenuContent"></label>
+          <label class="col-xs-3 adminMenuContent">{adminContent0}</label>
+          <label class="col-xs-7 adminMenuContent"></label>
+          <label class="col-xs-5 adminMenuContent">{adminContent1}</label>
+          <label class="col-xs-5 adminMenuContent"></label>
+          <label class="col-xs-7 adminMenuContent">{adminContent2}</label>
+          <label class="col-xs-3 adminMenuContent"></label>
+          <label class="col-xs-9 adminMenuContent">{adminContent3}</label>
+        </div>
       </header>
       <header class="siteShadow">
 
