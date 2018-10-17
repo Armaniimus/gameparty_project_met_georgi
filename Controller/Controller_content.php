@@ -61,6 +61,7 @@ $content0 = $content[0]["content"];
 $pagina_beschrijving = $content[0]["pagina_beschrijving"];
 $steekwoorden = $content[0]["steekwoorden"];
 
+
 $this->TemplatingSystem->setTemplateData("main-content", $main);
 
 $this->TemplatingSystem->setTemplateData("page-title", "over ons");
