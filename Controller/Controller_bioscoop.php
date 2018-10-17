@@ -154,7 +154,48 @@
                $bereikbaarheidfiets        =  $_POST['bereikbaarheidfiets'];
                $rolstoel                   =  $_POST['rolstoel'];
 
-               
+               $variable_array = array('naam','straat','postcode','plaats','provincie','informatie','openingstijden','bereikbaarheidauto','bereikbaarheidov','bereikbaarheidfiets','rolstoel');
+
+               $posts_array = array();
+
+              
+
+                foreach($variable_array as $key)
+                {
+                   if(isset($_POST[$key])){
+                    $posts_array[$key] = $_POST[$key];
+
+                    }else if(!isset($_POST[$key])){
+                        $posts_array[$key] = "";
+                    }
+                }
+                foreach ($posts_array as $key => $value) {
+                    trim(trim($value,"'"),'"'); 
+                }
+
+                $sql = "UPDATE bioscopen SET
+                 bioscoop_naam='".$posts_array['naam']."', 
+                 straatnaam='".$posts_array['straat']."', 
+                 postcode='".$posts_array['postcode']."',
+                 plaats='".$posts_array['plaats']."', 
+                 provincie='".$posts_array['provincie']."', 
+                 informatie='".$posts_array['informatie']."',
+                 openingstijden='".$posts_array['openingstijden']."',
+                 bereikbaarheid_auto='".$posts_array['bereikbaarheidauto']."',
+                 bereikbaarheid_ov='".$posts_array['bereikbaarheidov']."',
+                 bereikbaarheid_fiets='".$posts_array['bereikbaarheidfiets']."',
+                 rolstoeltoegankelijkheid='".$posts_array['rolstoel']."' WHERE bioscoopID=".$id."";
+
+
+                
+                  $result = $this->DataHandler->UpdateData($sql);
+
+                  unset($_POST);
+                  $dir = constant("APP_DIR") ;
+                 
+
+
+                header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read_single/".$id);
 
 
              }else{
