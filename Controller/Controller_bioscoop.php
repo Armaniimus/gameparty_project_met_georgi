@@ -139,6 +139,30 @@
 
 
 
+             if (isset($_POST['submit-bios'])) {
+
+                 
+               $naam                       =  $_POST['naam'];
+               $straat                     =  $_POST['straat'];  
+               $postcode                   =  $_POST['postcode'];
+               $plaats                     =  $_POST['plaats'];
+               $provincie                  =  $_POST['provincie'];
+               $informatie                 =  $_POST['informatie'];
+               $openingstijden             =  $_POST['openingstijden'];
+               $bereikbaarheidauto         =  $_POST['bereikbaarheidauto'];
+               $bereikbaarheidov           =  $_POST['bereikbaarheidov'];
+               $bereikbaarheidfiets        =  $_POST['bereikbaarheidfiets'];
+               $rolstoel                   =  $_POST['rolstoel'];
+
+               
+
+
+             }else{
+
+             }
+
+
+
             $main = file_get_contents("view/partials/bios_read.html");
 
             $this->TemplatingSystem->setTemplateData("content", $main);
@@ -153,8 +177,10 @@
             $this->TemplatingSystem->setTemplateData("bereikbaarheidov", $bereikbaarheidov);
             $this->TemplatingSystem->setTemplateData("bereikbaarheidfiets", $bereikbaarheidfiets);
             $this->TemplatingSystem->setTemplateData("rolstoel", $rolstoel);
-
             $return = $this->TemplatingSystem->GetParsedTemplate();
+              $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/bioscoop/read_single');
+
+
 
 
 
