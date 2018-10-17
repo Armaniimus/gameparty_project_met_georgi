@@ -509,3 +509,10 @@ height:50px;
 .admin-menu.menu{
 padding-top: 100px;
 }
+#bios_form input{
+  width: 100%;
+}
+#bios_form textarea{
+  width: 100%;
+  min-height: 250px;
+}
