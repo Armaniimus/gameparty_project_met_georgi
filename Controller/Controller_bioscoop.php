@@ -55,7 +55,9 @@
 
                 $grid = "";
 
-                $grid .= "<table>
+                $grid .= "
+                <div class='title'><h1>Bioscopen</h1><a href=''>Toevoegen</a></div>
+                <table>
                   <thead>
                     <tr>
 
@@ -66,7 +68,7 @@
                       <th>plaats</th>
                       <th>provincie</th>
                       <th>Read</th>
-                      <th><a href=''>delete</a></th>      
+                      <th>delete</th>      
                     </tr>
                   </thead><tbody>";
 
@@ -86,12 +88,13 @@
 
                 $grid .= "</tbody>";
 
-                $grid .= "</table>";
+                $grid .= "</table> ";
 
 
             
             
                 $this->TemplatingSystem->setTemplateData("content", $grid);
+                // $this->TemplatingSystem->setTemplateData("button", $create);
                 $return = $this->TemplatingSystem->GetParsedTemplate();
 
                 return $return;
