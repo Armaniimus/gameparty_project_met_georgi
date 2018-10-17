@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Bios_view</title>
-        <link rel="stylesheet" type="text/css" href="../view/css/grid-v1.3.1.css">
-        <link rel="stylesheet" type="text/css" href="../view/css/master.css">
-        <link rel="stylesheet" type="text/css" href="../view/css/admin.css">
+        <link rel="stylesheet" type="text/css" href="{appdir}/view/css/grid-v1.3.1.css">
+        <link rel="stylesheet" type="text/css" href="{appdir}/view/css/master.css">
+        <link rel="stylesheet" type="text/css" href="{appdir}/view/css/admin.css">
 
     </head>
     <body>
