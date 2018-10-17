@@ -121,15 +121,42 @@
 
              $result = $this->DataHandler->ReadData($sql);
 
+             $naam                  = $result[0]['bioscoop_naam'];
+             $straat                = $result[0]['straatnaam'];
+             $postcode              = $result[0]['postcode'];
+             $plaats                = $result[0]['plaats'];
+             $provincie             = $result[0]['provincie'];
+             $informatie            = $result[0]['informatie'];
+             $openingstijden        = $result[0]['openingstijden'];
+             $bereikbaarheidauto    = $result[0]['bereikbaarheid_auto'];
+             $bereikbaarheidov      = $result[0]['bereikbaarheid_ov'];
+             $bereikbaarheidfiets   = $result[0]['bereikbaarheid_fiets'];
+             $rolstoel              = $result[0]['rolstoeltoegankelijkheid'];
+
+             // echo "<pre>";
+             // print_r($result);
+             // echo "<pre>";
 
 
 
+            $main = file_get_contents("view/partials/bios_read.html");
 
-             $main = file_get_contents("view/partials/bios_read.html");
+            $this->TemplatingSystem->setTemplateData("content", $main);
+            $this->TemplatingSystem->setTemplateData("naam", $naam);
+            $this->TemplatingSystem->setTemplateData("straat", $straat);
+            $this->TemplatingSystem->setTemplateData("postcode", $postcode);
+            $this->TemplatingSystem->setTemplateData("plaats", $plaats);
+            $this->TemplatingSystem->setTemplateData("provincie", $provincie);
+            $this->TemplatingSystem->setTemplateData("informatie", $informatie);
+            $this->TemplatingSystem->setTemplateData("openingstijden", $openingstijden);
+            $this->TemplatingSystem->setTemplateData("bereikbaarheidauto", $bereikbaarheidauto);
+            $this->TemplatingSystem->setTemplateData("bereikbaarheidov", $bereikbaarheidov);
+            $this->TemplatingSystem->setTemplateData("bereikbaarheidfiets", $bereikbaarheidfiets);
+            $this->TemplatingSystem->setTemplateData("rolstoel", $rolstoel);
 
-             $this->TemplatingSystem->setTemplateData("content", $main);
+            $return = $this->TemplatingSystem->GetParsedTemplate();
 
-             $return = $this->TemplatingSystem->GetParsedTemplate();
+
 
             } 
 
