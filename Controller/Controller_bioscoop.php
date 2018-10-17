@@ -41,7 +41,50 @@
         }
 
         public function create() {
-            return "The method create is called";
+            $loginBool = $_SESSION["loginBool"];
+
+            if($loginBool == 1){
+
+                if (isset($_POST['create_bios'])) {
+
+                    $naam                       =  $_POST['naam'];
+                    $straat                     =  $_POST['straat'];  
+                    $postcode                   =  $_POST['postcode'];
+                    $plaats                     =  $_POST['plaats'];
+                    $provincie                  =  $_POST['provincie'];
+                    $informatie                 =  $_POST['informatie'];
+                    $openingstijden             =  $_POST['Openingstijden'];
+                    $bereikbaarheidauto         =  $_POST['bereikbaarheidauto'];
+                    $bereikbaarheidov           =  $_POST['bereikbaarheidov'];
+                    $bereikbaarheidfiets        =  $_POST['bereikbaarheidfiets'];
+                    $rolstoel                   =  $_POST['rolstoel'];
+
+
+                    $sql = "INSERT INTO bioscopen (`bioscoop_naam`, `straatnaam`, `postcode`, `plaats`, `provincie`, `informatie`, `openingstijden`, `bereikbaarheid_auto`, `bereikbaarheid_ov`, `bereikbaarheid_fiets`, `rolstoeltoegankelijkheid`) VALUES ('".$naam."', '".$straat."', '".$postcode."', '".$plaats."', '".$provincie."','".$informatie."', '".$openingstijden."', '".$bereikbaarheidauto."', '".$bereikbaarheidov."', '".$bereikbaarheidfiets."', '".$rolstoel."')";
+
+                    $result = $this->DataHandler->createData($sql);
+
+                    header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read");
+
+
+
+                }
+             
+
+
+
+                $main = file_get_contents("view/partials/bios_create.html");
+                $this->TemplatingSystem->setTemplateData("content", $main);
+                $return = $this->TemplatingSystem->GetParsedTemplate();
+
+                return $return;
+
+
+            }else if($loginBool == 0){
+
+                header("Location: {appdir}/gameparty_project_met_georgi");
+
+            }
         }
 
         public function read() {
@@ -56,7 +99,7 @@
                 $grid = "";
 
                 $grid .= "
-                <div class='title'><h1>Bioscopen</h1><a href=''>Toevoegen</a></div>
+                <div class='title'><h1>Bioscopen</h1><a href='../bioscoop/create'>Toevoegen</a></div>
                 <table>
                   <thead>
                     <tr>
