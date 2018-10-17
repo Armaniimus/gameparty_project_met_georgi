@@ -516,3 +516,15 @@ padding-top: 100px;
   width: 100%;
   min-height: 250px;
 }
+.sidebalk a{
+  padding: 10px 30px;
+  background-color: #fec311;
+  color: #fff;
+  transition: all 0.4s;
+}
+.sidebalk a:hover{
+  background-color: #009432;
+}
+.sidebalk{
+  padding: 10px;
+}
