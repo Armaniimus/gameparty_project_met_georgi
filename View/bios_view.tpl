@@ -82,8 +82,11 @@
           <div class="marginner">
           
           </div>
-        <div style="row">
+           
+        <div class="content">
+        
             {content}
+
         </div>
     </body>
 </html>
