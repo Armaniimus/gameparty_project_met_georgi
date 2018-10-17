@@ -194,19 +194,36 @@ class Controller_catalogus {
 
 
 	public function home() {
-		$selectQuery = "SELECT tab_titel,pagina_titel,content_naam,content,pagina_beschrijving,steekwoorden FROM content WHERE contentID='1' ";
+
+		$selectQuery = "SELECT tab_titel,pagina_titel,content_naam,content,pagina_beschrijving,steekwoorden FROM content WHERE contentID='1'";
 
 
 
 		$main = file_get_contents("view/partials/homePage.html");
 		$content = $this->connection->QueryRead($selectQuery);
 
-		$tab_titel = $content[0]["tab_titel"];
-		$pagina_titel = $content[0]["pagina_titel"];
-		$content_naam = $content[0]["content_naam"];
-		$content0 = $content[0]["content"];
-		$pagina_beschrijving = $content[0]["pagina_beschrijving"];
-		$steekwoorden = $content[0]["steekwoorden"];
+
+		if (count($content) == 0) {
+			$tab_titel = "";	
+			$pagina_titel= "";
+			$content_naam= "";
+			$content0= "";
+			$pagina_beschrijving= "";
+			$steekwoorden= "";
+			
+		}else{
+			$tab_titel = $content[0]["tab_titel"];
+			$pagina_titel = $content[0]["pagina_titel"];
+			$content_naam = $content[0]["content_naam"];
+			$content0 = $content[0]["content"];
+			$pagina_beschrijving = $content[0]["pagina_beschrijving"];
+			$steekwoorden = $content[0]["steekwoorden"];
+	
+		}
+
+
+
+
 
 $this->TemplatingSystem->setTemplateData("main-content", $main);
 
