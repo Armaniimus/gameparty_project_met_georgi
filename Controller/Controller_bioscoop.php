@@ -28,12 +28,7 @@
                     break;
 
                 case 'delete':
-                    if (isset($this->params[0]) ) {
-                        $id = $this->params[0];
-                        return $this->delete($id);
-                    } else {
-                        return $this->read();
-                    }
+                    $this->delete();
                     break;
                 case 'read_single':
                     return $this->read_single();
@@ -85,6 +80,7 @@
                 
                     }
                     $grid .= "<td><a href='../bioscoop/read_single/".$value['bioscoopID']."'>Read</a></td>";
+                    $grid .= "<td><a href='../bioscoop/delete/".$value['bioscoopID']."'>Delete</a></td>";
                      $grid .= "</tr>";
                 }
 
@@ -191,7 +187,7 @@
                   $result = $this->DataHandler->UpdateData($sql);
 
                   unset($_POST);
-                  $dir = constant("APP_DIR") ;
+                
                  
 
 
@@ -236,8 +232,17 @@
         }
 
         public function delete() {
+            if (!isset($this->params[0])) {
+                header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read");
+            }else{
+                $id = $this->params[0];
+                echo $id;
+                $sql = "DELETE FROM bioscopen where bioscoopID = ".$id."";
+                $result = $this->DataHandler->DeleteData($sql);
+                echo $result;
+                header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read");
+            }
 
-            return "The method delete is called";
         }
     }
 ?>
