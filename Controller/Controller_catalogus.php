@@ -166,7 +166,7 @@ class Controller_catalogus {
 	    			}
 	    			
 	    		}	
-	    		
+
     			$_SESSION['formdataReservation'] = $_POST;
 	    		$main = file_get_contents("view/partials/persoonsgegevens.html");
 				$this->TemplatingSystem->setTemplateData("main-content", $main);
@@ -224,12 +224,49 @@ class Controller_catalogus {
     			
     		}
     	
-    		
+    		$main = file_get_contents("view/partials/betaalmethode.html");
+			$this->TemplatingSystem->setTemplateData("main-content", $main);
+    	}
+
+    	if (isset($_POST['bestelling-plaatsen'])) {
+    		$_SESSION['betaalmethode'] = $_POST;
+
+    		$sql = "";
     	}
 
 
+    	echo "<pre>";
+    	print_r($_SESSION);
+    	echo "<pre>";
+/*
+		
 
-    		print_r($_SESSION);
+
+      [naam] => test
+            [straat] => test
+            [postcode] => test
+            [plaats] => test
+            [provincie] => test
+            [telefoonnummer] => te
+            [timestamp] => 2018-10-18
+
+
+            select-dienst] => 3
+            [select-tijd] => 1
+            [tot-11] => 10
+            [tot-17] => 10
+            [na-18] => 10
+            [toeslagenSelect] => 2
+
+
+            [betaalmethode] => pinnen-entree
+
+
+
+*/
+
+
+
     	$main = file_get_contents("view/partials/reserveer.html");
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
 		$this->TemplatingSystem->setTemplateData("toeslagen", $toeslagSelect);
