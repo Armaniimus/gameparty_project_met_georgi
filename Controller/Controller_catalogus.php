@@ -255,7 +255,7 @@ class Controller_catalogus {
 
     			switch ($value['naam']) {
     				case 'normaal':
-    					$betaalbedrag = $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 	
+    					$betaalbedrag = $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['na-18']; 	
     					break;
 
     				case 'kinderen t/m 11 jaar':
@@ -264,10 +264,10 @@ class Controller_catalogus {
     			
 
     				case '65+':
-    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
+    					// $betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
     					break;
     				case 'studenten. Cjp & bankgiro':
-    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
+    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-17']; 
     					break;
 
     				default:
@@ -275,6 +275,42 @@ class Controller_catalogus {
     					break;
     			}
     		}
+
+    		$sql = "SELECT toeslagenID,bioscopen_id, naam, prijs FROM toeslagen INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+
+    		$result = $this->connection->QueryRead($sql);
+
+
+    		foreach ($result as $key => $value) {
+
+    			switch ($value['naam']) {
+    				case '3d-toeslag excl bril':
+    					$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18'];  
+    					$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);	
+    					break;
+
+    				case '3d-toeslag incl bril':
+    					$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18']; 
+    					$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);
+    					break;
+    			
+
+    				case 'dolby atmos':
+						$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18']; 
+	    				$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);
+    				case 'laser ultra':
+	    				$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18'];  
+	    				$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);
+    					break;
+
+    				default:
+    					# code...
+    					break;
+    			}
+    	
+    			
+    		}
+    			echo $betaalbedrag;
 
     		// echo "<pre>";
     		// print_r($_SESSION);
@@ -289,12 +325,6 @@ class Controller_catalogus {
 
             select-dienst] => 3
             [select-tijd] => 1
-            [tot-11] => 10
-            [tot-17] => 10
-            [na-18] => 10
-            [toeslagenSelect] => 2
-
-
             [betaalmethode] => pinnen-entree
 
 
