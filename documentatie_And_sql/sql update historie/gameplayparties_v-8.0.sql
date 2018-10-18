@@ -236,47 +236,6 @@ CREATE TABLE IF NOT EXISTS `toeslagen` (
   PRIMARY KEY (`toeslagenID`)
 );
 
--- phpMyAdmin SQL Dump
--- version 4.7.7
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Gegenereerd op: 18 okt 2018 om 11:13
--- Serverversie: 10.1.30-MariaDB
--- PHP-versie: 7.2.2
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `gameplayparty`
---
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `toeslagen`
---
-
-CREATE TABLE `toeslagen` (
-  `toeslagenID` int(10) UNSIGNED NOT NULL,
-  `bioscopen_id` int(11) NOT NULL,
-  `naam` varchar(45) DEFAULT NULL,
-  `prijs` decimal(5,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `toeslagen`
---
-
 INSERT INTO `toeslagen` (`toeslagenID`, `bioscopen_id`, `naam`, `prijs`) VALUES
 (1, 1, NULL, NULL),
 (2, 1, NULL, NULL),
@@ -306,28 +265,3 @@ INSERT INTO `toeslagen` (`toeslagenID`, `bioscopen_id`, `naam`, `prijs`) VALUES
 (26, 7, NULL, NULL),
 (27, 8, NULL, NULL),
 (28, 8, NULL, NULL);
-
---
--- Indexen voor geëxporteerde tabellen
---
-
---
--- Indexen voor tabel `toeslagen`
---
-ALTER TABLE `toeslagen`
-  ADD PRIMARY KEY (`toeslagenID`);
-
---
--- AUTO_INCREMENT voor geëxporteerde tabellen
---
-
---
--- AUTO_INCREMENT voor een tabel `toeslagen`
---
-ALTER TABLE `toeslagen`
-  MODIFY `toeslagenID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
