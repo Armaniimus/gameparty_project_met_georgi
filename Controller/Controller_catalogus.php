@@ -135,28 +135,85 @@ class Controller_catalogus {
     		$gekozen_personen_volwassenen 	= "";
     	
 
+	    		foreach ($_POST as $key => $value) {
+	    		
+
+	    			switch ($key) {
+	    				case 'select-tijd':
+	    					$gekozen_tijd = $_POST['select-tijd'];
+	    					break;
+
+	    				case 'tot-11':
+	    					$gekozen_personen_jong = $_POST['tot-11'];
+	    					break;
+
+	    				case 'tot-17':
+	    					$gekozen_personen_puber = $_POST['tot-17'];
+	    					break;
+
+	    				case 'na-18':
+	    					$gekozen_personen_volwassenen = $_POST['na-18'];
+	    					break;
+
+	    				case 'toeslagenSelect':
+	    					$gekozen_toeslag = $_POST['toeslagenSelect'];
+	    					break;
+	    				
+	    				default:
+	    					break;
+
+
+	    			}
+	    			
+	    		}	
+	    		
+    			$_SESSION['formdataReservation'] = $_POST;
+	    		$main = file_get_contents("view/partials/persoonsgegevens.html");
+				$this->TemplatingSystem->setTemplateData("main-content", $main);
+			}
+
+    	if (isset($_POST['klanten-gegevens'])) {
+    		$time = date("Y-n-j");
+    		$_POST['timestamp'] = $time;
+    		$klantnaam 						= "";
+    		$klantadres 					= "";
+    		$postcode 						= "";
+    		$plaats 						= "";
+    		$provincie 						= "";
+    		$telefoonnummer 				= "";
+    		$factuurDatum 					= "";
+    		$_SESSION['formdataCustomer'] = $_POST;
+
     		foreach ($_POST as $key => $value) {
     		
 
     			switch ($key) {
-    				case 'select-tijd':
-    					$gekozen_tijd = $_POST['select-tijd'];
+    				case 'naam':
+    					$klantnaam =  $_POST['naam'];
     					break;
 
-    				case 'tot-11':
-    					$gekozen_personen_jong = $_POST['tot-11'];
+    				case 'straat':
+    					$klantadres = $_POST['straat'];
     					break;
 
-    				case 'tot-17':
-    					$gekozen_personen_puber = $_POST['tot-17'];
+    				case 'postcode':
+    					$postcode = $_POST['postcode'];
     					break;
 
-    				case 'na-18':
-    					$gekozen_personen_volwassenen = $_POST['na-18'];
+    				case 'plaats':
+    					$plaats = $_POST['plaats'];
     					break;
 
-    				case 'toeslagenSelect':
-    					$gekozen_toeslag = $_POST['toeslagenSelect'];
+    				case 'provincie':
+    					$provincie = $_POST['provincie'];
+    					break;
+
+    				case 'telefoonnummer':
+    					$gekozen_toeslag = $_POST['telefoonnummer'];
+    					break;
+
+    				case 'timestamp':
+    					$factuurDatum = $_POST['timestamp'];
     					break;
     				
     				default:
@@ -165,73 +222,14 @@ class Controller_catalogus {
 
     			}
     			
-    		}	
-
-	    	$main = file_get_contents("view/partials/persoonsgegevens.html");
-			$this->TemplatingSystem->setTemplateData("main-content", $main);
-
-
-			if (isset($_POST['klanten-gegevens'])) {
-				$time = date("Y-n-j");
-				$_POST['timestamp'] = $time;
-				$klantnaam 						= "";
-				$klantadres 					= "";
-				$postcode 						= "";
-				$plaats 						= "";
-				$provincie 						= "";
-				$telefoonnummer 				= "";
-				$factuurDatum 					= "";
-
-				foreach ($_POST as $key => $value) {
-				
-
-					switch ($key) {
-						case 'naam':
-							$klantnaam =  $_POST['naam'];
-							break;
-
-						case 'straat':
-							$klantadres = $_POST['straat'];
-							break;
-
-						case 'postcode':
-							$postcode = $_POST['postcode'];
-							break;
-
-						case 'plaats':
-							$plaats = $_POST['plaats'];
-							break;
-
-						case 'provincie':
-							$provincie = $_POST['provincie'];
-							break;
-
-						case 'telefoonnummer':
-							$gekozen_toeslag = $_POST['toeslagenSelect'];
-							break;
-
-						case 'timestamp':
-							$factuurDatum = $_POST['timestamp'];
-							break;
-						
-						default:
-							break;
-
-
-					}
-					
-				}
-		
-				
-			}
-
-
+    		}
+    	
+    		
     	}
 
 
 
-
-
+    		print_r($_SESSION);
     	$main = file_get_contents("view/partials/reserveer.html");
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
 		$this->TemplatingSystem->setTemplateData("toeslagen", $toeslagSelect);
