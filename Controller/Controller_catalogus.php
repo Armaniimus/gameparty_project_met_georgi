@@ -317,25 +317,15 @@ class Controller_catalogus {
     		$sql = "INSERT INTO betalingen (betalingenID, BetaaldBedrag, BetaalDatum, BetalingsMethode) VALUES (NULL, '$betaalbedrag', '$timestamp', '$betaalmethode');";
 
     		$result = $this->connection->createData($sql);
-    		
 
-    		// echo "<pre>";
-    		// print_r($_SESSION);
-    		// echo "<pre>";
-    		// echo "<pre>";
-    		// print_r($result);
-    		// echo "<pre>";
+    		$reservering_id = $result;
+    		$geselecteerde_tijd = $_SESSION['formdataReservation']['select-tijd'];
+
+    		$sql = "INSERT INTO reserveringen (reserveringenID, Beschikbaarheid_bioscopenID, betalingen_betalingenID, TotaalVerschuldigd ) VALUES(NULL, $geselecteerde_tijd,$reservering_id , '$betaalbedrag');";
+
+    		$result = $this->connection->createData($sql);
 
     	}
-/*
-			[select-tijd] => 1
-
-			$betaalbedrag;
-
-
-*/
-
-
 
     	$main = file_get_contents("view/partials/reserveer.html");
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
@@ -347,13 +337,6 @@ class Controller_catalogus {
 
 		return $result;
 
-
-
-    	// echo "<pre>";
-    	// print_r($result);
-    	// echo "<pre>";
-
-    	// echo $id;
     }
 
 	public function catalogus(){
