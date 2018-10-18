@@ -48,6 +48,15 @@ class Controller_catalogus {
 
     public function reserveer(){
     	$id = $this->params[0];
+
+    	$sql = "SELECT * FROM bioscopen WHERE bioscoopID = $id";
+
+    	$result = $this->connection->QueryRead($sql);
+    	
+    	echo "<pre>";
+    	print_r($result);
+    	echo "<pre>";
+
     	echo $id;
     }
 
