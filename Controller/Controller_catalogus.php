@@ -47,17 +47,51 @@ class Controller_catalogus {
     }
 
     public function reserveer(){
+    	$loginButtonText = "Login";
+    	if($_SESSION["loginBool"] == 1){
+    		$loginButtonText = "Loguit";
+    	}
+
+    	$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
+
     	$id = $this->params[0];
 
     	$sql = "SELECT * FROM bioscopen WHERE bioscoopID = $id";
 
-    	$result = $this->connection->QueryRead($sql);
-    	
-    	echo "<pre>";
-    	print_r($result);
-    	echo "<pre>";
+    	$sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
 
-    	echo $id;
+    	$result = $this->connection->QueryRead($sql);
+
+    	$tarieven = $this->connection->QueryRead($sqltarief);
+
+    	$tariefSelect = "";
+
+    	foreach ($tarieven as $key => $id) {
+    		$naam = $id['naam'];
+    		$prijs = $id['prijsPerPersoon'];
+    		$ID = $id['tariefID'];
+    		$tariefSelect .= "<option value='$ID'>$prijs euro PP [$naam]</option>";
+    		
+    	}
+
+
+    	$bioscoopnaam = $result[0]['bioscoop_naam'];
+
+    	$main = file_get_contents("view/partials/reserveer.html");
+		$this->TemplatingSystem->setTemplateData("main-content", $main);
+		$this->TemplatingSystem->setTemplateData("bioscoopnaam", $bioscoopnaam);
+		$this->TemplatingSystem->setTemplateData("tarieven", $tariefSelect);
+		$result = $this->TemplatingSystem->GetParsedTemplate();
+
+		return $result;
+
+
+
+    	// echo "<pre>";
+    	// print_r($result);
+    	// echo "<pre>";
+
+    	// echo $id;
     }
 
 	public function catalogus(){
