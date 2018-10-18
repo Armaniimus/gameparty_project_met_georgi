@@ -36,14 +36,25 @@ class Controller_catalogus {
 				return $this->bedankt();
 				break;
 
+			case 'reserveer':
+				return $this->reserveer();
+				break;
+
             default:
                 return $this->catalogus();
                 break;
         }
     }
 
+    public function reserveer(){
+    	$id = $this->params[0];
+    	echo $id;
+    }
+
 	public function catalogus(){
 		$sample = $this->connection->QueryRead("SELECT * FROM bioscopen");
+
+
 
 		require_once('View/catalogus.php');
 	}
