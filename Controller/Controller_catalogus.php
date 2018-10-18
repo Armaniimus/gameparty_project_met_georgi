@@ -90,24 +90,24 @@ class Controller_catalogus {
     		$beschickbaarID = $value['beschikbaarheid_bioscopenID'];
     		$datum = "";
     		$naamdag = "";
+    		$begin_tijd = "";
+    		$eind_tijd = "";
     		$zaal = $value['zaal'];
-    		if ($key == 'beginDatum') {
+
+
+
 
     			$datum = date('F j',strtotime($value['beginDatum'])); 
     			$naamdag = date('D', strtotime($datum));
+    			$begin_tijd = date('H:i',strtotime($value['beginDatum'])); 
+    			$eind_tijd = date('H:i',strtotime($value['eindDatum'])); 
+    		
 
-    		}else if($key == 'eindDatum'){
-    			$datum = date('F j',strtotime($value['eindDatum'])); 
-    		}
 
-    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag$datum</option>";
+    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag $datum om $begin_tijd tot $eind_tijd </option>";
     	}
 
-    	echo date('D', strtotime('2018-10-07 '));
-    	// echo "<pre>";
-    	// print_r($tijden);
-    	// echo "<pre>";
-  
+   
    
 
 
