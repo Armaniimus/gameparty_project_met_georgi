@@ -231,7 +231,17 @@ class Controller_catalogus {
     	if (isset($_POST['bestelling-plaatsen'])) {
     		$_SESSION['betaalmethode'] = $_POST;
 
-    		$sql = "";
+    		$naam 					= $_SESSION['formdataCustomer']['naam'];
+    		$straat					= $_SESSION['formdataCustomer']['straat'];
+    		$postcode				= $_SESSION['formdataCustomer']['postcode'];
+    		$plaats 				= $_SESSION['formdataCustomer']['plaats'];
+    		$provincie 				= $_SESSION['formdataCustomer']['provincie'];
+    		$telefoonnummer 		= $_SESSION['formdataCustomer']['telefoonnummer'];
+    		$timestamp 				= $_SESSION['formdataCustomer']['timestamp'];
+
+    		$sql = "INSERT INTO facturen (klantnaam, klantadres , postcode, plaats, provincie, telefoonnummer, factuurDatum) VALUES ('$naam', '$straat', '$postcode','$plaats','$provincie', '$telefoonnummer', '$timestamp'); ";
+
+    		$result = $this->connection->createData($sql);
     	}
 
 
