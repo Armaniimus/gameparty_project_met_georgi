@@ -126,6 +126,7 @@ class Controller_catalogus {
 
     	$main = file_get_contents("view/partials/reserveer.html");
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
+		$this->TemplatingSystem->setTemplateData("toeslagen", $toeslagSelect);
 		$this->TemplatingSystem->setTemplateData("tijden", $tijdselect);
 		$this->TemplatingSystem->setTemplateData("bioscoopnaam", $bioscoopnaam);
 		$this->TemplatingSystem->setTemplateData("tarieven", $tariefSelect);
