@@ -114,10 +114,15 @@ class Controller_catalogus {
 
     	$toeslagSelect  = "";
 
-    	foreach ($toeslagSelect as $key => $value) {
+    	foreach ($toeslagen as $key => $value) {
+
+    		$toeslagid 			= $value['toeslagenID'];
+    		$bioscopen_id 		= $value['bioscopen_id'];
+    		$naam 				= $value['naam'];
+    		$prijs 				= $value['prijs'];
 
 
-    		$toeslagSelect .= 	"<option value=''></option>";
+    		$toeslagSelect .= 	"<option value='$toeslagid'>$prijs | $naam</option>";
     	}
 
    
