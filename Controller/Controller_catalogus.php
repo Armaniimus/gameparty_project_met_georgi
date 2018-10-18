@@ -47,11 +47,8 @@ class Controller_catalogus {
     }
 
     public function reserveer(){
-    	$gekozen_toeslag				= "";
-    	$gekozen_tijd 					= "";
-    	$gekozen_personen_jong 			= "";
-    	$gekozen_personen_puber			= "";
-    	$gekozen_personen_volwassenen 	= "";
+    	
+
     	$loginButtonText = "Login";
     	if($_SESSION["loginBool"] == 1){
     		$loginButtonText = "Loguit";
@@ -131,7 +128,11 @@ class Controller_catalogus {
     	}
 
     	if (isset($_POST['reserveerstap-1'])) {
-   
+    		$gekozen_toeslag				= "";
+    		$gekozen_tijd 					= "";
+    		$gekozen_personen_jong 			= "";
+    		$gekozen_personen_puber			= "";
+    		$gekozen_personen_volwassenen 	= "";
     	
 
     		foreach ($_POST as $key => $value) {
@@ -164,22 +165,71 @@ class Controller_catalogus {
 
     			}
     			
-    		}
+    		}	
 
 	    	$main = file_get_contents("view/partials/persoonsgegevens.html");
 			$this->TemplatingSystem->setTemplateData("main-content", $main);
 
 
-			klantnaam 	klantadres 	postcode 	plaats 	provincie 	telefoonnummer 	factuurDatum
-
 			if (isset($_POST['klanten-gegevens'])) {
-				echo "test";
+				$time = date("Y-n-j");
+				$_POST['timestamp'] = $time;
+				$klantnaam 						= "";
+				$klantadres 					= "";
+				$postcode 						= "";
+				$plaats 						= "";
+				$provincie 						= "";
+				$telefoonnummer 				= "";
+				$factuurDatum 					= "";
+
+				foreach ($_POST as $key => $value) {
+				
+
+					switch ($key) {
+						case 'naam':
+							$klantnaam =  $_POST['naam'];
+							break;
+
+						case 'straat':
+							$klantadres = $_POST['straat'];
+							break;
+
+						case 'postcode':
+							$postcode = $_POST['postcode'];
+							break;
+
+						case 'plaats':
+							$plaats = $_POST['plaats'];
+							break;
+
+						case 'provincie':
+							$provincie = $_POST['provincie'];
+							break;
+
+						case 'telefoonnummer':
+							$gekozen_toeslag = $_POST['toeslagenSelect'];
+							break;
+
+						case 'timestamp':
+							$factuurDatum = $_POST['timestamp'];
+							break;
+						
+						default:
+							break;
+
+
+					}
+					
+				}
+		
+				
 			}
+
 
     	}
 
-   
-   
+
+
 
 
     	$main = file_get_contents("view/partials/reserveer.html");
