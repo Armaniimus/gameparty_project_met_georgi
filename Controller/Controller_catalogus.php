@@ -58,27 +58,62 @@ class Controller_catalogus {
 
     	$sql = "SELECT * FROM bioscopen WHERE bioscoopID = $id";
 
-    	$sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+    	// $sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+    	$sqltarief = "SELECT * FROM diensten";
 
     	$result = $this->connection->QueryRead($sql);
+
+    	$bioscoopnaam = $result[0]['bioscoop_naam'];
 
     	$tarieven = $this->connection->QueryRead($sqltarief);
 
     	$tariefSelect = "";
 
-    	foreach ($tarieven as $key => $id) {
-    		$naam = $id['naam'];
-    		$prijs = $id['prijsPerPersoon'];
-    		$ID = $id['tariefID'];
+    	foreach ($tarieven as $key => $tariefwaarde) {
+    		$naam = $tariefwaarde['naam'];
+    		$prijs = $tariefwaarde['prijs'];
+    		$ID = $tariefwaarde['dienstID'];
     		$tariefSelect .= "<option value='$ID'>$prijs euro PP [$naam]</option>";
     		
     	}
 
 
-    	$bioscoopnaam = $result[0]['bioscoop_naam'];
+    	$sqlTijden = "SELECT beschikbaarheid_bioscopenID,beginDatum,eindDatum,zaal FROM zalen 
+    	INNER JOIN beschikbaarheid_bioscopen ON zaalID = beschikbaarheid_bioscopen.Beschikbaarheid_bioscopenID 
+    	INNER JOIN bioscopen ON bioscoop_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+
+    	$tijden = $this->connection->QueryRead($sqlTijden);
+
+    	$tijdselect = "";
+
+    	foreach ($tijden as $key => $value) {
+    		$beschickbaarID = $value['beschikbaarheid_bioscopenID'];
+    		$datum = "";
+    		$naamdag = "";
+    		$zaal = $value['zaal'];
+    		if ($key == 'beginDatum') {
+
+    			$datum = date('F j',strtotime($value['beginDatum'])); 
+    			$naamdag = date('D', strtotime($datum));
+
+    		}else if($key == 'eindDatum'){
+    			$datum = date('F j',strtotime($value['eindDatum'])); 
+    		}
+
+    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag$datum</option>";
+    	}
+
+    	echo date('D', strtotime('2018-10-07 '));
+    	// echo "<pre>";
+    	// print_r($tijden);
+    	// echo "<pre>";
+  
+   
+
 
     	$main = file_get_contents("view/partials/reserveer.html");
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
+		$this->TemplatingSystem->setTemplateData("tijden", $tijdselect);
 		$this->TemplatingSystem->setTemplateData("bioscoopnaam", $bioscoopnaam);
 		$this->TemplatingSystem->setTemplateData("tarieven", $tariefSelect);
 		$result = $this->TemplatingSystem->GetParsedTemplate();
