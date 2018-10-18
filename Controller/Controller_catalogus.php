@@ -107,6 +107,19 @@ class Controller_catalogus {
     		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag $datum om $begin_tijd tot $eind_tijd </option>";
     	}
 
+
+    	$sqlToeslagen = "SELECT toeslagenID, bioscopen_id, naam ,prijs FROM toeslagen INNER JOIN bioscopen ON toeslagen.bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = 1;";
+
+    	$toeslagen = $this->connection->QueryRead($sqlToeslagen);
+
+    	$toeslagSelect  = "";
+
+    	foreach ($toeslagSelect as $key => $value) {
+
+
+    		$toeslagSelect .= 	"<option value=''></option>";
+    	}
+
    
    
 
