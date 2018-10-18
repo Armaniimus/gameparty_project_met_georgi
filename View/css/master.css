@@ -528,3 +528,38 @@ padding-top: 100px;
 .sidebalk{
   padding: 10px;
 }
+.cinema-name{
+  padding-top: 100px;
+}
+.cinema-name h1{
+  text-align: center;
+}
+#diensten{
+  width: calc(50% - 10px);
+  height: 400px;
+  float: left;
+  margin-right: 20px;
+}
+
+.select-container{
+  width: 80%;
+  margin: 0 auto;
+}
+#reserveer-tijden{
+  width: calc(50% - 10px);
+  height: 400px;
+  float: left;
+}
+.input-fields{
+  width: calc(50% - 10px);
+  float: left;
+  margin-right: 20px;
+
+}
+.toeslagen{
+  width: calc(50% - 10px);
+  float: left;
+}.toeslagen select{
+  width: 100%;
+  height: 400px;
+}

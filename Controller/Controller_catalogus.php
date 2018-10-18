@@ -36,14 +36,122 @@ class Controller_catalogus {
 				return $this->bedankt();
 				break;
 
+			case 'reserveer':
+				return $this->reserveer();
+				break;
+
             default:
                 return $this->catalogus();
                 break;
         }
     }
 
+    public function reserveer(){
+    	$loginButtonText = "Login";
+    	if($_SESSION["loginBool"] == 1){
+    		$loginButtonText = "Loguit";
+    	}
+
+    	$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
+
+    	$id = $this->params[0];
+
+    	$sql = "SELECT * FROM bioscopen WHERE bioscoopID = $id";
+
+    	// $sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+    	$sqltarief = "SELECT * FROM diensten";
+
+    	$result = $this->connection->QueryRead($sql);
+
+    	$bioscoopnaam = $result[0]['bioscoop_naam'];
+
+    	$tarieven = $this->connection->QueryRead($sqltarief);
+
+    	$tariefSelect = "";
+
+    	foreach ($tarieven as $key => $tariefwaarde) {
+    		$naam = $tariefwaarde['naam'];
+    		$prijs = $tariefwaarde['prijs'];
+    		$ID = $tariefwaarde['dienstID'];
+    		$tariefSelect .= "<option value='$ID'>$prijs euro PP [$naam]</option>";
+    		
+    	}
+
+
+    	$sqlTijden = "SELECT beschikbaarheid_bioscopenID,beginDatum,eindDatum,zaal FROM zalen 
+    	INNER JOIN beschikbaarheid_bioscopen ON zaalID = beschikbaarheid_bioscopen.Beschikbaarheid_bioscopenID 
+    	INNER JOIN bioscopen ON bioscoop_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+
+    	$tijden = $this->connection->QueryRead($sqlTijden);
+
+    	$tijdselect = "";
+
+    	foreach ($tijden as $key => $value) {
+    		$beschickbaarID = $value['beschikbaarheid_bioscopenID'];
+    		$datum = "";
+    		$naamdag = "";
+    		$begin_tijd = "";
+    		$eind_tijd = "";
+    		$zaal = $value['zaal'];
+
+
+
+
+    			$datum = date('F j',strtotime($value['beginDatum'])); 
+    			$naamdag = date('D', strtotime($datum));
+    			$begin_tijd = date('H:i',strtotime($value['beginDatum'])); 
+    			$eind_tijd = date('H:i',strtotime($value['eindDatum'])); 
+    		
+
+
+    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag $datum om $begin_tijd tot $eind_tijd </option>";
+    	}
+
+
+    	$sqlToeslagen = "SELECT toeslagenID, bioscopen_id, naam ,prijs FROM toeslagen INNER JOIN bioscopen ON toeslagen.bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = 1;";
+
+    	$toeslagen = $this->connection->QueryRead($sqlToeslagen);
+
+    	$toeslagSelect  = "";
+
+    	foreach ($toeslagen as $key => $value) {
+
+    		$toeslagid 			= $value['toeslagenID'];
+    		$bioscopen_id 		= $value['bioscopen_id'];
+    		$naam 				= $value['naam'];
+    		$prijs 				= $value['prijs'];
+
+
+    		$toeslagSelect .= 	"<option value='$toeslagid'>$prijs | $naam</option>";
+    	}
+
+   
+   
+
+
+    	$main = file_get_contents("view/partials/reserveer.html");
+		$this->TemplatingSystem->setTemplateData("main-content", $main);
+		$this->TemplatingSystem->setTemplateData("toeslagen", $toeslagSelect);
+		$this->TemplatingSystem->setTemplateData("tijden", $tijdselect);
+		$this->TemplatingSystem->setTemplateData("bioscoopnaam", $bioscoopnaam);
+		$this->TemplatingSystem->setTemplateData("tarieven", $tariefSelect);
+		$result = $this->TemplatingSystem->GetParsedTemplate();
+
+		return $result;
+
+
+
+    	// echo "<pre>";
+    	// print_r($result);
+    	// echo "<pre>";
+
+    	// echo $id;
+    }
+
 	public function catalogus(){
 		$sample = $this->connection->QueryRead("SELECT * FROM bioscopen");
+
+
 
 		require_once('View/catalogus.php');
 	}
