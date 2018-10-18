@@ -47,6 +47,11 @@ class Controller_catalogus {
     }
 
     public function reserveer(){
+    	$gekozen_toeslag				= "";
+    	$gekozen_tijd 					= "";
+    	$gekozen_personen_jong 			= "";
+    	$gekozen_personen_puber			= "";
+    	$gekozen_personen_volwassenen 	= "";
     	$loginButtonText = "Login";
     	if($_SESSION["loginBool"] == 1){
     		$loginButtonText = "Loguit";
@@ -58,8 +63,8 @@ class Controller_catalogus {
 
     	$sql = "SELECT * FROM bioscopen WHERE bioscoopID = $id";
 
-    	// $sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
-    	$sqltarief = "SELECT * FROM diensten";
+    	$sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+    	// $sqltarief = "SELECT * FROM diensten";
 
     	$result = $this->connection->QueryRead($sql);
 
@@ -71,8 +76,8 @@ class Controller_catalogus {
 
     	foreach ($tarieven as $key => $tariefwaarde) {
     		$naam = $tariefwaarde['naam'];
-    		$prijs = $tariefwaarde['prijs'];
-    		$ID = $tariefwaarde['dienstID'];
+    		$prijs = $tariefwaarde['prijsPerPersoon'];
+    		$ID = $tariefwaarde['tariefID'];
     		$tariefSelect .= "<option value='$ID'>$prijs euro PP [$naam]</option>";
     		
     	}
@@ -123,6 +128,54 @@ class Controller_catalogus {
 
 
     		$toeslagSelect .= 	"<option value='$toeslagid'>$prijs | $naam</option>";
+    	}
+
+    	if (isset($_POST['reserveerstap-1'])) {
+   
+    	
+
+    		foreach ($_POST as $key => $value) {
+    		
+
+    			switch ($key) {
+    				case 'select-tijd':
+    					$gekozen_tijd = $_POST['select-tijd'];
+    					break;
+
+    				case 'tot-11':
+    					$gekozen_personen_jong = $_POST['tot-11'];
+    					break;
+
+    				case 'tot-17':
+    					$gekozen_personen_puber = $_POST['tot-17'];
+    					break;
+
+    				case 'na-18':
+    					$gekozen_personen_volwassenen = $_POST['na-18'];
+    					break;
+
+    				case 'toeslagenSelect':
+    					$gekozen_toeslag = $_POST['toeslagenSelect'];
+    					break;
+    				
+    				default:
+    					break;
+
+
+    			}
+    			
+    		}
+
+	    	$main = file_get_contents("view/partials/persoonsgegevens.html");
+			$this->TemplatingSystem->setTemplateData("main-content", $main);
+
+
+			klantnaam 	klantadres 	postcode 	plaats 	provincie 	telefoonnummer 	factuurDatum
+
+			if (isset($_POST['klanten-gegevens'])) {
+				echo "test";
+			}
+
     	}
 
    
