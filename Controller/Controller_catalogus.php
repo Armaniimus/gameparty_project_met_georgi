@@ -242,23 +242,49 @@ class Controller_catalogus {
     		$sql = "INSERT INTO facturen (klantnaam, klantadres , postcode, plaats, provincie, telefoonnummer, factuurDatum) VALUES ('$naam', '$straat', '$postcode','$plaats','$provincie', '$telefoonnummer', '$timestamp'); ";
 
     		$result = $this->connection->createData($sql);
+
+    		$betaalbedrag;
+
+
+    		$sql = "SELECT tariefID,naam,prijsPerPersoon,bioscopen_id FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen_id = $id";
+
+    		$result = $this->connection->QueryRead($sql);
+
+
+    		foreach ($result as $key => $value) {
+
+    			switch ($value['naam']) {
+    				case 'normaal':
+    					$betaalbedrag = $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 	
+    					break;
+
+    				case 'kinderen t/m 11 jaar':
+    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
+    					break;
+    			
+
+    				case '65+':
+    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
+    					break;
+    				case 'studenten. Cjp & bankgiro':
+    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
+    					break;
+
+    				default:
+    					# code...
+    					break;
+    			}
+    		}
+
+    		// echo "<pre>";
+    		// print_r($_SESSION);
+    		// echo "<pre>";
+    		// echo "<pre>";
+    		// print_r($result);
+    		// echo "<pre>";
     	}
-
-
-    	echo "<pre>";
-    	print_r($_SESSION);
-    	echo "<pre>";
 /*
 		
-
-
-      [naam] => test
-            [straat] => test
-            [postcode] => test
-            [plaats] => test
-            [provincie] => test
-            [telefoonnummer] => te
-            [timestamp] => 2018-10-18
 
 
             select-dienst] => 3
