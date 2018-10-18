@@ -310,7 +310,14 @@ class Controller_catalogus {
     	
     			
     		}
-    			echo $betaalbedrag;
+
+    		$timestamp =  $_SESSION['formdataCustomer']['timestamp'];
+    		$betaalmethode = $_SESSION['betaalmethode']['betaalmethode'];
+
+    		$sql = "INSERT INTO betalingen (betalingenID, BetaaldBedrag, BetaalDatum, BetalingsMethode) VALUES (NULL, '$betaalbedrag', '$timestamp', '$betaalmethode');";
+
+    		$result = $this->connection->createData($sql);
+    		
 
     		// echo "<pre>";
     		// print_r($_SESSION);
@@ -318,15 +325,12 @@ class Controller_catalogus {
     		// echo "<pre>";
     		// print_r($result);
     		// echo "<pre>";
+
     	}
 /*
-		
+			[select-tijd] => 1
 
-
-            select-dienst] => 3
-            [select-tijd] => 1
-            [betaalmethode] => pinnen-entree
-
+			$betaalbedrag;
 
 
 */
