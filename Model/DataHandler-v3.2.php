@@ -179,14 +179,22 @@
             return $updateQuery;
         }
 
-        // requires ($updateQuery) or ($tableName + $AssocArray + $idValue + $idName)
-        // string variables -> $updateQuery $tableName $idName
-        // int variables -> $idValue
-        // array variables -> $AssocArray
+        /**
+        * This method is used to generate an updateQuery
+        * after updating $this->lastInsertedID is set so it can be used in a readMethod
+        * You can either use the $updateQuery or $tablename, $AssocArray, $idName, $idValue
+        * to achieve the required result
+        *
+        * @param  string  $updateQuery          an sql updateQuery
+        * @param  string  $tablename            sql tablename
+        * @param  array   $AssocArray           this is an array with the data to change
+        * @param  string  $idName               this is the rows unique idName
+        * @param  int     $idValue              this is the rows unique id number to select which row needs to change
+        * @return NULL                          none
+        */
         public function UpdateData($updateQuery = NULL, $tableName = NULL, $AssocArray = NULL, $idName = NULL, $idValue = NULL) {
 
             if ($updateQuery == NULL) {
-
                 if ($idValue == NULL || $idName == NULL) {
                     throw new \Exception("Missing data to process the update request --[IdValue] --> $idValue  --[idName] -->$idName");
                 }
