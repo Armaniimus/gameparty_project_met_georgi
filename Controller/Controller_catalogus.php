@@ -80,9 +80,10 @@ class Controller_catalogus {
     	}
 
 
-    	$sqlTijden = "SELECT beschikbaarheid_bioscopenID,beginDatum,eindDatum,zaal FROM zalen 
-    	INNER JOIN beschikbaarheid_bioscopen ON zaalID = beschikbaarheid_bioscopen.Beschikbaarheid_bioscopenID 
-    	INNER JOIN bioscopen ON bioscoop_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+    	$sqlTijden = "SELECT beschikbaarheid_bioscopen.beschikbaarheid_bioscopenID,beginDatum,eindDatum,zaal FROM zalen 
+INNER JOIN beschikbaarheid_bioscopen ON zaalID = beschikbaarheid_bioscopen.zalen_zaalID
+INNER JOIN bioscopen ON zalen.bioscoop_id = bioscopen.bioscoopID
+WHERE zalen.bioscoop_id = $id";
 
     	$tijden = $this->connection->QueryRead($sqlTijden);
 
@@ -106,7 +107,7 @@ class Controller_catalogus {
     		
 
 
-    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag $datum om $begin_tijd tot $eind_tijd </option>";
+    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag $datum om $begin_tijd tot $eind_tijd zaal: $zaal</option>";
     	}
 
 
