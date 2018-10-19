@@ -253,6 +253,14 @@
         ##################
         # helper methods
         ##################
+
+        /**
+        * This method is used by other readMethods to support prepared statements.
+        *
+        * @param  string  $readQuery           sql prepared readQuery
+        * @param  array   $nrParamArray        array of values to use in the sql after the statement has been prepared in the db
+        * @return array                        return an array of arrays with the selected data from the database
+        */
         private function HandlePreparedStatement($readQuery, $nrParamArray) {
             $localConn = $this->conn->prepare($readQuery);
 
