@@ -304,7 +304,7 @@
         *                                             (3, "readColumn") used to fetch only a singleColumn from the db
         *
         * @param  string        $receivedLocalConn    sql tableName
-        * @return Null
+        * @return array/false   $returns false for non read functions otherwise returns an array
         */
         private function RunSqlQuery($sqlQuery = NULL, $option = 0, $receivedLocalConn = NULL) {
 
