@@ -47,6 +47,8 @@ class Controller_catalogus {
     }
 
     public function reserveer(){
+    	
+
     	$loginButtonText = "Login";
     	if($_SESSION["loginBool"] == 1){
     		$loginButtonText = "Loguit";
@@ -58,8 +60,8 @@ class Controller_catalogus {
 
     	$sql = "SELECT * FROM bioscopen WHERE bioscoopID = $id";
 
-    	// $sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
-    	$sqltarief = "SELECT * FROM diensten";
+    	$sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+    	// $sqltarief = "SELECT * FROM diensten";
 
     	$result = $this->connection->QueryRead($sql);
 
@@ -71,16 +73,17 @@ class Controller_catalogus {
 
     	foreach ($tarieven as $key => $tariefwaarde) {
     		$naam = $tariefwaarde['naam'];
-    		$prijs = $tariefwaarde['prijs'];
-    		$ID = $tariefwaarde['dienstID'];
+    		$prijs = $tariefwaarde['prijsPerPersoon'];
+    		$ID = $tariefwaarde['tariefID'];
     		$tariefSelect .= "<option value='$ID'>$prijs euro PP [$naam]</option>";
     		
     	}
 
 
-    	$sqlTijden = "SELECT beschikbaarheid_bioscopenID,beginDatum,eindDatum,zaal FROM zalen 
-    	INNER JOIN beschikbaarheid_bioscopen ON zaalID = beschikbaarheid_bioscopen.Beschikbaarheid_bioscopenID 
-    	INNER JOIN bioscopen ON bioscoop_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+    	$sqlTijden = "SELECT beschikbaarheid_bioscopen.beschikbaarheid_bioscopenID,beginDatum,eindDatum,zaal FROM zalen 
+INNER JOIN beschikbaarheid_bioscopen ON zaalID = beschikbaarheid_bioscopen.zalen_zaalID
+INNER JOIN bioscopen ON zalen.bioscoop_id = bioscopen.bioscoopID
+WHERE zalen.bioscoop_id = $id";
 
     	$tijden = $this->connection->QueryRead($sqlTijden);
 
@@ -104,7 +107,7 @@ class Controller_catalogus {
     		
 
 
-    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag $datum om $begin_tijd tot $eind_tijd </option>";
+    		$tijdselect .= 	"<option value='$beschickbaarID'>$naamdag $datum om $begin_tijd tot $eind_tijd zaal: $zaal</option>";
     	}
 
 
@@ -125,9 +128,208 @@ class Controller_catalogus {
     		$toeslagSelect .= 	"<option value='$toeslagid'>$prijs | $naam</option>";
     	}
 
-   
-   
+    	if (isset($_POST['reserveerstap-1'])) {
+    		$gekozen_toeslag				= "";
+    		$gekozen_tijd 					= "";
+    		$gekozen_personen_jong 			= "";
+    		$gekozen_personen_puber			= "";
+    		$gekozen_personen_volwassenen 	= "";
+    	
 
+	    		foreach ($_POST as $key => $value) {
+	    		
+
+	    			switch ($key) {
+	    				case 'select-tijd':
+	    					$gekozen_tijd = $_POST['select-tijd'];
+	    					break;
+
+	    				case 'tot-11':
+	    					$gekozen_personen_jong = $_POST['tot-11'];
+	    					break;
+
+	    				case 'tot-17':
+	    					$gekozen_personen_puber = $_POST['tot-17'];
+	    					break;
+
+	    				case 'na-18':
+	    					$gekozen_personen_volwassenen = $_POST['na-18'];
+	    					break;
+
+	    				case 'toeslagenSelect':
+	    					$gekozen_toeslag = $_POST['toeslagenSelect'];
+	    					break;
+	    				
+	    				default:
+	    					break;
+
+
+	    			}
+	    			
+	    		}	
+
+    			$_SESSION['formdataReservation'] = $_POST;
+	    		$main = file_get_contents("view/partials/persoonsgegevens.html");
+				$this->TemplatingSystem->setTemplateData("main-content", $main);
+			}
+
+    	if (isset($_POST['klanten-gegevens'])) {
+    		$time = date("Y-n-j");
+    		$_POST['timestamp'] = $time;
+    		$klantnaam 						= "";
+    		$klantadres 					= "";
+    		$postcode 						= "";
+    		$plaats 						= "";
+    		$provincie 						= "";
+    		$telefoonnummer 				= "";
+    		$factuurDatum 					= "";
+    		$_SESSION['formdataCustomer'] = $_POST;
+
+    		foreach ($_POST as $key => $value) {
+    		
+
+    			switch ($key) {
+    				case 'naam':
+    					$klantnaam =  $_POST['naam'];
+    					break;
+
+    				case 'straat':
+    					$klantadres = $_POST['straat'];
+    					break;
+
+    				case 'postcode':
+    					$postcode = $_POST['postcode'];
+    					break;
+
+    				case 'plaats':
+    					$plaats = $_POST['plaats'];
+    					break;
+
+    				case 'provincie':
+    					$provincie = $_POST['provincie'];
+    					break;
+
+    				case 'telefoonnummer':
+    					$gekozen_toeslag = $_POST['telefoonnummer'];
+    					break;
+
+    				case 'timestamp':
+    					$factuurDatum = $_POST['timestamp'];
+    					break;
+    				
+    				default:
+    					break;
+
+
+    			}
+    			
+    		}
+    	
+    		$main = file_get_contents("view/partials/betaalmethode.html");
+			$this->TemplatingSystem->setTemplateData("main-content", $main);
+    	}
+
+    	if (isset($_POST['bestelling-plaatsen'])) {
+    		$_SESSION['betaalmethode'] = $_POST;
+
+    		$naam 					= $_SESSION['formdataCustomer']['naam'];
+    		$straat					= $_SESSION['formdataCustomer']['straat'];
+    		$postcode				= $_SESSION['formdataCustomer']['postcode'];
+    		$plaats 				= $_SESSION['formdataCustomer']['plaats'];
+    		$provincie 				= $_SESSION['formdataCustomer']['provincie'];
+    		$telefoonnummer 		= $_SESSION['formdataCustomer']['telefoonnummer'];
+    		$timestamp 				= $_SESSION['formdataCustomer']['timestamp'];
+
+    		$sql = "INSERT INTO facturen (klantnaam, klantadres , postcode, plaats, provincie, telefoonnummer, factuurDatum) VALUES ('$naam', '$straat', '$postcode','$plaats','$provincie', '$telefoonnummer', '$timestamp'); ";
+
+    		$result = $this->connection->createData($sql);
+
+    		$betaalbedrag;
+
+
+    		$sql = "SELECT tariefID,naam,prijsPerPersoon,bioscopen_id FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen_id = $id";
+
+    		$result = $this->connection->QueryRead($sql);
+
+
+    		foreach ($result as $key => $value) {
+
+    			switch ($value['naam']) {
+    				case 'normaal':
+    					$betaalbedrag = $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['na-18']; 	
+    					break;
+
+    				case 'kinderen t/m 11 jaar':
+    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
+    					break;
+    			
+
+    				case '65+':
+    					// $betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-11']; 
+    					break;
+    				case 'studenten. Cjp & bankgiro':
+    					$betaalbedrag = $betaalbedrag + $value['prijsPerPersoon'] * $_SESSION['formdataReservation']['tot-17']; 
+    					break;
+
+    				default:
+    					# code...
+    					break;
+    			}
+    		}
+
+    		$sql = "SELECT toeslagenID,bioscopen_id, naam, prijs FROM toeslagen INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
+
+    		$result = $this->connection->QueryRead($sql);
+
+
+    		foreach ($result as $key => $value) {
+
+    			switch ($value['naam']) {
+    				case '3d-toeslag excl bril':
+    					$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18'];  
+    					$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);	
+    					break;
+
+    				case '3d-toeslag incl bril':
+    					$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18']; 
+    					$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);
+    					break;
+    			
+
+    				case 'dolby atmos':
+						$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18']; 
+	    				$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);
+    				case 'laser ultra':
+	    				$totaalmensen = $_SESSION['formdataReservation']['tot-11'] + $_SESSION['formdataReservation']['tot-17'] + $_SESSION['formdataReservation']['na-18'];  
+	    				$betaalbedrag = $betaalbedrag + ($value['prijs'] * $totaalmensen);
+    					break;
+
+    				default:
+    					# code...
+    					break;
+    			}
+    	
+    			
+    		}
+
+    		$timestamp =  $_SESSION['formdataCustomer']['timestamp'];
+    		$betaalmethode = $_SESSION['betaalmethode']['betaalmethode'];
+
+    		$sql = "INSERT INTO betalingen (betalingenID, BetaaldBedrag, BetaalDatum, BetalingsMethode) VALUES (NULL, '$betaalbedrag', '$timestamp', '$betaalmethode');";
+
+    		$result = $this->connection->createData($sql);
+
+    		$reservering_id = $result;
+    		$geselecteerde_tijd = $_SESSION['formdataReservation']['select-tijd'];
+
+    		$sql = "INSERT INTO reserveringen (reserveringenID, Beschikbaarheid_bioscopenID, betalingen_betalingenID, TotaalVerschuldigd ) VALUES(NULL, $geselecteerde_tijd,$reservering_id , '$betaalbedrag');";
+
+    		$result = $this->connection->createData($sql);
+
+	    	$main = file_get_contents("view/partials/succesvol.html");
+			$this->TemplatingSystem->setTemplateData("main-content", $main);
+
+    	}
 
     	$main = file_get_contents("view/partials/reserveer.html");
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
@@ -139,13 +341,6 @@ class Controller_catalogus {
 
 		return $result;
 
-
-
-    	// echo "<pre>";
-    	// print_r($result);
-    	// echo "<pre>";
-
-    	// echo $id;
     }
 
 	public function catalogus(){
