@@ -292,14 +292,20 @@
             }
         }
 
-        /****
-        ** description -> run a pdo database query
-        ** relies on methods -> Null
-
-        ** Requires -> $sqlQuery $option
-        ** string variables -> $sqlQuery
-        ** int variables -> $option
-        ****/
+        /**
+        * This method is used to get tableData from the database like columnNames typeValues and nullValues
+        * This data is stored in the class property $this->tableData[$GivenTableName]
+        *
+        * @param  string        $sqlQuery             a sqlquery
+        * @param  string/int    $option               10 possible valid values
+        *                                             (0, "create", "update", "delete") is used for any non read function
+        *                                             (1, "readAll") used to select all selected rows from the db
+        *                                             (2, "readSingle") used to select only the first row from the selected db rows
+        *                                             (3, "readColumn") used to fetch only a singleColumn from the db
+        *
+        * @param  string        $receivedLocalConn    sql tableName
+        * @return Null
+        */
         private function RunSqlQuery($sqlQuery = NULL, $option = 0, $receivedLocalConn = NULL) {
 
             try {
