@@ -326,6 +326,9 @@ WHERE zalen.bioscoop_id = $id";
 
     		$result = $this->connection->createData($sql);
 
+	    	$main = file_get_contents("view/partials/succesvol.html");
+			$this->TemplatingSystem->setTemplateData("main-content", $main);
+
     	}
 
     	$main = file_get_contents("view/partials/reserveer.html");
