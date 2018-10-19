@@ -62,12 +62,13 @@
         /**
         * This method creates a new record in the database you have 2 options to do this task
         * Either with the given createQuery or with $tablename, $inputColumnNames, $inputAssocArray
+        * after inserting the $this->lastInsertedID is set to potentialy use in a read method
         *
         * @param  string  $createQuery          Sql createQuery
         * @param  string  $tableName            Sql Table Name
         * @param  array   $inputColumnNames     array with sqlcolumnnames you want to put data in
         * @param  array   $inputAssocArray      array with data you want to add to the db
-        * @return string                        returns the generated generated sql create query
+        * @return string                        none
         */
         public function CreateData($createQuery = NULL, $tableName = NULL, $inputColumnNames = NULL, $inputAssocArray = NULL) {
             // set the SQL Query if it isnt set
