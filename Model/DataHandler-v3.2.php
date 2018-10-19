@@ -68,7 +68,7 @@
         * @param  string  $tableName            Sql Table Name
         * @param  array   $inputColumnNames     array with sqlcolumnnames you want to put data in
         * @param  array   $inputAssocArray      array with data you want to add to the db
-        * @return string                        none
+        * @return NULL                          none
         */
         public function CreateData($createQuery = NULL, $tableName = NULL, $inputColumnNames = NULL, $inputAssocArray = NULL) {
             // set the SQL Query if it isnt set
