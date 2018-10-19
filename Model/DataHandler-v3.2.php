@@ -85,7 +85,15 @@
         }
 
 
-        // ReadData
+        /**
+        * This method can be used to get a multible rows from the database
+        * this can be done with a simple read squery
+        * but also with a preparedStatement
+        *
+        * @param  string  $readQuery            Sql readQuery
+        * @param  array   $nrParamArray         an array with numbers which are injected in the sqlquery after the sqlserver has preparering the query
+        * @return array                         returns a numberedArray with associative arrays in it with database data
+        */
         public function ReadData($readQuery, $nrParamArray = NULL) {
 
             // If a prepared statement is needed because of evil user data
