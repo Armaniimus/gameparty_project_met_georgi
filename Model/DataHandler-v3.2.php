@@ -232,7 +232,15 @@
             return $deleteQuery;
         }
 
-        // requires ($deleteQuery) or ($tablename + $idName + $idValue)
+        /**
+        * This method is used to delete a row from the database
+        *
+        * @param  string  $deleteQuery          sql deleteQuery
+        * @param  string  $tablename            sql tablename
+        * @param  string  $idName               this is the rows unique idName
+        * @param  int     $idValue              this is the rows unique id number to select which row needs to change
+        * @return string                        returns an sql deleteQuery
+        */
         public function DeleteData($deleteQuery = NULL, $tablename = NULL, $idName = NULL, $idValue = NULL) {
 
             if ($deleteQuery == NULL) {
