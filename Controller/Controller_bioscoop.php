@@ -14,7 +14,7 @@
 
             $this->DataHandler = new DataHandler(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
             $this->TemplatingSystem = new TemplatingSystem("View/bios_view.tpl");
-                    $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
+            $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
         }
 
         public function runController() {
@@ -30,8 +30,13 @@
                 case 'delete':
                     $this->delete();
                     break;
+
                 case 'read_single':
                     return $this->read_single();
+                    break;
+
+                case 'bios_overzicht':
+                    return $this->bios_overzicht();
                     break;
 
                 default:
@@ -48,7 +53,7 @@
                 if (isset($_POST['create_bios'])) {
 
                     $naam                       =  $_POST['naam'];
-                    $straat                     =  $_POST['straat'];  
+                    $straat                     =  $_POST['straat'];
                     $postcode                   =  $_POST['postcode'];
                     $plaats                     =  $_POST['plaats'];
                     $provincie                  =  $_POST['provincie'];
@@ -69,7 +74,7 @@
 
 
                 }
-             
+
 
 
 
@@ -94,7 +99,7 @@
                 $sql = "SELECT bioscoopID,bioscoop_naam,straatnaam,postcode, plaats, provincie FROM bioscopen";
                 $result = $this->DataHandler->ReadData($sql);
 
-                   
+
 
                 $grid = "";
 
@@ -111,7 +116,7 @@
                       <th>plaats</th>
                       <th>provincie</th>
                       <th>Read</th>
-                      <th>delete</th>      
+                      <th>delete</th>
                     </tr>
                   </thead><tbody>";
 
@@ -122,7 +127,7 @@
                     foreach ($value as $key => $attributen) {
                         $grid .= "<td>".$attributen."</td>";
 
-                
+
                     }
                     $grid .= "<td><a href='../bioscoop/read_single/".$value['bioscoopID']."'>Read</a></td>";
                     $grid .= "<td><a href='../bioscoop/delete/".$value['bioscoopID']."'>Delete</a></td>";
@@ -134,15 +139,15 @@
                 $grid .= "</table> ";
 
 
-            
-            
+
+
                 $this->TemplatingSystem->setTemplateData("content", $grid);
                 // $this->TemplatingSystem->setTemplateData("button", $create);
                 $return = $this->TemplatingSystem->GetParsedTemplate();
 
                 return $return;
 
-                
+
             } else if($loginBool == 0){
                header("Location: {appdir}/gameparty_project_met_georgi");
             }
@@ -183,9 +188,9 @@
 
              if (isset($_POST['submit-bios'])) {
 
-                 
+
                $naam                       =  $_POST['naam'];
-               $straat                     =  $_POST['straat'];  
+               $straat                     =  $_POST['straat'];
                $postcode                   =  $_POST['postcode'];
                $plaats                     =  $_POST['plaats'];
                $provincie                  =  $_POST['provincie'];
@@ -200,7 +205,7 @@
 
                $posts_array = array();
 
-              
+
 
                 foreach($variable_array as $key)
                 {
@@ -212,15 +217,15 @@
                     }
                 }
                 foreach ($posts_array as $key => $value) {
-                    trim(trim($value,"'"),'"'); 
+                    trim(trim($value,"'"),'"');
                 }
 
                 $sql = "UPDATE bioscopen SET
-                 bioscoop_naam='".$posts_array['naam']."', 
-                 straatnaam='".$posts_array['straat']."', 
+                 bioscoop_naam='".$posts_array['naam']."',
+                 straatnaam='".$posts_array['straat']."',
                  postcode='".$posts_array['postcode']."',
-                 plaats='".$posts_array['plaats']."', 
-                 provincie='".$posts_array['provincie']."', 
+                 plaats='".$posts_array['plaats']."',
+                 provincie='".$posts_array['provincie']."',
                  informatie='".$posts_array['informatie']."',
                  openingstijden='".$posts_array['openingstijden']."',
                  bereikbaarheid_auto='".$posts_array['bereikbaarheidauto']."',
@@ -229,18 +234,18 @@
                  rolstoeltoegankelijkheid='".$posts_array['rolstoel']."' WHERE bioscoopID=".$id."";
 
 
-                
+
                   $result = $this->DataHandler->UpdateData($sql);
 
                   unset($_POST);
-                
-                 
+
+
 
 
                 header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read_single/".$id);
 
 
-             }else{
+             } else{
 
              }
 
@@ -261,18 +266,13 @@
             $this->TemplatingSystem->setTemplateData("bereikbaarheidfiets", $bereikbaarheidfiets);
             $this->TemplatingSystem->setTemplateData("rolstoel", $rolstoel);
             $return = $this->TemplatingSystem->GetParsedTemplate();
-              $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/bioscoop/read_single');
+            $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/bioscoop/read_single');
 
-
-
-
-
-            } 
+            }
 
             else if($loginBool == 0){
                header("Location: {appdir}/gameparty_project_met_georgi");
             }
-
 
             return $return;
         }
@@ -280,7 +280,7 @@
         public function delete() {
             if (!isset($this->params[0])) {
                 header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read");
-            }else{
+            } else {
                 $id = $this->params[0];
                 echo $id;
                 $sql = "DELETE FROM bioscopen where bioscoopID = ".$id."";
@@ -288,7 +288,25 @@
                 echo $result;
                 header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read");
             }
+        }
 
+        public function bios_overzicht() {
+            // check login Info
+            // if ($_SESSION["loginBool"] === 1) {
+            if (1==1) {
+                $main = file_get_contents("view/partials/bios_overzicht.html");
+                $this->TemplatingSystem->setTemplateData("main-content", $main);
+                $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
+
+                $return = $this->TemplatingSystem->GetParsedTemplate();
+
+            // moet naar de catalogus
+            } else {
+                echo "permission denied";
+                $return = '';
+            }
+
+            return $return;
         }
     }
 ?>
