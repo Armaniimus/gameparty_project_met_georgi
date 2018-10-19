@@ -210,7 +210,14 @@
             }
         }
 
-        // requires every parameter
+        /**
+        * This method is used to generate an deleteQuery.
+        *
+        * @param  string  $tablename            sql tablename
+        * @param  string  $idName               this is the rows unique idName
+        * @param  int     $idValue              this is the rows unique id number to select which row needs to change
+        * @return string                        returns an sql deleteQuery
+        */
         public function SetDeleteQuery($tablename, $idName, $idValue) {
 
             // Test if a valid id is provided and throw an error if appropiate
