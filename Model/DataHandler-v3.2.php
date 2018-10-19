@@ -107,6 +107,15 @@
             }
         }
 
+        /**
+        * This method can be used to get only a single row from the database
+        * this can be done with a simple read squery
+        * but also with a preparedStatement
+        *
+        * @param  string  $readQuery            Sql readQuery
+        * @param  array   $nrParamArray         an array with numbers which are injected in the sqlquery after the sqlserver has preparering the query
+        * @return array                         returns a associative array with database data
+        */
         public function ReadSingleData($readQuery, $nrParamArray = NULL) {
             // If a prepared statement is needed because of evil user data
             if ($nrParamArray !== NULL) {
