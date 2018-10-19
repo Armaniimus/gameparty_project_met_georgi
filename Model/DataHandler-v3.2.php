@@ -272,13 +272,13 @@
             return $localConn;
         }
 
-        /****
-        ** description -> Gets critical tabledata
-        ** relies on methods -> RunSqlQuery()
-
-        ** Requires -> $tablename
-        ** string variables -> $tablename
-        ****/
+        /**
+        * This method is used to get tableData from the database like columnNames typeValues and nullValues
+        * This data is stored in the class property $this->tableData[$GivenTableName]
+        *
+        * @param  string  $tableName        sql tableName
+        * @return Null
+        */
         private function SetTableData($tablename) {
             // run Query
             $getDataQuery = "show Fields FROM $tablename";
