@@ -37,10 +37,7 @@
         ######################
 
         /**
-        * Check if a Sql row exists. (with two values)
-        *
-        * This function will check if a selected sql row exists that contains two
-        * known values.
+        * This function generates a sql query based on a tablename, columnNames and a dataArray.
         *
         * @param  string  $tableName            Sql Table Name
         * @param  array   $inputColumnNames     array with sqlcolumnnames you want to put data in
