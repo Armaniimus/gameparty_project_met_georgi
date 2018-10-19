@@ -35,6 +35,18 @@
         ######################
         # primary methods
         ######################
+
+        /**
+        * Check if a Sql row exists. (with two values)
+        *
+        * This function will check if a selected sql row exists that contains two
+        * known values.
+        *
+        * @param  string  $tableName            Sql Table Name
+        * @param  array   $inputColumnNames     array with sqlcolumnnames you want to put data in
+        * @param  array   $inputAssocArray      array with data you want to add to the db
+        * @return string                        returns the generated generated sql create query
+        */
         public function SetCreateQuery($tableName, $inputColumnNames, $inputAssocArray) {
 
             // generate comma Seperated ColumnNames
