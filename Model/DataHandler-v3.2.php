@@ -129,6 +129,16 @@
             }
         }
 
+        /**
+        * This method is used to generate an updateQuery
+        *
+        * @param  string  $tablename            sql tablename
+        * @param  array   $AssocArray           this is an array with the data to change
+        * @param  string  $idName               this is the rows unique idName
+        * @param  int     $idValue              this is the rows unique id number to select which row needs to change
+        * @param  array   $inputColumnNames     this is an array with the collumns you want to change
+        * @return string                        returns the generated update query
+        */
         public function SetUpdateQuery($tablename, $AssocArray, $idName = NULL, $idValue = NULL, $inputColumnNames = NULL) {
 
             # collumnNames collection + idName and Value collection;
