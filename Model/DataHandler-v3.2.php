@@ -484,6 +484,12 @@
         ########################
         # secondary methods
         ########################
+        /**
+         * counts the amount results that are returned from the db
+         * @param   string      $tablename  an sql table name
+         * @param   string      $where      an valid sql where statement
+         * @return  int                     returns the counted columns
+         */
         public function CountDataResults($tablename, $where = "") {
             $SearchQuery = "SELECT " . "count" . "(*) FROM $tablename $where";
             return $this->RunSqlQuery($SearchQuery, 3);
