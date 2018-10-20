@@ -140,6 +140,17 @@ class DataValidator {
         return $data;
     }
 
+    /**
+     * this method is used to generated frontend validation
+     * and specigicly to say if a field is required or is optional
+     * also some fields from the array can be leftout if required
+     * @param array  $nullDataArray     expects an array with nullvalues in them
+     * @param string $selectionCode     expects an string with the numbers 0123
+     *                                  0 for don't get the data on this position
+     *                                  1 for get the data on this position
+     *                                  2 for get data on this position and all after it
+     *                                  3 for dont get this data or any after it
+     */
     public function ValidateHTMLNotNull($nullDataArray = NULL, $selectCode = NULL) {
 
         if ($nullDataArray == NULL) {
