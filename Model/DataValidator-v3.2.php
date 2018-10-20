@@ -302,8 +302,14 @@ class DataValidator {
         }
     }
 
-    private function ValidatePHPInt($string) {
-        if (is_numeric($string) && floor($string) == $string) {
+    /**
+     * this method is used to validate if a value can be succesfully validated as a integer
+     * @param  any   $val   this is the value to be tested
+     *
+     * @return bool         true, false
+     */
+    private function ValidatePHPInt($val) {
+        if (is_numeric($val) && floor($val) == $val) {
             return TRUE;
 
         } else {
