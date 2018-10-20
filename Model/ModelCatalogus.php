@@ -9,7 +9,7 @@ class dbhandler
 	private $password;
 	private $connection;
 
-	function __construct($databaseName,$userName,$password,$servername = 'localhost'){
+	function __construct($databaseName,$userName,$password,$servername = 'localhost') {
 		$this->databaseName   = $databaseName;
 		$this->userName       = $userName;
 		$this->password       = $password;
@@ -20,34 +20,34 @@ class dbhandler
 		    // set the PDO error mode to exception
 		    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		    }
-		catch(PDOException $e){
+		} catch (PDOException $e) {
 		    echo "Connection failed: " . $e->getMessage();
-		    }
+		}
 	}
-	function QueryRead($query){
+
+	function QueryRead($query) {
 		$stmt = $this->connection->query($query);
 		$array = $stmt->fetchAll(PDO::FETCH_ASSOC );
 
 		return $array;
 	}
-	function createData($query){
-		$stmt = $this->connection;
-		$stmt->query($query);
 
-		return $stmt->lastInsertId();
-
-	}
-	function UpdateData($query){
+	function createData($query) {
 		$stmt = $this->connection;
 		$stmt->query($query);
 
 		return $stmt->lastInsertId();
 	}
-	function DeleteData($query){
+
+	function UpdateData($query) {
 		$stmt = $this->connection;
 		$stmt->query($query);
 
+		return $stmt->lastInsertId();
+	}
 
+	function DeleteData($query) {
+		$stmt = $this->connection;
+		$stmt->query($query);
 	}
 }
