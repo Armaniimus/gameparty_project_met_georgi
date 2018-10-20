@@ -402,7 +402,8 @@
         }
 
         /**
-        * Gets the tableTypes from the database of a specified table and filter out results with the selectionCode
+        * checks if typeValues are set in the class if so return them
+        * if not get the typeValues from the database of a specified table and filter out results with the selectionCode
         * @param string $tablename         sql tableName
         * @param string $selectionCode     expects an string with the numbers 0123
         *                                  0 for don't get the data on this position
@@ -426,7 +427,8 @@
         }
 
         /**
-        * Gets the NullValues from the database of a specified table and filter out results with the selectionCode
+        * checks if nullValues are set in the class if so return them
+        * if not get the nullvalues from the database of a specified table and filter out results with the selectionCode
         * @param string $tablename         sql tableName
         * @param string $selectionCode     expects an string with the numbers 0123
         *                                  0 for don't get the data on this position
@@ -452,7 +454,8 @@
 
 
         /**
-        * Gets the columnNames from the database of a specified table and filter out results with the selectionCode
+        * checks if columnNames are set in the class if so return them
+        * if not get the columnNames from the database of a specified table and filter out results with the selectionCode
         * @param string $tablename         sql tableName
         * @param string $selectionCode     expects an string with the numbers 0123
         *                                  0 for don't get the data on this position
