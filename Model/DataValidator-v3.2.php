@@ -365,6 +365,18 @@ class DataValidator {
         }
     }
 
+    /**
+     * this method is used to validate if the suplied value does not contain html
+     * but can also be used to extract html from the string
+     *
+     * @param  string  $string  this is the value to be tested
+     * @param  int     $option  this is the option to be selected
+     *                 0 = test if htmlChars are present
+     *                 1 = extract html from the string
+     *
+     * @return bool with option 0
+     * @return string with option 1 and 2
+     */
     private function TestIfNoHtmlChars($string, $option = 0) {
         // forbid htmlChars
         if ($option == 0) {
