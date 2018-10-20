@@ -62,7 +62,7 @@ class DataValidator {
 
             // Date/time tests
              else if (strpos($dataTypesArray[$i], 'date') !== false) {
-                $dataTypesArray[$i] = $this->ValidateHTMLDate($dataTypesArray[$i]);
+                $dataTypesArray[$i] = $this->ValidateHTMLDate();
             }
         }
         return $dataTypesArray;
@@ -127,6 +127,11 @@ class DataValidator {
     }
 
     private function ValidateHTMLDate($data) {
+    /**
+     * this method is used to create frontend validation based on a mysqlType
+     * @return string       method returns html that can be used in a inputElement
+     */
+    private function ValidateHTMLDate() {
         $data = "type='date'";
         return $data;
     }
