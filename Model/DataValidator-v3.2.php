@@ -348,16 +348,21 @@ class DataValidator {
         }
     }
 
-    private function TestIfNotEmpty($string) {
-        $string = trim($string);
+    /**
+     * this method is used to validate if the suplied value is not empty or only spaces
+     * @param  any   $val this is the value to be tested
+     *
+     * @return bool         true, false
+     */
+    private function TestIfNotEmpty($val) {
+        $val = trim($val);
 
-        if ( !isset($string) || $string == "" ) {
+        if ( !isset($val) || $val == "" ) {
             return FALSE;
 
         } else {
             return TRUE;
         }
-
     }
 
     private function TestIfNoHtmlChars($string, $option = 0) {
