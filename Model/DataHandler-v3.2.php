@@ -511,7 +511,6 @@
             } else if ($tablename == NULL && $columnNames == NULL) {
                 throw new Exception("No Useable parameters given");
             }
-
             $where = "";
             for ($i=0; $i<count($columnNames); $i++) {
                 if ($option == 0) {
@@ -540,9 +539,20 @@
             return $where;
         }
 
-        // $tablename requires a string
-        // $wheredate requires a numbered array
-        // $columnNames requires a numbered array but is optional
+        /**
+         * this method can be used to generate a valid search query
+         * in basis the tablename, wheredata and limit are required.
+         *
+         * but where data can be emtpy if you wish to swap use your own where in the where param
+         * and if you wish to select fewer columnnames than the db has you can fill the columnNames param
+         *
+         * @param   string   $tablename   a tablename that exist in the db
+         * @param   array    $whereData   a array with searchphrases per column in columnNames
+         * @param   string   $limit       a string with nothing or with a valid sql limt phrase
+         * @param   array    $columnNames a array with columnames that match the db
+         * @param   string   $where       a valid sql where statement can be used as replacement for the generated where
+         * @return  string                a sql select statement with an advanced where
+         */
         public function SetSearchQuery($tablename, $whereData, $limit, $columnNames = NULL, $where = NULL) {
 
             if ($columnNames == NULL) {
