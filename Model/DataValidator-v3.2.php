@@ -290,7 +290,7 @@ class DataValidator {
             if (!($string < $max)) {
                 return FALSE;
 
-            } else if ( !(($string*1) == round($string, 2)) ) {
+            } else if ( !(($val*1) == round($val, 2)) ) {
                 return FALSE;
 
             } else {
