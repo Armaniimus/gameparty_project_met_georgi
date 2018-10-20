@@ -333,7 +333,13 @@ class DataValidator {
         }
     }
 
-    private function TestIfEmail() {
+    /**
+     * this method is used to validate if a value can be succesfully validated as a email
+     * @param  any   $email this is the value to be tested
+     *
+     * @return bool         true, false
+     */
+    private function TestIfEmail($email) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) {
           return TRUE;
 
