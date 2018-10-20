@@ -177,6 +177,21 @@ class DataValidator {
 
     ####################
     #back-end methods
+
+    /**
+     * this method is used to check if all fields that are required are correctly filled in the backend
+     * this is checked based on a nullvalues array that can be supplied by the dataHandler
+     * @param array  $assocArray        array with data from a $_POST or $_GET for example
+     * @param array  $nullDataArray     array with nullvalues to be used
+     * @param array  $columnNames       array with columnNames
+     * @param string $selectionCode     expects an string with the numbers 0123
+     *                                  0 for don't get the data on this position
+     *                                  1 for get the data on this position
+     *                                  2 for get data on this position and all after it
+     *                                  3 for dont get this data or any after it
+     *
+     * @return bool                     true, false
+     */
     public function ValidatePHPRequired($assocArray, $nullDataArray = NULL, $columnNames = NULL, $selectCode = NULL) {
         if ($nullDataArray == NULL) {
             $nullDataArray = $this->nullDataArray;
