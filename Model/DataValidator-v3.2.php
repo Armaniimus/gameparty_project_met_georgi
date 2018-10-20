@@ -150,6 +150,8 @@ class DataValidator {
      *                                  1 for get the data on this position
      *                                  2 for get data on this position and all after it
      *                                  3 for dont get this data or any after it
+     *
+     * @return array                    returns an array with html strings which can be used in inputElements
      */
     public function ValidateHTMLNotNull($nullDataArray = NULL, $selectCode = NULL) {
 
