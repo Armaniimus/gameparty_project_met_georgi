@@ -409,6 +409,8 @@
         *                                  1 for get the data on this position
         *                                  2 for get data on this position and all after it
         *                                  3 for dont get this data or any after it
+        *
+        * @return array                    an array of typevalues from the database
         */
         public function GetTableTypes($tablename, $selectionCode = NULL) {
             if (!isset($this->tableData[$tablename]["typeValues"]) ) {
@@ -431,6 +433,8 @@
         *                                  1 for get the data on this position
         *                                  2 for get data on this position and all after it
         *                                  3 for dont get this data or any after it
+        *
+        * @return array                    an array of nullvalues from the database
         */
         public function GetTableNullValues($tablename, $selectionCode = NULL) {
             if (!isset($this->tableData[$tablename]["nullValues"]) ) {
@@ -455,6 +459,8 @@
         *                                  1 for get the data on this position
         *                                  2 for get data on this position and all after it
         *                                  3 for dont get this data or any after it
+        *
+        * @return array                    an array of columnNames from the database
         */
         public function GetColumnNames($tablename, $selectionCode = NULL, $force = NULL) {
 
