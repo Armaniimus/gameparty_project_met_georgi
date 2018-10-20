@@ -260,8 +260,15 @@ class DataValidator {
         }
     }
 
-    private function ValidatePHPFloat_Double($string) {
-        return is_numeric($string);
+    /**
+     * this method returns true or false based
+     * on if given value is a string and has only numbers in it or is a double or integer
+     * @param  any      $val    a double, integer, array, or string can be supplied
+     *
+     * @return bool             true,false
+     */
+    private function ValidatePHPFloat_Double($val) {
+        return is_numeric($val);
     }
 
     private function ValidatePHPDecimal($string, $data) {
