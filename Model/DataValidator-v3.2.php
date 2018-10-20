@@ -113,6 +113,11 @@ class DataValidator {
         return $data;
     }
 
+    /**
+     * this method is used to create frontend validation based on a mysqlType
+     * @param  string $data needs a string with a valid decimal mysql type
+     * @return string       method return html that can be used in a inputElement
+     */
     private function ValidateHTMLDecimal($data) {
         // get numericData
         $data = $this->prepValidateDecimal($data);
@@ -126,7 +131,6 @@ class DataValidator {
 
     }
 
-    private function ValidateHTMLDate($data) {
     /**
      * this method is used to create frontend validation based on a mysqlType
      * @return string       method returns html that can be used in a inputElement
