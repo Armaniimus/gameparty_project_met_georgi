@@ -17,6 +17,12 @@
 
         ####################
         #front-end methods
+
+        /**
+         * This method is used to generate valid frontend validation based on the columnTypes in a mysql database
+         * @param  array $dataTypesArray     an array of valid sql datatypes is needed
+         * @return array                     an array of valid frontend validation
+         */
         public function GetHtmlValidateData($dataTypesArray = NULL) {
             if ($dataTypesArray == NULL) {
                 $dataTypesArray = $this->dataTypesArray;
