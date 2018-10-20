@@ -244,6 +244,13 @@ class DataValidator {
         }
     }
 
+    /**
+     * this method is used to see if the string has less characters than the maximum given length
+     * @param int       $length a integer
+     * @param string    $string a valid string
+     *
+     * @return bool     true, false
+     */
     private function TestMaximumLength($length, $string = "") {
         if (strlen($string) > $length) {
             return FALSE;
