@@ -573,6 +573,20 @@
             return $sql;
         }
 
+        /**
+         * this method is used to generate pagination elements on the bottom of the page
+         * also hrefs will be set in this pagination that add customizable Get variables at the end of it.
+         * for styling names you can use 1 name with some -- extentions to it
+         *
+         * @param string $tablename        a valid sql tablename
+         * @param int    $resAmountPerPage the required amount of result per page
+         * @param string $where            requires a valid sql wherestatement
+         * @param string $styleName        css stylename to be used as [stylename] [stylename]--start, [stylename]--end, [stylename]--bothends, [stylename]--Current
+         * @param int    $currentPage      the number of the currentpage
+         * @param string $optional         an extra amount of get values that can be added like "&view=contactpage"
+         *
+         * @return string                  the returned result is html which you can use to return to the user
+         */
         public function CreatePagination($tablename, $resAmountPerPage, $where = "", $styleName, $currentPage = NULL, $optional = "") {
             $totalItems = $this->CountDataResults($tablename, $where);
 
