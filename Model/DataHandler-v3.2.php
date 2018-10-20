@@ -495,9 +495,15 @@
             return $this->RunSqlQuery($SearchQuery, 3);
         }
 
-        // requires numbered arrays
+        /**
+         * This method is used to generate a search query to search for 1 specified phrase or word in all columns
+         * or to generate a more specified query of individual values per column
+         * @param array/string   $whereData   an array of words to search for per column or 1 word to search for in each column
+         * @param string         $tablename   a valid tablename from the sql server
+         * @param array          $columnNames an array of columnnames that exist in the db
+         * @param int            $option      used to define if an wheredata is a string or an array 0=array, 1=string
+         */
         public function SetSearchWhere($whereData, $tablename = NULL, $columnNames = NULL, $option = 1) {
-
             // get columnNames based on $tablename or $columnNames
             if ($columnNames == NULL && !empty($tablename) ) {
                 $columnNames = $this->GetColumnNames($tablename);
