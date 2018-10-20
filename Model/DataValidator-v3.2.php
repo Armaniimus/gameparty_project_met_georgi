@@ -68,6 +68,11 @@
             return $dataTypesArray;
         }
 
+        /**
+         * a method to get a frontend validation for a varchar field in mysql
+         * @param  string  $data   needs something like "varchar([int])"
+         * @return string  returns a valid piece of html to use in a input element
+         */
         private function ValidateHTMLVarchar($data) {
             $data = $this->PrepValidateVarchar($data);
             $data = "type='text' maxlength='$data' pattern='[^\s$][A-Za-z0-9!@#$%\^&*\s.,:;+-()]*'";
