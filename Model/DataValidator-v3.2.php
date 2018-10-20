@@ -80,6 +80,13 @@
             return $data;
         }
 
+        /**
+         * Method to select which integervalidation method needs to be used,
+         * then call it and generate the frontend validation with its results
+         * @param  string $data   a string of the sqlDataType
+         * @param  string $option a string with a valid integersize
+         * @return string         a string of valid html to use in a input element
+         */
         private function ValidateHTMLInt($data, $option = '') {
 
             if ($option === 'tiny') {
