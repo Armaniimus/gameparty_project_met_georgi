@@ -228,6 +228,13 @@ class DataValidator {
         return TRUE;
     }
 
+    /**
+     * this method is used to check if the minimal amount of character in the string has been reached
+     * @param int       $length a integer
+     * @param string    $string a valid string
+     *
+     * @return bool     true, false
+     */
     private function TestMinimalLength($length, $string = "") {
         if (strlen($string) < $length) {
             return FALSE;
