@@ -317,9 +317,15 @@ class DataValidator {
         }
     }
 
-    private function ValidatePHPBoolean($string) {
-        if ($string == '1' || $string == 1 || $string === TRUE ||
-        $string == '0' || $string == 0 || $string === FALSE) {
+    /**
+     * this method is used to validate if a value can be succesfully validated as a boolean
+     * @param  any   $val   this is the value to be tested
+     *
+     * @return bool         true, false
+     */
+    private function ValidatePHPBoolean($val) {
+        if ($val == '1' || $val == 1 || $val === TRUE ||
+        $val == '0' || $val == 0 || $val === FALSE) {
             return TRUE;
 
         } else {
