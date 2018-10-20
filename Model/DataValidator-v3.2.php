@@ -271,8 +271,15 @@ class DataValidator {
         return is_numeric($val);
     }
 
-    private function ValidatePHPDecimal($string, $data) {
-        if (is_numeric($string) ) {
+    /**
+     * this method is used to validate that the supplied val is equal to the supplied mysql decimal type.
+     * @param  any    $val    the value to be tested
+     * @param  string $data   an sql decimalType like Decimal(5,2) for a number like 999.99
+     *
+     * @return bool          true,false
+     */
+    private function ValidatePHPDecimal($val, $data) {
+        if (is_numeric($val) ) {
             // get numericData
             $data = $this->prepValidateDecimal($data);
 
