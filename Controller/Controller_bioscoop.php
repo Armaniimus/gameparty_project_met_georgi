@@ -64,19 +64,12 @@
                     $bereikbaarheidfiets        =  $_POST['bereikbaarheidfiets'];
                     $rolstoel                   =  $_POST['rolstoel'];
 
-
                     $sql = "INSERT INTO bioscopen (`bioscoop_naam`, `straatnaam`, `postcode`, `plaats`, `provincie`, `informatie`, `openingstijden`, `bereikbaarheid_auto`, `bereikbaarheid_ov`, `bereikbaarheid_fiets`, `rolstoeltoegankelijkheid`) VALUES ('".$naam."', '".$straat."', '".$postcode."', '".$plaats."', '".$provincie."','".$informatie."', '".$openingstijden."', '".$bereikbaarheidauto."', '".$bereikbaarheidov."', '".$bereikbaarheidfiets."', '".$rolstoel."')";
 
                     $result = $this->DataHandler->createData($sql);
 
                     header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read");
-
-
-
                 }
-
-
-
 
                 $main = file_get_contents("view/partials/bios_create.html");
                 $this->TemplatingSystem->setTemplateData("content", $main);
@@ -85,10 +78,8 @@
                 return $return;
 
 
-            }else if($loginBool == 0){
-
+            } else if ($loginBool == 0) {
                 header("Location: {appdir}/gameparty_project_met_georgi");
-
             }
         }
 
@@ -98,8 +89,6 @@
             if($loginBool == 1){
                 $sql = "SELECT bioscoopID,bioscoop_naam,straatnaam,postcode, plaats, provincie FROM bioscopen";
                 $result = $this->DataHandler->ReadData($sql);
-
-
 
                 $grid = "";
 
@@ -138,18 +127,13 @@
 
                 $grid .= "</table> ";
 
-
-
-
                 $this->TemplatingSystem->setTemplateData("content", $grid);
                 // $this->TemplatingSystem->setTemplateData("button", $create);
                 $return = $this->TemplatingSystem->GetParsedTemplate();
 
                 return $return;
-
-
-            } else if($loginBool == 0){
-               header("Location: {appdir}/gameparty_project_met_georgi");
+            } else if ($loginBool == 0) {
+                header("Location: {appdir}/gameparty_project_met_georgi");
             }
         }
 
@@ -158,119 +142,98 @@
         }
 
         public function read_single(){
-             $loginBool = $_SESSION["loginBool"];
+            $loginBool = $_SESSION["loginBool"];
 
-            if($loginBool == 1){
+            if ($loginBool == 1) {
 
-             $id = $this->params[0];
+                $id = $this->params[0];
 
-             $sql = "SELECT * FROM bioscopen where bioscoopID = $id";
+                $sql = "SELECT * FROM bioscopen where bioscoopID = $id";
 
-             $result = $this->DataHandler->ReadData($sql);
+                $result = $this->DataHandler->ReadData($sql);
 
-             $naam                  = $result[0]['bioscoop_naam'];
-             $straat                = $result[0]['straatnaam'];
-             $postcode              = $result[0]['postcode'];
-             $plaats                = $result[0]['plaats'];
-             $provincie             = $result[0]['provincie'];
-             $informatie            = $result[0]['informatie'];
-             $openingstijden        = $result[0]['openingstijden'];
-             $bereikbaarheidauto    = $result[0]['bereikbaarheid_auto'];
-             $bereikbaarheidov      = $result[0]['bereikbaarheid_ov'];
-             $bereikbaarheidfiets   = $result[0]['bereikbaarheid_fiets'];
-             $rolstoel              = $result[0]['rolstoeltoegankelijkheid'];
+                $naam                  = $result[0]['bioscoop_naam'];
+                $straat                = $result[0]['straatnaam'];
+                $postcode              = $result[0]['postcode'];
+                $plaats                = $result[0]['plaats'];
+                $provincie             = $result[0]['provincie'];
+                $informatie            = $result[0]['informatie'];
+                $openingstijden        = $result[0]['openingstijden'];
+                $bereikbaarheidauto    = $result[0]['bereikbaarheid_auto'];
+                $bereikbaarheidov      = $result[0]['bereikbaarheid_ov'];
+                $bereikbaarheidfiets   = $result[0]['bereikbaarheid_fiets'];
+                $rolstoel              = $result[0]['rolstoeltoegankelijkheid'];
 
-             // echo "<pre>";
-             // print_r($result);
-             // echo "<pre>";
+                // echo "<pre>";
+                // print_r($result);
+                // echo "<pre>";
+                if (isset($_POST['submit-bios'])) {
+                    $naam                       =  $_POST['naam'];
+                    $straat                     =  $_POST['straat'];
+                    $postcode                   =  $_POST['postcode'];
+                    $plaats                     =  $_POST['plaats'];
+                    $provincie                  =  $_POST['provincie'];
+                    $informatie                 =  $_POST['informatie'];
+                    $openingstijden             =  $_POST['openingstijden'];
+                    $bereikbaarheidauto         =  $_POST['bereikbaarheidauto'];
+                    $bereikbaarheidov           =  $_POST['bereikbaarheidov'];
+                    $bereikbaarheidfiets        =  $_POST['bereikbaarheidfiets'];
+                    $rolstoel                   =  $_POST['rolstoel'];
 
+                    $variable_array = array('naam','straat','postcode','plaats','provincie','informatie','openingstijden','bereikbaarheidauto','bereikbaarheidov','bereikbaarheidfiets','rolstoel');
+                    $posts_array = array();
 
-
-             if (isset($_POST['submit-bios'])) {
-
-
-               $naam                       =  $_POST['naam'];
-               $straat                     =  $_POST['straat'];
-               $postcode                   =  $_POST['postcode'];
-               $plaats                     =  $_POST['plaats'];
-               $provincie                  =  $_POST['provincie'];
-               $informatie                 =  $_POST['informatie'];
-               $openingstijden             =  $_POST['openingstijden'];
-               $bereikbaarheidauto         =  $_POST['bereikbaarheidauto'];
-               $bereikbaarheidov           =  $_POST['bereikbaarheidov'];
-               $bereikbaarheidfiets        =  $_POST['bereikbaarheidfiets'];
-               $rolstoel                   =  $_POST['rolstoel'];
-
-               $variable_array = array('naam','straat','postcode','plaats','provincie','informatie','openingstijden','bereikbaarheidauto','bereikbaarheidov','bereikbaarheidfiets','rolstoel');
-
-               $posts_array = array();
-
-
-
-                foreach($variable_array as $key)
-                {
-                   if(isset($_POST[$key])){
-                    $posts_array[$key] = $_POST[$key];
-
-                    }else if(!isset($_POST[$key])){
-                        $posts_array[$key] = "";
+                    foreach ($variable_array as $key) {
+                        if (isset($_POST[$key])) {
+                            $posts_array[$key] = $_POST[$key];
+                        } else if (!isset($_POST[$key])) {
+                            $posts_array[$key] = "";
+                        }
                     }
+                    foreach ($posts_array as $key => $value) {
+                        trim(trim($value,"'"),'"');
+                    }
+
+                    $sql = "UPDATE bioscopen SET
+                    bioscoop_naam='".$posts_array['naam']."',
+                    straatnaam='".$posts_array['straat']."',
+                    postcode='".$posts_array['postcode']."',
+                    plaats='".$posts_array['plaats']."',
+                    provincie='".$posts_array['provincie']."',
+                    informatie='".$posts_array['informatie']."',
+                    openingstijden='".$posts_array['openingstijden']."',
+                    bereikbaarheid_auto='".$posts_array['bereikbaarheidauto']."',
+                    bereikbaarheid_ov='".$posts_array['bereikbaarheidov']."',
+                    bereikbaarheid_fiets='".$posts_array['bereikbaarheidfiets']."',
+                    rolstoeltoegankelijkheid='".$posts_array['rolstoel']."' WHERE bioscoopID=".$id."";
+
+                    $result = $this->DataHandler->UpdateData($sql);
+                    unset($_POST);
+
+                    header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read_single/".$id);
+
+                } else {
+
                 }
-                foreach ($posts_array as $key => $value) {
-                    trim(trim($value,"'"),'"');
-                }
 
-                $sql = "UPDATE bioscopen SET
-                 bioscoop_naam='".$posts_array['naam']."',
-                 straatnaam='".$posts_array['straat']."',
-                 postcode='".$posts_array['postcode']."',
-                 plaats='".$posts_array['plaats']."',
-                 provincie='".$posts_array['provincie']."',
-                 informatie='".$posts_array['informatie']."',
-                 openingstijden='".$posts_array['openingstijden']."',
-                 bereikbaarheid_auto='".$posts_array['bereikbaarheidauto']."',
-                 bereikbaarheid_ov='".$posts_array['bereikbaarheidov']."',
-                 bereikbaarheid_fiets='".$posts_array['bereikbaarheidfiets']."',
-                 rolstoeltoegankelijkheid='".$posts_array['rolstoel']."' WHERE bioscoopID=".$id."";
+                $main = file_get_contents("view/partials/bios_read.html");
 
+                $this->TemplatingSystem->setTemplateData("content", $main);
+                $this->TemplatingSystem->setTemplateData("naam", $naam);
+                $this->TemplatingSystem->setTemplateData("straat", $straat);
+                $this->TemplatingSystem->setTemplateData("postcode", $postcode);
+                $this->TemplatingSystem->setTemplateData("plaats", $plaats);
+                $this->TemplatingSystem->setTemplateData("provincie", $provincie);
+                $this->TemplatingSystem->setTemplateData("informatie", $informatie);
+                $this->TemplatingSystem->setTemplateData("openingstijden", $openingstijden);
+                $this->TemplatingSystem->setTemplateData("bereikbaarheidauto", $bereikbaarheidauto);
+                $this->TemplatingSystem->setTemplateData("bereikbaarheidov", $bereikbaarheidov);
+                $this->TemplatingSystem->setTemplateData("bereikbaarheidfiets", $bereikbaarheidfiets);
+                $this->TemplatingSystem->setTemplateData("rolstoel", $rolstoel);
+                $return = $this->TemplatingSystem->GetParsedTemplate();
+                $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/bioscoop/read_single');
 
-
-                  $result = $this->DataHandler->UpdateData($sql);
-
-                  unset($_POST);
-
-
-
-
-                header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read_single/".$id);
-
-
-             } else{
-
-             }
-
-
-
-            $main = file_get_contents("view/partials/bios_read.html");
-
-            $this->TemplatingSystem->setTemplateData("content", $main);
-            $this->TemplatingSystem->setTemplateData("naam", $naam);
-            $this->TemplatingSystem->setTemplateData("straat", $straat);
-            $this->TemplatingSystem->setTemplateData("postcode", $postcode);
-            $this->TemplatingSystem->setTemplateData("plaats", $plaats);
-            $this->TemplatingSystem->setTemplateData("provincie", $provincie);
-            $this->TemplatingSystem->setTemplateData("informatie", $informatie);
-            $this->TemplatingSystem->setTemplateData("openingstijden", $openingstijden);
-            $this->TemplatingSystem->setTemplateData("bereikbaarheidauto", $bereikbaarheidauto);
-            $this->TemplatingSystem->setTemplateData("bereikbaarheidov", $bereikbaarheidov);
-            $this->TemplatingSystem->setTemplateData("bereikbaarheidfiets", $bereikbaarheidfiets);
-            $this->TemplatingSystem->setTemplateData("rolstoel", $rolstoel);
-            $return = $this->TemplatingSystem->GetParsedTemplate();
-            $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/bioscoop/read_single');
-
-            }
-
-            else if($loginBool == 0){
+            } else if ($loginBool == 0) {
                header("Location: {appdir}/gameparty_project_met_georgi");
             }
 
