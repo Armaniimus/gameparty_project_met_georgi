@@ -386,13 +386,12 @@
             return $recordData;
         }
 
-        /****
-        ** description -> sets the column names for the SELECT or UPDATE part in a query
-        ** relies on methods -> Null
-
-        ** Requires -> $Nr_Arr_ColNames
-        ** nrArray variables -> $Nr_Arr_ColNames
-        ****/
+        /**
+        * This method is used to convert columnNamesArray into a string of commaSeperatedValues
+        *
+        * @param  array        $colNames_nrArr       a array with columnNames which match the columnNames in the database
+        * @return string                             a string of commaSeperatedValues
+        */
         private function GenerateSqlColumnNames($Nr_Arr_ColNames) {
             //Generates $sqlColumnNames
             $sqlColumnNames = $Nr_Arr_ColNames[0];
