@@ -423,17 +423,15 @@
             return $data;
         }
 
-        /****
-        ** description -> Gets from the database what fields cannot be null
-        ** relies on methods -> SetTableData() SelectWithCodeFromArray()
-
-        ** Requires -> $tablename, $option
-        ** Optional -> $selectionCode -> used to select only certaint fields from the array
-        ** string variables -> $tablename $selectionCode
-        ** int variables -> $option
-        **
-        ** global variables -> tableData[$tablename][typeValues] -> this gets set by SetTableData if not set allready
-        ****/
+        /**
+        * Gets the NullValues from the database of a specified table and filter out results with the selectionCode
+        * @param string $tablename         sql tableName
+        * @param string $selectionCode     expects an string with the numbers 0123
+        *                                  0 for don't get the data on this position
+        *                                  1 for get the data on this position
+        *                                  2 for get data on this position and all after it
+        *                                  3 for dont get this data or any after it
+        */
         public function GetTableNullValues($tablename, $selectionCode = NULL) {
             if (!isset($this->tableData[$tablename]["nullValues"]) ) {
                 $this->SetTableData($tablename);
