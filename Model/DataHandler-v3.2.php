@@ -352,15 +352,14 @@
             return $return;
         }
 
-        /****
-        ** description -> Sets insert data for the create query or set data for the updateQuery
-        ** relies on methods -> Null
-
-        ** Requires -> $colNames_nrArr, $AssocDataArray, $option
-        ** assocArray variables -> $AssocDataArray
-        ** nrArray variables -> $colNames_nrArr
-        ** int variables -> $option
-        ****/
+        /**
+        * This method is used to generate the setPart in a updateQuery, or the Values part in an insert query
+        *
+        * @param  array        $colNames_nrArr       expects an array with columnNames which match the columnNames in the database
+        * @param  array        $AssocDataArray       needs an associative dataArray that has uses the sameNames as supplied in colNames_nrArray
+        * @param  string/int   $option               4 valid values (0, update) to let it generate a setpart or (1, create) to generate an create values part
+        * @return string                             returns record data for the values part in an insert query or for an set part in an updateQuery
+        */
         private function SetRecordData_Assoc($colNames_nrArr, $AssocDataArray, $option) {
 
             // Generate Set part for the update
