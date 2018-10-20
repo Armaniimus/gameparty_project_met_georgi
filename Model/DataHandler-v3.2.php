@@ -401,17 +401,15 @@
             return $sqlColumnNames;
         }
 
-        /****
-        ** description -> Gets tableTypes from the database
-        ** relies on methods -> SetTableData() SelectWithCodeFromArray()
-
-        ** Requires -> $tablename, $option
-        ** Optional -> $selectionCode -> used to select only certaint fields from the array
-        ** string variables -> $tablename $selectionCode
-        ** int variables -> $option
-        **
-        ** global variables -> tableData[$tablename][typeValues] -> this gets set by SetTableData if not set allready
-        ****/
+        /**
+        * Gets the tableTypes from the database of a specified table and filter out results with the selectionCode
+        * @param string $tablename         sql tableName
+        * @param string $selectionCode     expects an string with the numbers 0123
+        *                                  0 for don't get the data on this position
+        *                                  1 for get the data on this position
+        *                                  2 for get data on this position and all after it
+        *                                  3 for dont get this data or any after it
+        */
         public function GetTableTypes($tablename, $selectionCode = NULL) {
             if (!isset($this->tableData[$tablename]["typeValues"]) ) {
                 $this->SetTableData($tablename);
