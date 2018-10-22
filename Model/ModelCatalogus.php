@@ -25,7 +25,7 @@ class dbhandler
 		}
 	}
 
-	function QueryRead($query) {
+	function queryRead($query) {
 		$stmt = $this->connection->query($query);
 		$array = $stmt->fetchAll(PDO::FETCH_ASSOC );
 
@@ -39,14 +39,14 @@ class dbhandler
 		return $stmt->lastInsertId();
 	}
 
-	function UpdateData($query) {
+	function updateData($query) {
 		$stmt = $this->connection;
 		$stmt->query($query);
 
 		return $stmt->lastInsertId();
 	}
 
-	function DeleteData($query) {
+	function deleteData($query) {
 		$stmt = $this->connection;
 		$stmt->query($query);
 	}
