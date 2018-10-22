@@ -10,15 +10,15 @@ class TemplatingSystem {
 
         // $test if template is not empty or null
         if ($tplUrl == "" && $tplUrl == false) {
-            $this->ThrowError("No string is given"); // "if No string is given";
+            $this->throwError("No string is given"); // "if No string is given";
 
         // test if the extension is tpl
         } else if (!preg_match("#(.+?).tpl#si", $tplUrl)) {
-            $this->ThrowError("File Extention is wrong");// "if Wrong extention";
+            $this->throwError("File Extention is wrong");// "if Wrong extention";
 
         // test if file exists
         } else if (!file_exists($tplUrl)) {
-            $this->ThrowError("File doesn't Exist"); // "if file doesnt exists";
+            $this->throwError("File doesn't Exist"); // "if file doesnt exists";
         }
 
         else {
@@ -31,23 +31,23 @@ class TemplatingSystem {
     // }
 
     public function setTemplateData($pattern, $replacement) {
-        if ($this->ReadTemplateData() == false) {
-            $this->ReadTemplateData(); // do it
+        if ($this->readTemplateData() == false) {
+            $this->readTemplateData(); // do it
         }
         $this->tplContent = preg_replace("#\{" . $pattern . "\}#si", $replacement, $this->tplContent); //{blabla changed to ..}
     }
 
-    private function ReadTemplateData() {
+    private function readTemplateData() {
         return $this->tplContent;
     }
 
-    private function ThrowError($errorMessage) {
+    private function throwError($errorMessage) {
         echo "<pre>";
         throw new Exception("$errorMessage", 1);
         echo "</pre>";
     }
 
-    public function GetParsedTemplate() {
+    public function getParsedTemplate() {
         return $this->tplContent;
     }
 
