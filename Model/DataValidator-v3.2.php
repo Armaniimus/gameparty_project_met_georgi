@@ -469,6 +469,11 @@ class DataValidator {
         return ['min' => $min,'max'=> $max];
     }
 
+    /**
+     * this method takes an sql smallint type and returns the max and min values allowed in it
+     * @param  string $data expects 1 of 2 possible values "smallint unsigned" or "smallint"
+     * @return array        returns an assoc array with 2 values min and max
+     */
     private function PrepValidateSmallInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = 65535;
