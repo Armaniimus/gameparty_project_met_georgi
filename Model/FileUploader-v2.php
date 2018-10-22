@@ -36,8 +36,13 @@ class FileUploader {
         }
     }
 
-    // uploads image to the folder given in the variable
-    // and gives the file the name thats given in the variable or keep the upload name of the file
+    /**
+     * uploads image to the folder given in the variable
+     * and gives the file the name thats given in the variable or keep the upload name of the file
+     * @param  string $folder   folder path to save the image to
+     * @param  string $fileName filename og the new image
+     * @return string lastUploadedImage url
+     */
     public function UploadImage($folder, $fileName = NULL) {
         if ($fileName === NULL) {
             $fileName = $this->NULLFileName;
