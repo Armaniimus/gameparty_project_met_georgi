@@ -186,12 +186,12 @@ class FileUploader {
             return 0;
         }
 
-        // disallow upload if reports of the browser header, extention or mime type do not match.
+        // disallow upload if reports of the browser header,and mime type do not match.
         else if ($this->file_type !== $this->file_mime) {
             $this->ThrowError("File Validation Fails\n \$file_type !== \$file_mime \n");
             return 0;
 
-        //  disallow upload if mimetype does not match the file extention
+        // disallow upload if mimetype does not match the file extention
         } else if ($this->file_mime !== $this->file_extention) {
 
             $message = "File Validation Fails
