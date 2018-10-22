@@ -441,6 +441,11 @@ class DataValidator {
         return $data;
     }
 
+    /**
+     * this method takes an sql char type and extracts/returns the required length
+     * @param  string $data an string value that contains something like char(5)
+     * @return string       a numberic string which contains the required length
+     */
     private function PrepValidateChar($data) {
         $data = str_replace("char(", "", $data);
         $data = str_replace(")", "", $data);
