@@ -44,13 +44,13 @@
         * @param  array   $inputAssocArray      array with data you want to add to the db
         * @return string                        returns the generated generated sql create query
         */
-        public function SetCreateQuery($tableName, $inputColumnNames, $inputAssocArray) {
+        public function setCreateQuery($tableName, $inputColumnNames, $inputAssocArray) {
 
             // generate comma Seperated ColumnNames
-            $sqlColumnNames = $this->GenerateSqlColumnNames($inputColumnNames);
+            $sqlColumnNames = $this->generateSqlColumnNames($inputColumnNames);
 
             // generate Create record Data
-            $recordData = $this->SetRecordData_Assoc($inputColumnNames, $inputAssocArray, 1);
+            $recordData = $this->setRecordData_Assoc($inputColumnNames, $inputAssocArray, 1);
 
             // Combines $recordData, $tableName and $sqlColumnNames to create the SQL query
             $sql = "INSERT INTO $tableName ($sqlColumnNames)
@@ -70,14 +70,14 @@
         * @param  array   $inputAssocArray      array with data you want to add to the db
         * @return NULL                          none
         */
-        public function CreateData($createQuery = NULL, $tableName = NULL, $inputColumnNames = NULL, $inputAssocArray = NULL) {
+        public function createData($createQuery = NULL, $tableName = NULL, $inputColumnNames = NULL, $inputAssocArray = NULL) {
             // set the SQL Query if it isnt set
             if ($createQuery == NULL) {
-                $createQuery = $this->SetCreateQuery($tableName, $inputColumnNames, $inputAssocArray);
+                $createQuery = $this->setCreateQuery($tableName, $inputColumnNames, $inputAssocArray);
             }
 
             // try to add the record with pdo to the database
-            $result = $this->RunSqlQuery($createQuery);
+            $result = $this->runSqlQuery($createQuery);
 
             // Set lastInsertedID
             if ($result) {
@@ -95,16 +95,16 @@
         * @param  array   $nrParamArray         an array with numbers which are injected in the sqlquery after the sqlserver has preparering the query
         * @return array                         returns a numberedArray with associative arrays in it with database data
         */
-        public function ReadData($readQuery, $nrParamArray = NULL) {
+        public function readData($readQuery, $nrParamArray = NULL) {
 
             // If a prepared statement is needed because of evil user data
             if ($nrParamArray !== NULL) {
-                $localConn = $this->HandlePreparedStatement($readQuery, $nrParamArray);
-                return $this->RunSqlQuery(NULL, 1, $localConn);
+                $localConn = $this->handlePreparedStatement($readQuery, $nrParamArray);
+                return $this->runSqlQuery(NULL, 1, $localConn);
 
             // Else just Run it
             } else {
-                return $this->RunSqlQuery($readQuery, 1);
+                return $this->runSqlQuery($readQuery, 1);
             }
         }
 
@@ -117,15 +117,15 @@
         * @param  array   $nrParamArray         an array with numbers which are injected in the sqlquery after the sqlserver has preparering the query
         * @return array                         returns a associative array with database data
         */
-        public function ReadSingleData($readQuery, $nrParamArray = NULL) {
+        public function readSingleData($readQuery, $nrParamArray = NULL) {
             // If a prepared statement is needed because of evil user data
             if ($nrParamArray !== NULL) {
-                $localConn = $this->HandlePreparedStatement($readQuery, $nrParamArray);
-                return $this->RunSqlQuery(NULL, 2, $localConn);
+                $localConn = $this->handlePreparedStatement($readQuery, $nrParamArray);
+                return $this->runSqlQuery(NULL, 2, $localConn);
 
             // Else just Run it
             } else {
-                return $this->RunSqlQuery($readQuery, 2);
+                return $this->runSqlQuery($readQuery, 2);
             }
         }
 
@@ -139,12 +139,12 @@
         * @param  array   $inputColumnNames     this is an array with the collumns you want to change
         * @return string                        returns the generated update query
         */
-        public function SetUpdateQuery($tablename, $AssocArray, $idName = NULL, $idValue = NULL, $inputColumnNames = NULL) {
+        public function setUpdateQuery($tablename, $AssocArray, $idName = NULL, $idValue = NULL, $inputColumnNames = NULL) {
 
             # collumnNames collection + idName and Value collection;
                 // get the $columnNames;
                 if ($inputColumnNames == NULL) {
-                    $columnNames = $this->GetColumnNames($tablename);
+                    $columnNames = $this->getColumnNames($tablename);
                 } else {
                     $columnNames = $inputColumnNames;
                 }
@@ -162,14 +162,14 @@
                 }
 
                 // select the columnNames
-                $columnNames = $this->PhpUtilities->SelectWithCodeFromArray($columnNames, "02");
+                $columnNames = $this->PhpUtilities->selectWithCodeFromArray($columnNames, "02");
             # end of collumnNames collection + idName and Value collection
 
             // validate the ID and throw an error if appropiate
-            $this->ValidatePHP_ID($idValue, "SetUpdateQuery");
+            $this->validatePHP_ID($idValue, "SetUpdateQuery");
 
             // collect the set part for the Query
-            $set = $this->SetRecordData_Assoc($columnNames, $AssocArray, 0);
+            $set = $this->setRecordData_Assoc($columnNames, $AssocArray, 0);
 
             // set updateQuery
             $updateQuery = "UPDATE $tablename
@@ -192,18 +192,18 @@
         * @param  int     $idValue              this is the rows unique id number to select which row needs to change
         * @return NULL                          none
         */
-        public function UpdateData($updateQuery = NULL, $tableName = NULL, $AssocArray = NULL, $idName = NULL, $idValue = NULL) {
+        public function updateData($updateQuery = NULL, $tableName = NULL, $AssocArray = NULL, $idName = NULL, $idValue = NULL) {
 
             if ($updateQuery == NULL) {
                 if ($idValue == NULL || $idName == NULL) {
                     throw new \Exception("Missing data to process the update request --[IdValue] --> $idValue  --[idName] -->$idName");
                 }
 
-                $updateQuery = $this->SetUpdateQuery($tableName, $AssocArray, $idName, $idValue);
+                $updateQuery = $this->setUpdateQuery($tableName, $AssocArray, $idName, $idValue);
             }
 
             // run updateQuery
-            $result = $this->RunSqlQuery($updateQuery);
+            $result = $this->runSqlQuery($updateQuery);
 
             if ($result && $idValue !== NULL) {
                 $this->lastInsertedID = $idValue;
@@ -218,10 +218,10 @@
         * @param  int     $idValue              this is the rows unique id number to select which row needs to change
         * @return string                        returns an sql deleteQuery
         */
-        public function SetDeleteQuery($tablename, $idName, $idValue) {
+        public function setDeleteQuery($tablename, $idName, $idValue) {
 
             // Test if a valid id is provided and throw an error if appropiate
-            $this->ValidatePHP_ID($idValue, "SetDeleteQuery");
+            $this->validatePHP_ID($idValue, "SetDeleteQuery");
 
             // set $deleteQuery
             $deleteQuery =
@@ -241,13 +241,13 @@
         * @param  int     $idValue              this is the rows unique id number to select which row needs to change
         * @return string                        returns an sql deleteQuery
         */
-        public function DeleteData($deleteQuery = NULL, $tablename = NULL, $idName = NULL, $idValue = NULL) {
+        public function deleteData($deleteQuery = NULL, $tablename = NULL, $idName = NULL, $idValue = NULL) {
 
             if ($deleteQuery == NULL) {
-                $deleteQuery = $this->SetDeleteQuery($tablename, $idName, $idValue);
+                $deleteQuery = $this->setDeleteQuery($tablename, $idName, $idValue);
             }
 
-            return $this->RunSqlQuery($deleteQuery);
+            return $this->runSqlQuery($deleteQuery);
         }
 
         ##################
@@ -261,7 +261,7 @@
         * @param  array   $nrParamArray        array of values to use in the sql after the statement has been prepared in the db
         * @return array                        return an array of arrays with the selected data from the database
         */
-        private function HandlePreparedStatement($readQuery, $nrParamArray) {
+        private function handlePreparedStatement($readQuery, $nrParamArray) {
             $localConn = $this->conn->prepare($readQuery);
 
             for ($i=0; $i < count($nrParamArray); $i++) {
@@ -279,10 +279,10 @@
         * @param  string  $tableName        sql tableName
         * @return Null
         */
-        private function SetTableData($tablename) {
+        private function setTableData($tablename) {
             // run Query
             $getDataQuery = "show Fields FROM $tablename";
-            $queryRes = $this->RunSqlQuery($getDataQuery, 1);
+            $queryRes = $this->runSqlQuery($getDataQuery, 1);
 
             // Set variables
             for ($i=0; $i<count($queryRes); $i++) {
@@ -306,7 +306,7 @@
         * @param  string        $receivedLocalConn    sql tableName
         * @return array/false   $returns false for non read functions otherwise returns an array
         */
-        private function RunSqlQuery($sqlQuery = NULL, $option = 0, $receivedLocalConn = NULL) {
+        private function runSqlQuery($sqlQuery = NULL, $option = 0, $receivedLocalConn = NULL) {
 
             try {
                 //SET local conn
@@ -360,7 +360,7 @@
         * @param  string/int   $option               4 valid values (0, update) to let it generate a setpart or (1, create) to generate an create values part
         * @return string                             returns record data for the values part in an insert query or for an set part in an updateQuery
         */
-        private function SetRecordData_Assoc($colNames_nrArr, $AssocDataArray, $option) {
+        private function setRecordData_Assoc($colNames_nrArr, $AssocDataArray, $option) {
 
             // Generate Set part for the update
             if ($option == 0 || $option == 'update') {
@@ -392,7 +392,7 @@
         * @param  array        $colNames_nrArr       a array with columnNames which match the columnNames in the database
         * @return string                             a string of commaSeperatedValues
         */
-        private function GenerateSqlColumnNames($Nr_Arr_ColNames) {
+        private function generateSqlColumnNames($Nr_Arr_ColNames) {
             //Generates $sqlColumnNames
             $sqlColumnNames = $Nr_Arr_ColNames[0];
             for ($i=1; $i<count($Nr_Arr_ColNames); $i++) {
@@ -413,14 +413,14 @@
         *
         * @return array                    an array of typevalues from the database
         */
-        public function GetTableTypes($tablename, $selectionCode = NULL) {
+        public function globalsetTableTypes($tablename, $selectionCode = NULL) {
             if (!isset($this->tableData[$tablename]["typeValues"]) ) {
-                $this->SetTableData($tablename);
+                $this->setTableData($tablename);
             }
             $data = $this->tableData[$tablename]["typeValues"];
 
             if ($selectionCode !== NULL) {
-                $data = $this->SelectWithCodeFromArray($data, $selectionCode);
+                $data = $this->selectWithCodeFromArray($data, $selectionCode);
             }
 
             return $data;
@@ -438,15 +438,15 @@
         *
         * @return array                    an array of nullvalues from the database
         */
-        public function GetTableNullValues($tablename, $selectionCode = NULL) {
+        public function getTableNullValues($tablename, $selectionCode = NULL) {
             if (!isset($this->tableData[$tablename]["nullValues"]) ) {
-                $this->SetTableData($tablename);
+                $this->setTableData($tablename);
             }
 
             $data = $this->tableData[$tablename]["nullValues"];
 
             if ($selectionCode !== NULL) {
-                $data = $this->SelectWithCodeFromArray($data, $selectionCode);
+                $data = $this->selectWithCodeFromArray($data, $selectionCode);
             }
 
             return $data;
@@ -465,17 +465,17 @@
         *
         * @return array                    an array of columnNames from the database
         */
-        public function GetColumnNames($tablename, $selectionCode = NULL, $force = NULL) {
+        public function getColumnNames($tablename, $selectionCode = NULL, $force = NULL) {
 
             $columnNamesAreSet = !isset($this->tableData[$tablename]["columnNames"]);
             if ($columnNamesAreSet || $force == 1) {
-                $this->SetTableData($tablename);
+                $this->setTableData($tablename);
             }
 
             $columnNames = $this->tableData[$tablename]["columnNames"];
 
             if ($selectionCode !== NULL) {
-                $columnNames = $this->SelectWithCodeFromArray($columnNames, $selectionCode);
+                $columnNames = $this->selectWithCodeFromArray($columnNames, $selectionCode);
             }
 
             return $columnNames;
@@ -490,9 +490,9 @@
          * @param   string      $where      an valid sql where statement
          * @return  int                     returns the counted columns
          */
-        public function CountDataResults($tablename, $where = "") {
+        public function countDataResults($tablename, $where = "") {
             $SearchQuery = "SELECT " . "count" . "(*) FROM $tablename $where";
-            return $this->RunSqlQuery($SearchQuery, 3);
+            return $this->runSqlQuery($SearchQuery, 3);
         }
 
         /**
@@ -503,7 +503,7 @@
          * @param array          $columnNames an array of columnnames that exist in the db
          * @param int            $option      used to define if an wheredata is a string or an array 0=array, 1=string
          */
-        public function SetSearchWhere($whereData, $tablename = NULL, $columnNames = NULL, $option = 1) {
+        public function setSearchWhere($whereData, $tablename = NULL, $columnNames = NULL, $option = 1) {
             // get columnNames based on $tablename or $columnNames
             if ($columnNames == NULL && !empty($tablename) ) {
                 $columnNames = $this->GetColumnNames($tablename);
@@ -553,17 +553,17 @@
          * @param   string   $where       a valid sql where statement can be used as replacement for the generated where
          * @return  string                a sql select statement with an advanced where
          */
-        public function SetSearchQuery($tablename, $whereData, $limit, $columnNames = NULL, $where = NULL) {
+        public function setSearchQuery($tablename, $whereData, $limit, $columnNames = NULL, $where = NULL) {
 
             if ($columnNames == NULL) {
-                $columnNames = $this->GetColumnNames($tablename);
+                $columnNames = $this->getColumnNames($tablename);
             }
 
             if ($where == NULL) {
-                $where = $this->SetSearchWhere($whereData, $tablename, $columnNames, 1);
+                $where = $this->setSearchWhere($whereData, $tablename, $columnNames, 1);
             }
 
-            $selectColNames = $this->GenerateSqlColumnNames($columnNames);
+            $selectColNames = $this->generateSqlColumnNames($columnNames);
 
             $sql = "SELECT $selectColNames
             FROM $tablename
@@ -587,8 +587,8 @@
          *
          * @return string                  the returned result is html which you can use to return to the user
          */
-        public function CreatePagination($tablename, $resAmountPerPage, $where = "", $styleName, $currentPage = NULL, $optional = "") {
-            $totalItems = $this->CountDataResults($tablename, $where);
+        public function createPagination($tablename, $resAmountPerPage, $where = "", $styleName, $currentPage = NULL, $optional = "") {
+            $totalItems = $this->countDataResults($tablename, $where);
 
             // Set total pagination numbers
             $restItems = $totalItems % $resAmountPerPage;
