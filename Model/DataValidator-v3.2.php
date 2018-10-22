@@ -404,6 +404,16 @@ class DataValidator {
 
     ####################
     #essential methods
+
+    /**
+     * this method takes an sql decimal type and extracts 2 values from it 1
+     * the highest integer allowed
+     * and smallest decimal amount in the number
+     * @param  string $data an string value that contains something like decimal(5,2)
+     * @return array        an assoc array with 2 values
+     *                      max which contains the highest integer value
+     *                      and decimal which contains the lowest decimal value permitted
+     */
     private function prepValidateDecimal($data) {
         $data = str_replace("decimal(", "", $data);
         $data = str_replace(")", "", $data);
