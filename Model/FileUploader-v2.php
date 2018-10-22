@@ -123,6 +123,11 @@ class FileUploader {
         return $file_mime;
     }
 
+    /**
+     * check if the file extention is an image file and return this
+     * @param  string $tmp_name the url of a file to be checked
+     * @return string returns the file extention of a file
+     */
     private function GetExtention($file_name) {
         $test1 = explode("/", $file_name);
         $test2 = explode("\\", $file_name);
