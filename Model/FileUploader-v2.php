@@ -76,6 +76,10 @@ class FileUploader {
         return $this->GetLastUploadedFile();
     }
 
+    /**
+     * returns the rawExtention of the uploaded file
+     * @return string returns everything behind the last dot like png in the name hello.png
+     */
     public function GetRawExtention() {
         return $this->raw_extention;
     }
