@@ -243,6 +243,10 @@ class FileUploader {
         }
     }
 
+    /**
+     * handles custom error handling of this class
+     * @param string $message   an helpfull error message
+     */
     private function ThrowError($message) {
         echo "<pre>";
         throw new Exception("$message", 1);
