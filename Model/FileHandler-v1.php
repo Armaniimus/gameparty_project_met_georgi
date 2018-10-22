@@ -22,9 +22,14 @@
             fwrite($myfile, $content);
             fclose($myfile);
 
-            return $this->result;
+            return true;
         }
 
+        /**
+         * this method is used to read the contents of a file
+         * @param  string $url     a string with a valid local url
+         * @return string          returns the content of the file or the bool false
+         */
         public function read($url) {
             if (file_exists($url)) {
                 $myfile = fopen($url, "r");
