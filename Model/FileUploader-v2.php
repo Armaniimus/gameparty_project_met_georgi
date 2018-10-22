@@ -92,6 +92,9 @@ class FileUploader {
         return $this->lastUploadedFile; //leads to the url of the file
     }
 
+    /**
+     * sets the variables of this class to be used during validation and saving
+     */
     private function SetVariables() {
         // set program variables
         $this->tmp_name = $_FILES['fileupload']['tmp_name'];
