@@ -430,6 +430,11 @@ class DataValidator {
         return ['decimal' => $decimal, 'max'=> $max];
     }
 
+    /**
+     * this method takes an sql varchar type and extracts the max length allowed in it
+     * @param  string $data an string value that contains something like varchar(5)
+     * @return string       a numberic string which contains the max length
+     */
     private function PrepValidateVarchar($data) {
         $data = str_replace("varchar(", "", $data);
         $data = str_replace(")", "", $data);
