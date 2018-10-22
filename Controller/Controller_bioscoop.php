@@ -73,7 +73,7 @@
 
                 $main = file_get_contents("view/partials/bios_create.html");
                 $this->TemplatingSystem->setTemplateData("content", $main);
-                $return = $this->TemplatingSystem->GetParsedTemplate();
+                $return = $this->TemplatingSystem->getParsedTemplate();
 
                 return $return;
 
@@ -88,7 +88,7 @@
 
             if($loginBool == 1){
                 $sql = "SELECT bioscoopID,bioscoop_naam,straatnaam,postcode, plaats, provincie FROM bioscopen";
-                $result = $this->DataHandler->ReadData($sql);
+                $result = $this->DataHandler->readData($sql);
 
                 $grid = "";
 
@@ -129,7 +129,7 @@
 
                 $this->TemplatingSystem->setTemplateData("content", $grid);
                 // $this->TemplatingSystem->setTemplateData("button", $create);
-                $return = $this->TemplatingSystem->GetParsedTemplate();
+                $return = $this->TemplatingSystem->getParsedTemplate();
 
                 return $return;
             } else if ($loginBool == 0) {
@@ -150,7 +150,7 @@
 
                 $sql = "SELECT * FROM bioscopen where bioscoopID = $id";
 
-                $result = $this->DataHandler->ReadData($sql);
+                $result = $this->DataHandler->readData($sql);
 
                 $naam                  = $result[0]['bioscoop_naam'];
                 $straat                = $result[0]['straatnaam'];
@@ -207,7 +207,7 @@
                     bereikbaarheid_fiets='".$posts_array['bereikbaarheidfiets']."',
                     rolstoeltoegankelijkheid='".$posts_array['rolstoel']."' WHERE bioscoopID=".$id."";
 
-                    $result = $this->DataHandler->UpdateData($sql);
+                    $result = $this->DataHandler->updateData($sql);
                     unset($_POST);
 
                     header("Location: http://localhost/shelter/gameparty_project_met_georgi/bioscoop/read_single/".$id);
@@ -230,7 +230,7 @@
                 $this->TemplatingSystem->setTemplateData("bereikbaarheidov", $bereikbaarheidov);
                 $this->TemplatingSystem->setTemplateData("bereikbaarheidfiets", $bereikbaarheidfiets);
                 $this->TemplatingSystem->setTemplateData("rolstoel", $rolstoel);
-                $return = $this->TemplatingSystem->GetParsedTemplate();
+                $return = $this->TemplatingSystem->getParsedTemplate();
                 $this->TemplatingSystem->setTemplateData("page", APP_DIR . '/bioscoop/read_single');
 
             } else if ($loginBool == 0) {
@@ -261,7 +261,7 @@
                 $this->TemplatingSystem->setTemplateData("main-content", $main);
                 $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 
-                $return = $this->TemplatingSystem->GetParsedTemplate();
+                $return = $this->TemplatingSystem->getParsedTemplate();
 
             // moet naar de catalogus
             } else {
