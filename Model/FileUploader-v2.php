@@ -173,6 +173,10 @@ class FileUploader {
         return [$raw_extention, $file_extention];
     }
 
+    /**
+     * this method returns true if the file gets trough the validation
+     * @return bool     true, false
+     */
     private function ValidateFile() {
         $filesPostName = $this->filesPostName;
 
