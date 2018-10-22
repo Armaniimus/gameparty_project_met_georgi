@@ -486,6 +486,11 @@ class DataValidator {
         return ['min' => $min,'max'=> $max];
     }
 
+    /**
+     * this method takes an sql mediumint type and returns the max and min values allowed in it
+     * @param  string $data expects 1 of 2 possible values "mediumint unsigned" or "mediumint"
+     * @return array        returns an assoc array with 2 values min and max
+     */
     private function PrepValidateMediumInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = 16777215;
