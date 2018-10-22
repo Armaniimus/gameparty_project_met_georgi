@@ -13,7 +13,7 @@ class DataValidator {
 
     ####################
     #included trait
-    use ValidatePHP_ID;
+    use validatePHP_ID;
 
     ####################
     #front-end methods
@@ -23,7 +23,7 @@ class DataValidator {
      * @param  array $dataTypesArray     an array of valid sql datatypes is needed
      * @return array                     an array of valid frontend validation
      */
-    public function GetHtmlValidateData($dataTypesArray = NULL) {
+    public function getHtmlValidateData($dataTypesArray = NULL) {
         if ($dataTypesArray == NULL) {
             $dataTypesArray = $this->dataTypesArray;
         }
@@ -34,35 +34,35 @@ class DataValidator {
             // int tests
             if (strpos($dataTypesArray[$i], 'int') !== false) {
                 if (strpos($dataTypesArray[$i], 'tinyint') !== false) {
-                    $dataTypesArray[$i] = $this->ValidateHTMLInt($dataTypesArray[$i], 'tiny');
+                    $dataTypesArray[$i] = $this->validateHTMLInt($dataTypesArray[$i], 'tiny');
 
                 } else if (strpos($dataTypesArray[$i], 'smallint') !== false) {
-                    $dataTypesArray[$i] = $this->ValidateHTMLInt($dataTypesArray[$i], 'small');
+                    $dataTypesArray[$i] = $this->validateHTMLInt($dataTypesArray[$i], 'small');
 
                 } else if (strpos($dataTypesArray[$i], 'mediumint') !== false) {
-                    $dataTypesArray[$i] = $this->ValidateHTMLInt($dataTypesArray[$i], 'medium');
+                    $dataTypesArray[$i] = $this->validateHTMLInt($dataTypesArray[$i], 'medium');
 
                 } else if (strpos($dataTypesArray[$i], 'bigint') !== false) {
-                    $dataTypesArray[$i] = $this->ValidateHTMLInt($dataTypesArray[$i], 'big');
+                    $dataTypesArray[$i] = $this->validateHTMLInt($dataTypesArray[$i], 'big');
 
                 } else if (strpos($dataTypesArray[$i], 'int') !== false) {
-                    $dataTypesArray[$i] = $this->ValidateHTMLInt($dataTypesArray[$i], '');
+                    $dataTypesArray[$i] = $this->validateHTMLInt($dataTypesArray[$i], '');
                 }
             }
 
             // StringTests
              else if (strpos($dataTypesArray[$i], 'varchar') !== false) {
-                $dataTypesArray[$i] = $this-> ValidateHTMLVarchar($dataTypesArray[$i]);
+                $dataTypesArray[$i] = $this-> validateHTMLVarchar($dataTypesArray[$i]);
             }
 
             // Double/decimal Number Tests
             else if (strpos($dataTypesArray[$i], 'decimal') !== false) {
-                $dataTypesArray[$i] = $this->ValidateHTMLDecimal($dataTypesArray[$i]);
+                $dataTypesArray[$i] = $this->validateHTMLDecimal($dataTypesArray[$i]);
             }
 
             // Date/time tests
              else if (strpos($dataTypesArray[$i], 'date') !== false) {
-                $dataTypesArray[$i] = $this->ValidateHTMLDate();
+                $dataTypesArray[$i] = $this->validateHTMLDate();
             }
         }
         return $dataTypesArray;
@@ -73,8 +73,8 @@ class DataValidator {
      * @param  string  $data   needs something like "varchar([int])"
      * @return string  returns a valid piece of html to use in a input element
      */
-    private function ValidateHTMLVarchar($data) {
-        $data = $this->PrepValidateVarchar($data);
+    private function validateHTMLVarchar($data) {
+        $data = $this->prepValidateVarchar($data);
         $data = "type='text' maxlength='$data' pattern='[^\s$][A-Za-z0-9!@#$%\^&*\s.,:;+-()]*'";
 
         return $data;
@@ -87,22 +87,22 @@ class DataValidator {
      * @param  string $option a string with a valid integersize
      * @return string         a string of valid html to use in a input element
      */
-    private function ValidateHTMLInt($data, $option = '') {
+    private function validateHTMLInt($data, $option = '') {
 
         if ($option === 'tiny') {
-            $data = $this->PrepValidateTinyInt($data);
+            $data = $this->prepValidateTinyInt($data);
 
         } else if ($option === 'small') {
-            $data = $this->PrepValidateSmallInt($data);
+            $data = $this->prepValidateSmallInt($data);
 
         } else if ($option === 'medium') {
-            $data = $this->PrepValidateMediumInt($data);
+            $data = $this->prepValidateMediumInt($data);
 
         } else if ($option === '') {
-            $data = $this->PrepValidateInt($data);
+            $data = $this->prepValidateInt($data);
 
         } else if ($option === 'big') {
-            $data = $this->PrepValidateBigInt($data);
+            $data = $this->prepValidateBigInt($data);
         }
 
         // set min and max
@@ -118,7 +118,7 @@ class DataValidator {
      * @param  string $data needs a string with a valid decimal mysql type
      * @return string       method return html that can be used in a inputElement
      */
-    private function ValidateHTMLDecimal($data) {
+    private function validateHTMLDecimal($data) {
         // get numericData
         $data = $this->prepValidateDecimal($data);
 
@@ -135,7 +135,7 @@ class DataValidator {
      * this method is used to create frontend validation based on a mysqlType
      * @return string       method returns html that can be used in a inputElement
      */
-    private function ValidateHTMLDate() {
+    private function validateHTMLDate() {
         $data = "type='date'";
         return $data;
     }
@@ -153,14 +153,14 @@ class DataValidator {
      *
      * @return array                    returns an array with html strings which can be used in inputElements
      */
-    public function ValidateHTMLNotNull($nullDataArray = NULL, $selectCode = NULL) {
+    public function validateHTMLNotNull($nullDataArray = NULL, $selectCode = NULL) {
 
         if ($nullDataArray == NULL) {
             $nullDataArray = $this->nullDataArray;
         }
 
         if ($selectCode !== NULL) {
-            $nullDataArray = $this->SelectWithCodeFromArray($nullDataArray, $selectCode);
+            $nullDataArray = $this->selectWithCodeFromArray($nullDataArray, $selectCode);
         }
 
         for ($i=0; $i < count($nullDataArray); $i++) {
@@ -192,7 +192,7 @@ class DataValidator {
      *
      * @return bool                     true, false
      */
-    public function ValidatePHPRequired($assocArray, $nullDataArray = NULL, $columnNames = NULL, $selectCode = NULL) {
+    public function validatePHPRequired($assocArray, $nullDataArray = NULL, $columnNames = NULL, $selectCode = NULL) {
         if ($nullDataArray == NULL) {
             $nullDataArray = $this->nullDataArray;
         }
@@ -202,8 +202,8 @@ class DataValidator {
         }
 
         if ($selectCode !== NULL) {
-            $columnNames = $this->SelectWithCodeFromArray($columnNames, $selectCode);
-            $nullDataArray = $this->SelectWithCodeFromArray($nullDataArray, $selectCode);
+            $columnNames = $this->selectWithCodeFromArray($columnNames, $selectCode);
+            $nullDataArray = $this->selectWithCodeFromArray($nullDataArray, $selectCode);
         }
 
         for ($i=0; $i<count($columnNames); $i++) {
@@ -217,7 +217,7 @@ class DataValidator {
                 if (!isset($assocArray[$columnNames[$i]])) {
                     return FALSE;
                 }
-                $test = $this->TestIfNotEmpty( $assocArray[$columnNames[$i]] );
+                $test = $this->testIfNotEmpty( $assocArray[$columnNames[$i]] );
 
                 // if one of the tests fails return false
                 if ($test == FALSE) {
@@ -235,7 +235,7 @@ class DataValidator {
      *
      * @return bool     true, false
      */
-    private function TestMinimalLength($length, $string = "") {
+    private function testMinimalLength($length, $string = "") {
         if (strlen($string) < $length) {
             return FALSE;
 
@@ -251,7 +251,7 @@ class DataValidator {
      *
      * @return bool     true, false
      */
-    private function TestMaximumLength($length, $string = "") {
+    private function testMaximumLength($length, $string = "") {
         if (strlen($string) > $length) {
             return FALSE;
 
@@ -267,7 +267,7 @@ class DataValidator {
      *
      * @return bool             true,false
      */
-    private function ValidatePHPFloat_Double($val) {
+    private function validatePHPFloat_Double($val) {
         return is_numeric($val);
     }
 
@@ -278,7 +278,7 @@ class DataValidator {
      *
      * @return bool          true,false
      */
-    private function ValidatePHPDecimal($val, $data) {
+    private function validatePHPDecimal($val, $data) {
         if (is_numeric($val) ) {
             // get numericData
             $data = $this->prepValidateDecimal($data);
@@ -308,7 +308,7 @@ class DataValidator {
      *
      * @return bool         true, false
      */
-    private function ValidatePHPInt($val) {
+    private function validatePHPInt($val) {
         if (is_numeric($val) && floor($val) == $val) {
             return TRUE;
 
@@ -323,7 +323,7 @@ class DataValidator {
      *
      * @return bool         true, false
      */
-    private function ValidatePHPBoolean($val) {
+    private function validatePHPBoolean($val) {
         if ($val == '1' || $val == 1 || $val === TRUE ||
         $val == '0' || $val == 0 || $val === FALSE) {
             return TRUE;
@@ -339,7 +339,7 @@ class DataValidator {
      *
      * @return bool         true, false
      */
-    private function TestIfEmail($email) {
+    private function testIfEmail($email) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) {
           return TRUE;
 
@@ -354,7 +354,7 @@ class DataValidator {
      *
      * @return bool         true, false
      */
-    private function TestIfNotEmpty($val) {
+    private function testIfNotEmpty($val) {
         $val = trim($val);
 
         if ( !isset($val) || $val == "" ) {
@@ -377,7 +377,7 @@ class DataValidator {
      * @return bool with option 0
      * @return string with option 1 and 2
      */
-    private function TestIfNoHtmlChars($string, $option = 0) {
+    private function testIfNoHtmlChars($string, $option = 0) {
         // forbid htmlChars
         if ($option == 0) {
             if (htmlspecialchars($string) == $string) {
@@ -435,7 +435,7 @@ class DataValidator {
      * @param  string $data an string value that contains something like varchar(5)
      * @return string       a numberic string which contains the max length
      */
-    private function PrepValidateVarchar($data) {
+    private function prepValidateVarchar($data) {
         $data = str_replace("varchar(", "", $data);
         $data = str_replace(")", "", $data);
         return $data;
@@ -446,7 +446,7 @@ class DataValidator {
      * @param  string $data an string value that contains something like char(5)
      * @return string       a numberic string which contains the required length
      */
-    private function PrepValidateChar($data) {
+    private function prepValidateChar($data) {
         $data = str_replace("char(", "", $data);
         $data = str_replace(")", "", $data);
         return $data;
@@ -457,7 +457,7 @@ class DataValidator {
      * @param  string $data expects 1 of 2 possible values "tinyint unsigned" or "tinyint"
      * @return array        returns an assoc array with 2 values min and max
      */
-    private function PrepValidateTinyInt($data) {
+    private function prepValidateTinyInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = 255;
             $min = 0;
@@ -474,7 +474,7 @@ class DataValidator {
      * @param  string $data expects 1 of 2 possible values "smallint unsigned" or "smallint"
      * @return array        returns an assoc array with 2 values min and max
      */
-    private function PrepValidateSmallInt($data) {
+    private function prepValidateSmallInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = 65535;
             $min = 0;
@@ -491,7 +491,7 @@ class DataValidator {
      * @param  string $data expects 1 of 2 possible values "mediumint unsigned" or "mediumint"
      * @return array        returns an assoc array with 2 values min and max
      */
-    private function PrepValidateMediumInt($data) {
+    private function prepValidateMediumInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = 16777215;
             $min = 0;
@@ -508,7 +508,7 @@ class DataValidator {
      * @param  string $data expects 1 of 2 possible values "int unsigned" or "int"
      * @return array        returns an assoc array with 2 values min and max
      */
-    private function PrepValidateInt($data) {
+    private function prepValidateInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = 4294967295;
             $min = 0;
@@ -525,7 +525,7 @@ class DataValidator {
      * @param  string $data expects 1 of 2 possible values "bigint unsigned" or "bigint"
      * @return array        returns an assoc array with 2 values min and max
      */
-    private function PrepValidateBigInt($data) {
+    private function prepValidateBigInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = (2 ** 64)-1;
             $min = 0;
