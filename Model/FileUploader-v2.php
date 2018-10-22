@@ -84,6 +84,10 @@ class FileUploader {
         return $this->raw_extention;
     }
 
+    /**
+     * returns the url of the last uploaded file
+     * @return string returns an url
+     */
     public function GetLastUploadedFile() {
         return $this->lastUploadedFile; //leads to the url of the file
     }
