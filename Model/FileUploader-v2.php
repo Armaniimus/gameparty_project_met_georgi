@@ -226,6 +226,8 @@ class FileUploader {
             unset($content);
             unset($screenedContent);
             return 1;
+        } else {
+            return 0
         }
     }
 
