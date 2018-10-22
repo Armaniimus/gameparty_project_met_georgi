@@ -10,7 +10,7 @@ trait ValidatePHP_ID {
      *
      * @return  bool                true or false
      */
-    public function ValidatePHP_ID($idValue, $Method = NULL) {
+    public function validatePHP_ID($idValue, $Method = NULL) {
 
         // run tests and set return message if needed
         if ($idValue == "" || $idValue == NULL) {
