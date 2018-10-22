@@ -21,7 +21,7 @@ class PhpUtilities {
     *
     * @Description
     * converts regular . to , and adds euro sighn in front */
-    public function Convert_NormalToEuro_2DArray($array = NULL, $key = NULL) {
+    public function convert_NormalToEuro_2DArray($array = NULL, $key = NULL) {
         // Convert to . to , with euro
         for ($i=0; $i < count($array); $i++) { // Loop and convert all shown data
             $array[$i]["$key"] = "&euro;" . $array[$i]["$key"];
@@ -36,7 +36,7 @@ class PhpUtilities {
     *
     * @Description
     * converts regular . to , and adds euro sighn in front */
-    public function Convert_EuroToNormal_2DArray($array = NULL, $key = NULL) {
+    public function convert_EuroToNormal_2DArray($array = NULL, $key = NULL) {
         // Convert to . to , with euro
         for ($i=0; $i < count($array); $i++) { // Loop and convert all shown data
             $array[$i]["$key"] = str_Replace(",", ".", $array[$i]["$key"]);
@@ -51,7 +51,7 @@ class PhpUtilities {
     *
     * @Description
     * converts regular . to , and adds euro sighn in front */
-    public function Convert_NormalToEuro($string) {
+    public function convert_NormalToEuro($string) {
         // Convert to . to , with euro
             $string = "&euro;" . $string;
             $string = str_Replace(".", ",", $string);
@@ -65,7 +65,7 @@ class PhpUtilities {
     * @Description
     * removes eurosign and converts , to .
     */
-    public function Convert_EuroToNormal($string) {
+    public function convert_EuroToNormal($string) {
         // $data is a string
         $string = str_Replace(",", ".", $string);
         $string = str_Replace("&euro;", "", $string);
@@ -82,7 +82,7 @@ class PhpUtilities {
     ** string variables -> $code
     ** array variables -> $array
     ****/
-    public function SelectWithCodeFromArray($array, $code) {
+    public function selectWithCodeFromArray($array, $code) {
         $splittedCode = str_split($code);
         $return = []; // <--- is used to store the output data
         $y=0; // <--- is used to count in which position the next datapiece needs to go
@@ -112,7 +112,7 @@ class PhpUtilities {
         return $return;
     }
 
-    public function AssocToNumericConversion($AssocArray) {
+    public function assocToNumericConversion($AssocArray) {
         $resultArray = [];
         $i = 0;
         foreach ($AssocArray as $key => $value) {
@@ -123,7 +123,7 @@ class PhpUtilities {
         return $resultArray;
     }
 
-    public function SelectFromAssoc($AssocArray, $code) {
+    public function selectFromAssoc($AssocArray, $code) {
         $i = 0;
         $y = 0;
         foreach ($AssocArray as $key => $value) {
