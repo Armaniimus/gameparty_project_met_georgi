@@ -21,7 +21,7 @@ class Router {
         $url = $_SERVER['REQUEST_URI'];
         $this->packets = explode("/", $url);
 
-        $this->filteredPackets = $this->GetFilterPackets();
+        $this->filteredPackets = $this->getFilterPackets();
 
         // Set error messages
         $this->error = NULL;
@@ -47,7 +47,7 @@ class Router {
         }
     }
 
-    public function GetFilterPackets() {
+    public function getFilterPackets() {
         return array_slice($this->packets, $this->rootUrlStart);
     }
 
