@@ -22,7 +22,7 @@ require_once 'Model/ModelCatalogus.php';
 
 // Authentication
 $Authentication = new SessionContextModel(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
-$Authentication->SessionSupport();
+$Authentication->sessionSupport();
 if (isset($_POST["logout"])) {
     $Authentication->logout();
 }
