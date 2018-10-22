@@ -208,6 +208,11 @@ class FileUploader {
         }
     }
 
+    /**
+     * this file checks if there are script tags or php opentags inside the filename
+     * and returns true if the validation is succesfull
+     * @return bool true, false
+     */
     private function InDeptValidation() {
         $content            =   file_get_contents($this->tmp_name);
         $screenedContent    =   file_get_contents($this->tmp_name);
