@@ -43,7 +43,7 @@ class FileUploader {
      * @param  string $fileName filename og the new image
      * @return string lastUploadedImage url
      */
-    public function UploadImage($folder, $fileName = NULL) {
+    public function uploadImage($folder, $fileName = NULL) {
         if ($fileName === NULL) {
             $fileName = $this->NULLFileName;
         }
@@ -54,7 +54,7 @@ class FileUploader {
         // Check if there is something inside of $_files and if needed variable is not empty
         if (count($_FILES) && !empty($_FILES["$filesPostName"]["name"]) ) {
 
-            if ($this->ValidateFile() ) {
+            if ($this->validateFile() ) {
                 switch ($this->file_mime) {
                     case "image/jpg":
                     case "image/jpeg":
@@ -62,7 +62,7 @@ class FileUploader {
                     case "image/webp":
                     case "image/gif":
                     case "image/bmp":
-                        $this->MoveFile($localUrl);
+                        $this->moveFile($localUrl);
                         break;
                 }
             }
@@ -73,14 +73,14 @@ class FileUploader {
                 echo $this->file_extention . "<br>";
             }
         }
-        return $this->GetLastUploadedFile();
+        return $this->getLastUploadedFile();
     }
 
     /**
      * returns the rawExtention of the uploaded file
      * @return string returns everything behind the last dot like png in the name hello.png
      */
-    public function GetRawExtention() {
+    public function getRawExtention() {
         return $this->raw_extention;
     }
 
@@ -88,23 +88,23 @@ class FileUploader {
      * returns the url of the last uploaded file
      * @return string returns an url
      */
-    public function GetLastUploadedFile() {
+    public function getLastUploadedFile() {
         return $this->lastUploadedFile; //leads to the url of the file
     }
 
     /**
      * sets the variables of this class to be used during validation and saving
      */
-    private function SetVariables() {
+    private function setVariables() {
         // set program variables
         $this->tmp_name = $_FILES['fileupload']['tmp_name'];
         $this->file_name = $_FILES['fileupload']['name'];
         $this->file_type = $_FILES['fileupload']['type'];
         $this->file_size = $_FILES['fileupload']['size'];
 
-        $this->file_mime = $this->GetFile_mime($this->tmp_name);
+        $this->file_mime = $this->getFile_mime($this->tmp_name);
 
-        $extentionArray = $this->GetExtention($this->file_name);
+        $extentionArray = $this->getExtention($this->file_name);
         $this->raw_extention = $extentionArray[0];
         $this->file_extention = $extentionArray[1];
     }
@@ -114,7 +114,7 @@ class FileUploader {
      * @param  string $tmp_name the url of a file to be checked
      * @return string returns the mimetype of a file
      */
-    private function GetFile_mime($tmp_name) {
+    private function getFile_mime($tmp_name) {
         // Get Mine type of the file
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $file_mime = finfo_file($finfo, $tmp_name);
@@ -128,18 +128,18 @@ class FileUploader {
      * @param  string $tmp_name the url of a file to be checked
      * @return string returns the file extention of a file
      */
-    private function GetExtention($file_name) {
+    private function getExtention($file_name) {
         $test1 = explode("/", $file_name);
         $test2 = explode("\\", $file_name);
 
         if (count($test1) + count($test2) > 2) {
-            $this->ThrowError("user has added a forbidden character to the filename");
+            $this->throwError("user has added a forbidden character to the filename");
         }
 
         // Get file extention and prevent double extention
         $fileNameArray = explode(".", $file_name);
         if (count($fileNameArray) > 2) {
-            $this->ThrowError("FileNames With more then 1 . are not allowed");
+            $this->throwError("FileNames With more then 1 . are not allowed");
 
         } else {
             $raw_extention = $fileNameArray[1];
@@ -177,18 +177,18 @@ class FileUploader {
      * this method returns true if the file gets trough the validation
      * @return bool     true, false
      */
-    private function ValidateFile() {
+    private function validateFile() {
         $filesPostName = $this->filesPostName;
 
         // dissallow upload if upload file doesn't match
         if (!is_uploaded_file($_FILES["$filesPostName"]['tmp_name']) ) {
-            $this->ThrowError("user tried to upload a file but file name didn't match the actual upload");
+            $this->throwError("user tried to upload a file but file name didn't match the actual upload");
             return 0;
         }
 
         // disallow upload if reports of the browser header,and mime type do not match.
         else if ($this->file_type !== $this->file_mime) {
-            $this->ThrowError("File Validation Fails\n \$file_type !== \$file_mime \n");
+            $this->throwError("File Validation Fails\n \$file_type !== \$file_mime \n");
             return 0;
 
         // disallow upload if mimetype does not match the file extention
@@ -199,11 +199,11 @@ class FileUploader {
             \n \$file_mime => $this->file_mime
             \n \$file_extention => $this->file_extention";
 
-            $this->ThrowError("$message");
+            $this->throwError("$message");
             return 0;
 
         // allow upload if there are no <?php tags or <script tags in the file>
-        } else if ($this->InDeptValidation() ) {
+        } else if ($this->inDeptValidation() ) {
             return 1;
         }
     }
@@ -213,7 +213,7 @@ class FileUploader {
      * and returns true if the validation is succesfull
      * @return bool true, false
      */
-    private function InDeptValidation() {
+    private function inDeptValidation() {
         $content            =   file_get_contents($this->tmp_name);
         $screenedContent    =   file_get_contents($this->tmp_name);
 
@@ -235,11 +235,11 @@ class FileUploader {
      * move the last uploaded file to the given
      * @param string $url a valid local url
      */
-    private function MoveFile($url) {
+    private function moveFile($url) {
         $this->lastUploadedFile = "$url.$this->raw_extention";
 
         if(!move_uploaded_file($this->tmp_name, $this->lastUploadedFile) ) {
-            $this->ThrowError("Error uploading file");
+            $this->throwError("Error uploading file");
         }
     }
 
@@ -247,7 +247,7 @@ class FileUploader {
      * handles custom error handling of this class
      * @param string $message   an helpfull error message
      */
-    private function ThrowError($message) {
+    private function throwError($message) {
         echo "<pre>";
         throw new Exception("$message", 1);
         echo "</pre>";
