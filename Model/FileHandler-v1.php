@@ -66,10 +66,13 @@
             }
         }
 
-        public function delete() {
-            unlink($url);
-            return $result;
+        public function delete($url) {
+            if (file_exists($url)) {
+                unlink($url);
+                return TRUE;
+
+            } else {
+                return FALSE;
+            }
         }
-
-
     }
