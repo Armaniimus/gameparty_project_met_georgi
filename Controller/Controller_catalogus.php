@@ -59,12 +59,12 @@ class Controller_catalogus {
 
 		// get bioscoop Data
     	$sql = "SELECT * FROM bioscopen WHERE bioscoopID = $id";
-    	$result = $this->connection->QueryRead($sql);
+    	$result = $this->connection->queryRead($sql);
     	$bioscoopnaam = $result[0]['bioscoop_naam'];
 
 		// get tarieven data
 		$sqltarief = "SELECT tariefID, naam, prijsPerPersoon FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
-    	$tarieven = $this->connection->QueryRead($sqltarief);
+    	$tarieven = $this->connection->queryRead($sqltarief);
     	$tariefSelect = "";
 
     	foreach ($tarieven as $key => $tariefwaarde) {
@@ -80,7 +80,7 @@ class Controller_catalogus {
 		INNER JOIN bioscopen ON zalen.bioscoop_id = bioscopen.bioscoopID
 		WHERE zalen.bioscoop_id = $id";
 
-    	$tijden = $this->connection->QueryRead($sqlTijden);
+    	$tijden = $this->connection->queryRead($sqlTijden);
 
     	$tijdselect = "";
 
@@ -102,7 +102,7 @@ class Controller_catalogus {
 
 
     	$sqlToeslagen = "SELECT toeslagenID, bioscopen_id, naam ,prijs FROM toeslagen INNER JOIN bioscopen ON toeslagen.bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = 1;";
-    	$toeslagen = $this->connection->QueryRead($sqlToeslagen);
+    	$toeslagen = $this->connection->queryRead($sqlToeslagen);
     	$toeslagSelect  = "";
 
     	foreach ($toeslagen as $key => $value) {
@@ -225,7 +225,7 @@ class Controller_catalogus {
 
     		$sql = "SELECT tariefID,naam,prijsPerPersoon,bioscopen_id FROM tarieven INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen_id = $id";
 
-    		$result = $this->connection->QueryRead($sql);
+    		$result = $this->connection->queryRead($sql);
 
 
     		foreach ($result as $key => $value) {
@@ -254,7 +254,7 @@ class Controller_catalogus {
 
     		$sql = "SELECT toeslagenID,bioscopen_id, naam, prijs FROM toeslagen INNER JOIN bioscopen ON bioscopen_id = bioscopen.bioscoopID WHERE bioscopen.bioscoopID = $id";
 
-    		$result = $this->connection->QueryRead($sql);
+    		$result = $this->connection->queryRead($sql);
 
 
     		foreach ($result as $key => $value) {
@@ -308,17 +308,14 @@ class Controller_catalogus {
 		$this->TemplatingSystem->setTemplateData("tijden", $tijdselect);
 		$this->TemplatingSystem->setTemplateData("bioscoopnaam", $bioscoopnaam);
 		$this->TemplatingSystem->setTemplateData("tarieven", $tariefSelect);
-		$result = $this->TemplatingSystem->GetParsedTemplate();
+		$result = $this->TemplatingSystem->getParsedTemplate();
 
 		return $result;
 
     }
 
 	public function catalogus(){
-		$sample = $this->connection->QueryRead("SELECT * FROM bioscopen");
-
-
-
+		$sample = $this->connection->queryRead("SELECT * FROM bioscopen");
 		require_once('View/catalogus.php');
 	}
 
@@ -407,7 +404,7 @@ class Controller_catalogus {
 			$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
 
 			$this->TemplatingSystem->setTemplateData("page", APP_DIR . '/catalogus/contact');
-			$return = $this->TemplatingSystem->GetParsedTemplate();
+			$return = $this->TemplatingSystem->getParsedTemplate();
 			return $return;
 		}
 	}
@@ -431,7 +428,7 @@ class Controller_catalogus {
 		$selectQuery = "SELECT tab_titel,pagina_titel,content_naam,content,pagina_beschrijving,steekwoorden FROM content WHERE contentID='1'";
 
 		$main = file_get_contents("view/partials/homePage.html");
-		$content = $this->connection->QueryRead($selectQuery);
+		$content = $this->connection->queryRead($selectQuery);
 
 		if (count($content) == 0) {
 			$tab_titel = "";
@@ -465,7 +462,7 @@ class Controller_catalogus {
 		$this->TemplatingSystem->setTemplateData("pagina_beschrijving", $pagina_beschrijving);
 		$this->TemplatingSystem->setTemplateData("steekwoorden", $steekwoorden);
 		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
-		$return = $this->TemplatingSystem->GetParsedTemplate();
+		$return = $this->TemplatingSystem->getParsedTemplate();
 		return $return;
 	}
 }
