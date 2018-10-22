@@ -231,6 +231,10 @@ class FileUploader {
         }
     }
 
+    /**
+     * move the last uploaded file to the given
+     * @param string $url a valid local url
+     */
     private function MoveFile($url) {
         $this->lastUploadedFile = "$url.$this->raw_extention";
 
