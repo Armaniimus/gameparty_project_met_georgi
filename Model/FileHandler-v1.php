@@ -11,6 +11,12 @@
 
         }
 
+        /**
+         * this method is used to create a file with the given content on the given place.
+         * @param  string $url     a string with a valid local url
+         * @param  string $content a string with the content to be saved
+         * @return bool            true, false
+         */
         public function create($url, $content) {
             $myfile = fopen($url, "w") or die("Unable to open file!");
             fwrite($myfile, $content);
