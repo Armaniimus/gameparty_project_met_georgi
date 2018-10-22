@@ -47,7 +47,7 @@
                 }
 
             } else {
-                $result = ">>>ERROR: No file found<<<";
+                $result = false;
             }
 
             return $result;
@@ -66,6 +66,11 @@
             }
         }
 
+        /**
+         * this method is used to delete a file
+         * @param  string $url     a string with a valid local url
+         * @return bool            true if no error was found else its false
+         */
         public function delete($url) {
             if (file_exists($url)) {
                 unlink($url);
@@ -76,3 +81,4 @@
             }
         }
     }
+?>
