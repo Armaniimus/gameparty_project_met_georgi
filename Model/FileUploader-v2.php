@@ -109,6 +109,11 @@ class FileUploader {
         $this->file_extention = $extentionArray[1];
     }
 
+    /**
+     * get the mimetype of a file
+     * @param  string $tmp_name the url of a file to be checked
+     * @return string returns the mimetype of a file
+     */
     private function GetFile_mime($tmp_name) {
         // Get Mine type of the file
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
