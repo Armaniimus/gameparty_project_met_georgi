@@ -452,6 +452,11 @@ class DataValidator {
         return $data;
     }
 
+    /**
+     * this method takes an sql tinyint type and returns the max and min values allowed in it
+     * @param  string $data expects 1 of 2 possible values "tinyint unsigned" or "tinyint"
+     * @return array        returns an assoc array with 2 values min and max
+     */
     private function PrepValidateTinyInt($data) {
         if (strpos($data, 'unsigned') !== false){
             $max = 255;
