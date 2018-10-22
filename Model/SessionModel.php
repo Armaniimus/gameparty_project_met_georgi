@@ -5,7 +5,7 @@ class SessionModel {
     public function __destruct() {}
 
 
-    public function HashPassword($password = FALSE) {
+    public function hashPassword($password = FALSE) {
         if ($password) {
             $passHash = password_hash($password, PASSWORD_DEFAULT);
             return $passHash;
@@ -17,7 +17,7 @@ class SessionModel {
     /***
     * @Description
     * Controls login System (needs to be revisited)*/
-    public function Login($userName = FALSE, $password = FALSE, $passHash = FALSE) {
+    public function login($userName = FALSE, $password = FALSE, $passHash = FALSE) {
         $message = NULL;
         $loggedIn = NULL;
         $passCheck = FALSE;
@@ -55,7 +55,7 @@ class SessionModel {
     * Sets the expireTime of the sessionCookie
     * Sets the time before the garbae collection can collect the session
     * logs user out if the time has expired*/
-    public function SessionSupport() {
+    public function sessionSupport() {
         // set session vars
         $expireTime = 1800; // 30m
         $maxExpireTime = 10800; //3 hours
@@ -74,7 +74,7 @@ class SessionModel {
             if ($time - $_SESSION['timeout'] <= $expireTime) {
                 $_SESSION['timeout'] = $time;
             } else {
-                $this->Logout();
+                $this->logout();
             }
         } else {
             $_SESSION['timeout'] = $time;
@@ -85,7 +85,7 @@ class SessionModel {
     /***
     * @Description
     * Kills/destroys the session*/
-    public function Logout() {
+    public function logout() {
         session_unset();
         session_destroy();
         session_start();
@@ -94,7 +94,7 @@ class SessionModel {
     /***
     * @Description
     * Adds 1 from the product amount in the cart*/
-    public function AddToCart() {
+    public function addToCart() {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
@@ -109,7 +109,7 @@ class SessionModel {
     /***
     * @Description
     * Removes 1 from the product amount in the cart*/
-    public function RemoveFromCart() {
+    public function removeFromCart() {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
@@ -128,7 +128,7 @@ class SessionModel {
     /***
     * @Description
     * Generates a numberedArray From the SessionCart */
-    public function WinkelwagenSession() {
+    public function winkelwagenSession() {
         // if isset products
         if (isset($_SESSION['cart']) ) {
             $array = [];
