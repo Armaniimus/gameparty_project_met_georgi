@@ -19,8 +19,8 @@
             $this->SessionModel = new SessionModel();
         }
 
-        public function SessionSupport() {
-            $this->SessionModel->SessionSupport();
+        public function sessionSupport() {
+            $this->SessionModel->sessionSupport();
 
             if (!isset($_SESSION["gebruikersNaam"]) ) {
                 $_SESSION["gebruikersNaam"] = NULL;
