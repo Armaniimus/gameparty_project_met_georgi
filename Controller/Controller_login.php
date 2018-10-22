@@ -76,7 +76,7 @@ class Controller_login {
         $this->TemplatingSystem->setTemplateData("info", $loginInfo);
         $this->TemplatingSystem->setTemplateData("loginText", $loginMsg);
 
-        $return = $this->TemplatingSystem->GetParsedTemplate();
+        $return = $this->TemplatingSystem->getParsedTemplate();
 
         return $return;
     }
