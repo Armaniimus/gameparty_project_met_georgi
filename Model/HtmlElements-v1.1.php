@@ -62,6 +62,20 @@ Class HtmlElements {
         $DB_requiredNullArray   [Expects] -> an array with database null or not null fields
         $option                 [Expects] -> 1 for using the form without data, 3 for hiding the first item or 9 for hiding the form with data
     */
+
+    /**
+     * This method is used to generate a form based on the inputs
+     * @param string  $sendMethod           set if the send method is a post, put, get, etc
+     * @param string  $targetUrl            set where the form info needs to be sended to
+     * @param string  $formName             set a form name to be used for the css
+     * @param array   $DB_data              DB_data from the database
+     * @param array   $DB_columnNames       Database columnNames
+     * @param array   $DB_dataTypesArray    database dataTypes used for frontend validation
+     * @param array   $DB_requiredNullArray an array filled with html required statements used say if a field is required or not
+     * @param integer $option               option is used to generate slightly diffrent forms
+     *                                      option 1 is used to generate a form with no data prefilled
+     *                                      option 3 is used to hide the first item of the form
+     */
     public function GenerateForm($sendMethod, $targetUrl, $formName, $DB_data, $DB_columnNames, $DB_dataTypesArray, $DB_requiredNullArray, $option = 0) {
         $headAndFoot = $this->SetHeadAndFootForm($formName, $targetUrl, $sendMethod);
         $main = $this->GenerateFormMainData($formName, $DB_data, $DB_columnNames, $DB_dataTypesArray, $DB_requiredNullArray, $option);
