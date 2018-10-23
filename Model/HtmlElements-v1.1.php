@@ -5,7 +5,23 @@ Class HtmlElements {
 
     }
 
-    public function GenerateButtonedTable($data, $htmlTableName, $option, $extraColumnsArray = NULL, $specialColumnName = NULL) {
+    /**
+     * this method is used to generate a table with data contained in them
+     * @param  array  $dataArray2d       2 dimensional array the outer being an assoc array and the inner being numbered
+     * @param  string $htmlTableName     a name that is used as id for the html table
+     *                                   also the following html classes are generated to be used in css
+     *                                   $tablename, $tablename--thead, $tablename--tbody, $tablename--tr, $tablename--th, $tablename--td
+     *
+     * @param  array  $option            an array or string with booleans
+     *                                   option[0] border?
+     *                                   option[1] width 100%?
+     *                                   option[2] future use
+     *
+     * @param  array  $extraColumnsArray an array with extra data can be used to extent functionality
+     * @param  string $specialColumnName a column title for the extra collumns
+     * @return
+     */
+    public function GenerateButtonedTable($dataArray2d, $htmlTableName, $option, $extraColumnsArray = NULL, $specialColumnName = NULL) {
 
         if (!empty($extraColumnsArray) ) {
             $extraLength = count($extraColumnsArray[0]);
@@ -29,8 +45,8 @@ Class HtmlElements {
         }
 
         $table = "<table $border $width class='$htmlTableName' id='$htmlTableName'>" .
-            $this->ButtonedTableHead($data, $htmlTableName, $extraLength, $specialColumnName) .
-            $this->ButtonedTableBody($data, $htmlTableName,  $extraColumnsArray) .
+            $this->ButtonedTableHead($dataArray2d, $htmlTableName, $extraLength, $specialColumnName) .
+            $this->ButtonedTableBody($dataArray2d, $htmlTableName,  $extraColumnsArray) .
         "</table>";
 
         return $table;
