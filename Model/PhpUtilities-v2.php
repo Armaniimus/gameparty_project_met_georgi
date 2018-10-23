@@ -38,12 +38,13 @@ class PhpUtilities {
         return $array;
     }
 
-    /***
-    * $array expects an 2dimensional numeric array with assoc arrays in it
-    * $key expects an string (is used as key for the inner assoc arrays)
-    *
-    * @Description
-    * converts regular . to , and adds euro sighn in front */
+    /**
+     * this method is used to convert numbers in a 2d array from NL standard to regular US standard
+     * @param  array  $array a 2darray to be able to loop through
+     * @param  string $key   the key to be used to select how to loop through the array
+     *
+     * @return string        returns the converted array
+     */
     public function convert_EuroToNormal_2DArray($array = NULL, $key = NULL) {
         // Convert to . to , with euro
         for ($i=0; $i < count($array); $i++) { // Loop and convert all shown data
