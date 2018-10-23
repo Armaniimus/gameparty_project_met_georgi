@@ -149,6 +149,19 @@ Class HtmlElements {
         return $body;
     }
 
+    /**
+     * the method is used to generate the innerpart of a form based on the following data
+     * @param string  $formName          set a form name to be used for the css
+     * @param array   $data              an array with data from a DataBase
+     * @param array   $columnNames       an array with database columnNames
+     * @param array   $dataTypesArray    an array with database variableTypes used for frontend validation
+     * @param array   $requiredNullArray an array with database required fields
+     * @param integer $option            option is used to generate slightly diffrent forms
+     *                                   option 1 is used to generate a form with no data prefilled
+     *                                   option 3 is used to hide the first item of the for
+     *
+     * @return string                    returns the main for content part of the form
+     */
     private function GenerateFormMainData($formName, $data, $columnNames, $dataTypesArray, $requiredNullArray, $option) {
         $form = "";
 
