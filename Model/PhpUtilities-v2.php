@@ -68,12 +68,11 @@ class PhpUtilities {
         return $string;
     }
 
-    /***
-    * $string expects an string with numbers + eurosign
-    *
-    * @Description
-    * removes eurosign and converts , to .
-    */
+    /**
+     * convert a NL standard to regular US standard
+     * @param  string $string  a value to to be converted
+     * @return string          the converted string
+     */
     public function convert_EuroToNormal($string) {
         // $data is a string
         $string = str_Replace(",", ".", $string);
