@@ -78,10 +78,18 @@ Class HtmlElements {
         return $table;
     }
 
-    private function ButtonedTableHead($data, $tablename, $extraLength = 0, $extraColumnName = NULL) {
+    /**
+     * this method is used to generate the tableheads of all columns
+     * @param array   $dataArray2d     2 dimensional array the outer being an assoc array and the inner being numbered
+     *                                 such as is typicaly returned by the datahandler
+     * @param string  $tablename       used to make the css classes tablename--thead, .tablename--tr, .tablename--th
+     * @param integer $extraLength     used to define how much extra length is needed after the columns
+     * @param string  $extraColumnName a string with a suitable name for this column
+     */
+    private function ButtonedTableHead($dataArray2d, $tablename, $extraLength = 0, $extraColumnName = NULL) {
         // table Collumn names
         $head = "<thead class='$tablename--thead'>";
-            foreach ($data as $key => $value) {
+            foreach ($dataArray2d as $key => $value) {
                 $row = "<tr class='$tablename--tr'>";
                 "<td></td>";
                     foreach ($value as $columnName => $v) {
