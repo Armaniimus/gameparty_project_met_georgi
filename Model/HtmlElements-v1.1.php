@@ -21,7 +21,7 @@ Class HtmlElements {
      * @param  string $specialColumnName a column title for the extra collumns
      * @return
      */
-    public function GenerateButtonedTable($dataArray2d, $htmlTableName, $option, $extraColumnsArray = NULL, $specialColumnName = NULL) {
+    public function generateButtonedTable($dataArray2d, $htmlTableName, $option, $extraColumnsArray = NULL, $specialColumnName = NULL) {
 
         if (!empty($extraColumnsArray) ) {
             $extraLength = count($extraColumnsArray[0]);
@@ -45,8 +45,8 @@ Class HtmlElements {
         }
 
         $table = "<table $border $width class='$htmlTableName' id='$htmlTableName'>" .
-            $this->ButtonedTableHead($dataArray2d, $htmlTableName, $extraLength, $specialColumnName) .
-            $this->ButtonedTableBody($dataArray2d, $htmlTableName,  $extraColumnsArray) .
+            $this->buttonedTableHead($dataArray2d, $htmlTableName, $extraLength, $specialColumnName) .
+            $this->buttonedTableBody($dataArray2d, $htmlTableName,  $extraColumnsArray) .
         "</table>";
 
         return $table;
@@ -65,10 +65,10 @@ Class HtmlElements {
      *                                      option 1 is used to generate a form with no data prefilled
      *                                      option 3 is used to hide the first item of the form
      */
-    public function GenerateForm($sendMethod, $targetUrl, $formName, $DB_data, $DB_columnNames, $DB_dataTypesArray, $DB_requiredNullArray, $option = 0) {
-        $headAndFoot = $this->SetHeadAndFootForm($formName, $targetUrl, $sendMethod);
-        $main = $this->GenerateFormMainData($formName, $DB_data, $DB_columnNames, $DB_dataTypesArray, $DB_requiredNullArray, $option);
-        return $this->CombineForm($headAndFoot["header"], $main, $headAndFoot["footer"]);
+    public function generateForm($sendMethod, $targetUrl, $formName, $DB_data, $DB_columnNames, $DB_dataTypesArray, $DB_requiredNullArray, $option = 0) {
+        $headAndFoot = $this->setHeadAndFootForm($formName, $targetUrl, $sendMethod);
+        $main = $this->generateFormMainData($formName, $DB_data, $DB_columnNames, $DB_dataTypesArray, $DB_requiredNullArray, $option);
+        return $this->combineForm($headAndFoot["header"], $main, $headAndFoot["footer"]);
     }
 
     /**
@@ -77,7 +77,7 @@ Class HtmlElements {
      * @param  string $tableName      a name to use in the html class of the table
      * @return string                 returns a simple 1 row table
      */
-    public function GeneratePaginationTable($generationData, $tableName) {
+    public function generatePaginationTable($generationData, $tableName) {
         $table = "<table class='$tableName'><tr>";
         for ($i=0; $i<count($generationData); $i++) {
             $table .= "<td>" . $generationData[$i] . "</td>";
@@ -95,7 +95,7 @@ Class HtmlElements {
      * @param integer $extraLength     used to define how much extra length is needed after the columns
      * @param string  $extraColumnName a string with a suitable name for this column
      */
-    private function ButtonedTableHead($dataArray2d, $tablename, $extraLength = 0, $extraColumnName = NULL) {
+    private function buttonedTableHead($dataArray2d, $tablename, $extraLength = 0, $extraColumnName = NULL) {
         // table Collumn names
         $head = "<thead class='$tablename--thead'>";
             foreach ($dataArray2d as $key => $value) {
@@ -127,7 +127,7 @@ Class HtmlElements {
      * @param  array  $extraColumnsArray a table with extra data to be added can be used to extent functionality
      * @return string                    the body of a html table
      */
-    private function ButtonedTableBody($dataArray2d, $tablename, $extraColumnsArray) {
+    private function buttonedTableBody($dataArray2d, $tablename, $extraColumnsArray) {
         // table Body
         $body = "<tbody class='$tablename--tbody'>";
 
@@ -162,7 +162,7 @@ Class HtmlElements {
      *
      * @return string                    returns the main for content part of the form
      */
-    private function GenerateFormMainData($formName, $data, $columnNames, $dataTypesArray, $requiredNullArray, $option) {
+    private function generateFormMainData($formName, $data, $columnNames, $dataTypesArray, $requiredNullArray, $option) {
         $form = "";
 
         if ($option == 3) {
@@ -171,10 +171,10 @@ Class HtmlElements {
             $firstItem = 0;
         }
 
-        $form .= $this->GenerateFormFieldWithLabel($formName, $data[$columnNames[0]], $columnNames[0], $dataTypesArray[0], $requiredNullArray[0], $firstItem);
+        $form .= $this->generateFormFieldWithLabel($formName, $data[$columnNames[0]], $columnNames[0], $dataTypesArray[0], $requiredNullArray[0], $firstItem);
 
         for ($i=1; $i < count($columnNames); $i++) {
-            $form .= $this->GenerateFormFieldWithLabel($formName, $data[$columnNames[$i]], $columnNames[$i], $dataTypesArray[$i], $requiredNullArray[$i], $option);
+            $form .= $this->generateFormFieldWithLabel($formName, $data[$columnNames[$i]], $columnNames[$i], $dataTypesArray[$i], $requiredNullArray[$i], $option);
         }
 
         return $form;
@@ -194,7 +194,7 @@ Class HtmlElements {
      *
      * @return string              an input field with a associated label element
      */
-    private function GenerateFormFieldWithLabel($formName, $data, $columnName, $dataType, $required, $option) {
+    private function generateFormFieldWithLabel($formName, $data, $columnName, $dataType, $required, $option) {
         if ($option === 1) {
             $data = "";
         }
@@ -213,6 +213,13 @@ Class HtmlElements {
     }
 
     private function SetHeadAndFootForm($formName, $targetUrl, $method) {
+    /**
+     * this method is used to create the open and closing lines of a form
+     * @param  string  $sendMethod  set if the send method is a post, put, get, etc
+     * @param  string  $targetUrl   set where the form info needs to be sended to
+     * @param  string  $formName    set a form name to be used for the css
+     * @return array                an array with opening lines, closing lines
+     */
         $openingLines = "<form class='$formName' id='$formName' name='$formName' action='$targetUrl' method='$method'>";
 
         $closingLines = "<input class='$formName-button' type='submit' value='submit'>";
@@ -221,7 +228,14 @@ Class HtmlElements {
         return ["header" => $openingLines, "footer" => $closingLines];
     }
 
-    private function CombineForm($head, $main, $footer) {
+    /**
+     * [CombineForm description]
+     * @param  [type] $head   [description]
+     * @param  [type] $main   [description]
+     * @param  [type] $footer [description]
+     * @return
+     */
+    private function combineForm($head, $main, $footer) {
         $form = $head . $main . $footer;
         return $form;
     }
