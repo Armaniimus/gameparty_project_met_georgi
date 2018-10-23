@@ -212,7 +212,6 @@ Class HtmlElements {
         return $item;
     }
 
-    private function SetHeadAndFootForm($formName, $targetUrl, $method) {
     /**
      * this method is used to create the open and closing lines of a form
      * @param  string  $sendMethod  set if the send method is a post, put, get, etc
@@ -220,6 +219,7 @@ Class HtmlElements {
      * @param  string  $formName    set a form name to be used for the css
      * @return array                an array with opening lines, closing lines
      */
+    private function setHeadAndFootForm($formName, $targetUrl, $method) {
         $openingLines = "<form class='$formName' id='$formName' name='$formName' action='$targetUrl' method='$method'>";
 
         $closingLines = "<input class='$formName-button' type='submit' value='submit'>";
@@ -229,11 +229,11 @@ Class HtmlElements {
     }
 
     /**
-     * [CombineForm description]
-     * @param  [type] $head   [description]
-     * @param  [type] $main   [description]
-     * @param  [type] $footer [description]
-     * @return
+     * combines the head main and footer of the form and returns it
+     * @param  string $head   a form headline
+     * @param  string $main   all formfields
+     * @param  string $footer the form closinglines
+     * @return string         a valid html form
      */
     private function combineForm($head, $main, $footer) {
         $form = $head . $main . $footer;
