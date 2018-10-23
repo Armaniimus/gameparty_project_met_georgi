@@ -110,12 +110,20 @@ Class HtmlElements {
         return $head;
     }
 
-    private function ButtonedTableBody($data, $tablename, $extraColumnsArray) {
+    /**
+     * this method is used to generate the body of an html table
+     * @param  array  $dataArray2d       2 dimensional array the outer being an assoc array and the inner being numbered
+     *                                   such as is typicaly returned by the datahandler
+     * @param  string $tablename         an name used to generate html class names for css styling names generated are .tablename--tbody, .tablename--tr, .tablename--td
+     * @param  array  $extraColumnsArray a table with extra data to be added can be used to extent functionality
+     * @return string                    the body of a html table
+     */
+    private function ButtonedTableBody($dataArray2d, $tablename, $extraColumnsArray) {
         // table Body
         $body = "<tbody class='$tablename--tbody'>";
 
             $i=0;
-            foreach ($data as $key => $value) {
+            foreach ($dataArray2d as $key => $value) {
                 $row = "<tr class='$tablename--tr'>";
                     foreach ($value as $k => $v) {
                         $row .= "<td class='$tablename--td'>" . $value[$k] . "</td>";
