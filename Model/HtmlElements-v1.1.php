@@ -68,6 +68,12 @@ Class HtmlElements {
         return $this->CombineForm($headAndFoot["header"], $main, $headAndFoot["footer"]);
     }
 
+    /**
+     * This method is used to fill a single row table with the given data
+     * @param  array  $generationData needs to be a numbered array
+     * @param  string $tableName      a name to use in the html class of the table
+     * @return string                 returns a simple 1 row table
+     */
     public function GeneratePaginationTable($generationData, $tableName) {
         $table = "<table class='$tableName'><tr>";
         for ($i=0; $i<count($generationData); $i++) {
