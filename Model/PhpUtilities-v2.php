@@ -21,6 +21,14 @@ class PhpUtilities {
     *
     * @Description
     * converts regular . to , and adds euro sighn in front */
+
+    /**
+     * this method is used to convert numbers in a 2d array from regular US standard to NL standard
+     * @param  array  $array a 2darray to be able to loop through
+     * @param  string $key   the key to be used to select how to loop through the array
+     *
+     * @return string        returns the converted array
+     */
     public function convert_NormalToEuro_2DArray($array = NULL, $key = NULL) {
         // Convert to . to , with euro
         for ($i=0; $i < count($array); $i++) { // Loop and convert all shown data
