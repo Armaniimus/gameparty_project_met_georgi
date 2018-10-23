@@ -55,11 +55,11 @@ class PhpUtilities {
         return $array;
     }
 
-    /***
-    * $string expects an string with numbers + eurosign
-    *
-    * @Description
-    * converts regular . to , and adds euro sighn in front */
+    /**
+     * convert a US standard decimal to NL standard
+     * @param  string $string  a value to to be converted
+     * @return string          the converted string
+     */
     public function convert_NormalToEuro($string) {
         // Convert to . to , with euro
             $string = "&euro;" . $string;
