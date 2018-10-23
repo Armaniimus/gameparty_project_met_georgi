@@ -180,6 +180,20 @@ Class HtmlElements {
         return $form;
     }
 
+    /**
+     * this method is used to create a single formfield with label
+     * @param  string $formName    set a form name to be used for the css
+     * @param  string $data        data is used to fill the value field in the input element
+     * @param  string $columnName  this value is used to create the fieldname
+     * @param  string $dataType    this value is used to set frontend validation
+     * @param  string $required    this value is used to set frontend validation as null validation
+     *
+     * @param integer $option      option is used to generate slightly diffrent forms
+     *                             option 1 is used to generate a form with no data prefilled
+     *                             option 3 is used to hide the first item of the for
+     *
+     * @return string              an input field with a associated label element
+     */
     private function GenerateFormFieldWithLabel($formName, $data, $columnName, $dataType, $required, $option) {
         if ($option === 1) {
             $data = "";
