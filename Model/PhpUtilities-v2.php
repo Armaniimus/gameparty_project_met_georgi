@@ -5,12 +5,12 @@ class PhpUtilities {
 
     }
 
-    /***
-    * $number expects a float to cut to a decimal amount
-    * $decimals expects an number (Decides how many decimal numbers will be used)
-    *
-    * @Description
-    * tofixed functionality equal to javascript toFixed */
+    /**
+     * this method is used to specify how many decimals you want in a float equal to toFixed in JS
+     * @param  float  $number   the number to cut to a specific decimal amount
+     * @param  int    $decimals a number to use how many decimals you want
+     * @return float            return the decimal number cut to a specified amount
+     */
     public function toFixed($number, $decimals) {
         return number_format($number, $decimals, ".", "");
     }
