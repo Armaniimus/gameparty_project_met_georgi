@@ -127,6 +127,9 @@
             }
         }
 
+        /**
+         * deze methode zet de data uit de class in de session
+         */
         private function setSessionData() {
             $_SESSION["loginBool"] = 1;
             $_SESSION["gebruikersNaam"] = $this->gebruikersNaam;
