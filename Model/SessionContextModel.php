@@ -71,6 +71,9 @@
             // echo "<br>";
         }
 
+        /**
+         * deze methode calt een methode die de loguit verzorgt
+         */
         public function logout() {
             $this->SessionModel->logout();
         }
