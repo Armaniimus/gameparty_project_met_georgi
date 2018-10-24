@@ -47,6 +47,11 @@
             $this->login();
         }
 
+        /**
+         * deze methode spreekt een methode aan die de post data ophaalt
+         * als er post data verstuurd is haalt hij van de database de gerelateerde informatie op
+         * daarna stuurd hij deze door naar een methode die dit in de session zet
+         */
         public function login() {
             $this->getPostData();
 
@@ -64,8 +69,6 @@
             // echo "<br>";
             // echo $this->SessionModel->HashPassword($this->password);
             // echo "<br>";
-
-            return [$this->gebruikersNaam, $loginInfo[0]];
         }
 
         public function logout() {
