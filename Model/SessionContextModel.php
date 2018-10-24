@@ -93,6 +93,10 @@
             $this->gebruikersNaam = $_POST['username'];
         }
 
+        /**
+         * deze methode haalt data op vanuit de database op basis van de gebruikersnaam in de class
+         * hierna zet hij de opgehaalde data in de class properties
+         */
         private function getDatabaseData() {
             $gebruikersNaam = $this->gebruikersNaam;
 
