@@ -74,6 +74,15 @@ class Router {
         $method = array_shift($packets);
         $params = $packets;
 
+    /**
+     * this method is used to send the request to a the controller given in the parameter
+     * and send the given info to it
+     *
+     * @param  string $ctrlName  a controllerName
+     * @param  string $method    a methodName
+     * @param  array  $params    a array with params inside it
+     * @return string            a return to be given back to index.php
+     */
         //setup the params and run the controller
         if (isset($method) && $method) {
             if (isset($params[0]) && $params[0]) {
