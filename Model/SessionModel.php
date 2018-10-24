@@ -21,6 +21,14 @@ class SessionModel {
     /***
     * @Description
     * Controls login System (needs to be revisited)*/
+
+    /**
+     * this method is used to check if the password can be converted into the supplied passwordHash
+     * @param  string $userName this needs to be the users username
+     * @param  string $password this needs to be the users filled in password
+     * @param  string $passHash this needs to be a valid passwordhash
+     * @return array            the loginbool and password error message are returned
+     */
     public function login($userName = FALSE, $password = FALSE, $passHash = FALSE) {
         $message = NULL;
         $loggedIn = NULL;
