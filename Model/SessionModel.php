@@ -114,8 +114,7 @@ class SessionModel {
         session_start();
     }
 
-    /***
-    * @Description
+    /**
     * Adds 1 from the product amount in the cart*/
     public function addToCart() {
         if (isset($_GET['id'])) {
