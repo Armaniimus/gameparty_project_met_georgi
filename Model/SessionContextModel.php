@@ -78,6 +78,9 @@
             $this->SessionModel->logout();
         }
 
+        /**
+         * deze methode is zet de $_POST Data in de class parameters
+         */
         private function getPostData() {
             if (!isset($_POST['password']) ) {
                 $_POST['password'] = "";
