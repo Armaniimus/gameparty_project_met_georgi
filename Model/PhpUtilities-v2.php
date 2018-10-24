@@ -136,6 +136,15 @@ class PhpUtilities {
         return $resultArray;
     }
 
+    /**
+     * This method can be used to select something from a assocArray
+     * @param  array  $AssocArray this is an assoc array
+     * @param  string $code       this code can be used to select what you want from the array
+     *                            each character represents 1 array position.
+     *                            a 0 means ignore this position
+     *                            a 1 means put this position in the return array
+     * @return array              an array filtered by use of the supplied code.
+     */
     public function selectFromAssoc($AssocArray, $code) {
         $i = 0;
         $y = 0;
