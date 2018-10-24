@@ -58,16 +58,17 @@ class Router {
      */
     private function determineDestination() {
         $filteredPackets = $this->filteredPackets;
+        $ctrlName = array_shift($filteredPackets);
+        $method = array_shift($filteredPackets);
 
         // set up the name and path
-        $ctrlName = array_shift($filteredPackets);
-        $name = "Controller_$ctrlName";
-        $path = "Controller/$name.php";
+        $ctrlNameFull = "Controller_$ctrlName";
+        $ctrlPath = "Controller/$ctrlName.php";
 
         // check if destination exists
-        if (file_exists ($path) ) {
-            require_once $path;
-            return $this->sendToDestination($filteredPackets, $path, $name);
+        if (file_exists ($ctrlPath) ) {
+            require_once $ctrlPath;
+            return $this->sendToDestination($ctrlNameFull, $method, $filteredPackets);
 
         } else {
             return "E1";
