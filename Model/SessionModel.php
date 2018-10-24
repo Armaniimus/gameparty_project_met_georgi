@@ -4,7 +4,11 @@ class SessionModel {
     public function __construct() {}
     public function __destruct() {}
 
-
+    /**
+     * this method is used to create a passwordhash
+     * @param  string $password  a password you want to hash
+     * @return string            the hash that is returned
+     */
     public function hashPassword($password = FALSE) {
         if ($password) {
             $passHash = password_hash($password, PASSWORD_DEFAULT);
