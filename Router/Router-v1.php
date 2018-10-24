@@ -51,6 +51,11 @@ class Router {
         return array_slice($this->packets, $this->rootUrlStart);
     }
 
+    /**
+     * this method is used to get the destination information from the filtered packets and properties
+     * and pass it on the the send to destinationMethod
+     * @return string  a string to be returned to index.php
+     */
     private function determineDestination() {
         $filteredPackets = $this->filteredPackets;
 
