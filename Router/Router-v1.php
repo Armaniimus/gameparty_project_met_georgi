@@ -69,11 +69,6 @@ class Router {
         }
     }
 
-    public function sendToDestination($packets, $path, $name) {
-        // split the packets into params and methods
-        $method = array_shift($packets);
-        $params = $packets;
-
     /**
      * this method is used to send the request to a the controller given in the parameter
      * and send the given info to it
@@ -83,17 +78,18 @@ class Router {
      * @param  array  $params    a array with params inside it
      * @return string            a return to be given back to index.php
      */
+    public function sendToDestination($ctrlName, $method, $params) {
         //setup the params and run the controller
         if (isset($method) && $method) {
             if (isset($params[0]) && $params[0]) {
-                $controller = new $name($method, $params);
+                $controller = new $ctrlName($method, $params);
             } else {
-                $controller = new $name($method);
+                $controller = new $ctrlName($method);
             }
         } else {
             return "E2";
         }
-
+        // return $controller->$method();
         return $controller->runController();
     }
 }
