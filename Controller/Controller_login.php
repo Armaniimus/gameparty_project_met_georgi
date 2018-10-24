@@ -81,7 +81,7 @@ class Controller_login {
         return $return;
     }
 
-    private function logout() {
+    public function logout() {
         $this->SessionModel->logout();
         header("Location: ".APP_DIR."/login/login ");
     }
