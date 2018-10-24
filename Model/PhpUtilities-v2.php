@@ -120,6 +120,11 @@ class PhpUtilities {
         return $return;
     }
 
+    /**
+     * this method can convert a associative array to a numberic array
+     * @param  array $AssocArray  this need to be an associative array
+     * @return array              this is a numeric array
+     */
     public function assocToNumericConversion($AssocArray) {
         $resultArray = [];
         $i = 0;
