@@ -11,9 +11,14 @@ class Router {
     Public $error;
     Public $errorMessage;
 
-
-    function __construct($rootUrlStart = 0) {
-
+    /**
+     * in this constructor the packets property is set and the data for it is gained from the browser URI
+     * and this is filtered with the gived rootUrlStart
+     * for example if you have a folder like pc/c/hi/rootprojectcontrol/method/param1/param2
+     * a rootUrlStart of 4 will result in control/method/param1/param2 which you want in this way
+     * @param integer $rootUrlStart this property is used to determine the offset of the folder
+     */
+    function __construct ($rootUrlStart = 0) {
         // set urlOffset
         $this->rootUrlStart = $rootUrlStart;
 
