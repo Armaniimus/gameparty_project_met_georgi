@@ -19,6 +19,12 @@
             $this->SessionModel = new SessionModel();
         }
 
+        /**
+         * Deze methode calt een methode voor het creëren van de session
+         * daarnaast zorgt hij dat de 4 basis waarden aanwezig zijn
+         * ook calt hij een methode die de login afhandeling verzorgt
+         * algeheel is hij verantwoordelijk voor het grootste deel flowlogic in deze class
+         */
         public function sessionSupport() {
             $this->SessionModel->sessionSupport();
 
