@@ -28,7 +28,10 @@ class Router {
         $this->errorMessage = NULL;
     }
 
-
+    /**
+     * this method is used to kick off the start of the router and handle the errormessages
+     * @return string/bool a string is returned or false is returned if there was an error
+     */
     public function run() {
         $result = $this->determineDestination();
 
