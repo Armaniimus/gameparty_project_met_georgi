@@ -146,9 +146,10 @@ class SessionModel {
         }
     }
 
-    /***
-    * @Description
-    * Generates a numberedArray From the SessionCart */
+    /**
+    * Generates a numberedArray From the SessionCart
+    * @return array this method returns an array with all items in the cart
+    */
     public function winkelwagenSession() {
         // if isset products
         if (isset($_SESSION['cart']) ) {
