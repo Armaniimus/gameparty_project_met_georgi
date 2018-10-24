@@ -106,9 +106,8 @@ class SessionModel {
     }
 
 
-    /***
-    * @Description
-    * Kills/destroys the session*/
+    /**
+    * this method Kills/destroys the session*/
     public function logout() {
         session_unset();
         session_destroy();
