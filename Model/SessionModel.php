@@ -67,6 +67,18 @@ class SessionModel {
     * Sets the expireTime of the sessionCookie
     * Sets the time before the garbae collection can collect the session
     * logs user out if the time has expired*/
+
+    /**
+     * this method sets the following Headers
+     *  session cookie itself
+     *  cookie_httponly // to disable javascript interference with the session
+     *  sets session.cookie_lifetme // to limit how long the session is valid
+     *
+     * this method then checks if the session is new
+     *   if not is checks if its active for to long
+     *      if so it resets the kills the session and creates a new one
+     *   if it is then it sets the current time in the session
+     */
     public function sessionSupport() {
         // set session vars
         $expireTime = 1800; // 30m
