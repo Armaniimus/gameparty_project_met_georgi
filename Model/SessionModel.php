@@ -128,8 +128,7 @@ class SessionModel {
         }
     }
 
-    /***
-    * @Description
+    /**
     * Removes 1 from the product amount in the cart*/
     public function removeFromCart() {
         if (isset($_GET['id'])) {
