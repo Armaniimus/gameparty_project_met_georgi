@@ -47,6 +47,10 @@ class Router {
         }
     }
 
+    /**
+     * this method is used to filter the packets in the class based on the rootUrlStartNumber
+     * @return array this is the filtered array
+     */
     public function getFilterPackets() {
         return array_slice($this->packets, $this->rootUrlStart);
     }
