@@ -11,40 +11,44 @@ class Controller_catalogus {
 	private $templatingSystem;
 
 
-	function __construct($method, $params = FALSE) {
+	function __construct($method = FALSE, $params = FALSE) {
 		$this->connection = new dbhandler(DB_NAME, DB_USERNAME, DB_PASS);
 
-		$this->method = $method;
-		if ($params != FALSE) {
-			$this->params = $params;
-		}
+		// $this->method = $method;
+		// if ($params != FALSE) {
+		// 	$this->params = $params;
+		// }
 		$this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
 		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 	}
 
-	public function runController() {
-        switch ($this->method) {
-            case 'contact':
-                return $this->contact();
-                break;
+	// public function runController() {
+    //     switch ($this->method) {
+    //         case 'contact':
+    //             return $this->contact();
+    //             break;
+	//
+	// 		case 'home':
+	// 			return $this->home();
+	// 			break;
+	//
+	// 		case 'bedankt':
+	// 			return $this->bedankt();
+	// 			break;
+	//
+	// 		case 'reserveer':
+	// 			return $this->reserveer();
+	// 			break;
+	//
+    //         default:
+    //             return $this->catalogus();
+    //             break;
+    //     }
+    // }
 
-			case 'home':
-				return $this->home();
-				break;
-
-			case 'bedankt':
-				return $this->bedankt();
-				break;
-
-			case 'reserveer':
-				return $this->reserveer();
-				break;
-
-            default:
-                return $this->catalogus();
-                break;
-        }
-    }
+	public function default() {
+		$this->catalogus();
+	}
 
     public function reserveer() {
 		// setID

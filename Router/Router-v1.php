@@ -47,7 +47,18 @@ class Router {
 
         } else if ($result == "E2") {
             $this->error = "E2";
-            $this->errorMessage = "no Method Defined";
+            $this->errorMessage = "no method was given and no default found";
+            return FALSE;
+
+        } else if ($result == "E3") {
+            $this->error = "E3";
+            $this->errorMessage = "controller_class isn't found";
+            return FALSE;
+
+
+        } else if ($result == "E4") {
+            $this->error = "E4";
+            $this->errorMessage = "method doesn't exist in the controller_class";
             return FALSE;
 
         } else {
@@ -99,17 +110,44 @@ class Router {
      */
     public function sendToDestination($ctrlName, $method, $params) {
         //setup the params and run the controller
-        if (isset($method) && $method) {
-            if (isset($params[0]) && $params[0]) {
-                $controller = new $ctrlName($method, $params);
-            } else {
-                $controller = new $ctrlName($method);
-            }
-        } else {
+        // if (isset($method) && $method) {
+        //     if (isset($params[0]) && $params[0]) {
+        //         $controller = new $ctrlName($method, $params);
+        //     } else {
+        //         $controller = new $ctrlName($method);
+        //     }
+        // } else {
+        //     return "E2";
+        // }
+        // return $controller->runController();
+
+        // checks if the method name is defined
+        if (!isset($method) || !$method) {
             return "E2";
         }
-        // return $controller->$method();
-        return $controller->runController();
+
+        // checks if the class exists
+        if (class_exists($ctrlName)) {
+            $controller = new $ctrlName;
+        } else {
+            return "E3";
+        }
+
+        // checks if the method exists in the class
+        if (!method_exists($controller, $method) ) {
+            if (!method_exists($controller, "default") ) {
+                return "E4";
+            } else {
+                $method = "default";
+            }
+        }
+
+        // checks if params are defined and choose run mode based on that
+        if (isset($params[0]) && $params[0]) {
+            return $controller->$method($params);
+        } else {
+            return $controller->$method();
+        }
     }
 }
 ?>

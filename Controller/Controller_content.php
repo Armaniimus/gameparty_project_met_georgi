@@ -9,15 +9,15 @@ class Controller_content {
 	private $contentText;
 
 
-	function __construct($method, $params = FALSE) {
+	function __construct($method = FALSE, $params = FALSE) {
 		$this->connection = new dbhandler(DB_NAME, DB_USERNAME, DB_PASS);
 
-		$this->method = $method;
-		if ($params != FALSE) {
-			$this->params = $params;
-		}
-		$loginBool = $_SESSION["loginBool"];
+		// $this->method = $method;
+		// if ($params != FALSE) {
+		// 	$this->params = $params;
+		// }
 
+		$loginBool = $_SESSION["loginBool"];
 		$this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
 		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
 		$loginButtonText = "Login";
@@ -28,27 +28,28 @@ class Controller_content {
 		$this->TemplatingSystem->setTemplateData("loginButtonText", $loginButtonText);
 	}
 
-	public function runController() {
-        switch ($this->method) {
-            case 'overons':
-                return $this->overons();
-                break;
+	// public function runController() {
+    //     switch ($this->method) {
+    //         case 'overons':
+    //             return $this->overons();
+    //             break;
+	//
+	// 		case 'sendData':
+    //             return $this->sendData();
+    //             break;
+	//
+    //         default:
+    //             return header("Location: ".APP_DIR." ");
+    //             break;
+    //     }
+    // }
 
-			case 'sendData':
-                return $this->sendData();
-                break;
-
-
-            default:
-                return header("Location: ".APP_DIR." ");
-                break;
-        }
-    }
+	public function default() {
+		return header("Location: ".APP_DIR." ");
+	}
 
 	private function overons() {
 		$selectQuery = "SELECT tab_titel,pagina_titel,content_naam,content,pagina_beschrijving,steekwoorden FROM content WHERE contentID='1' ";
-
-
 
 		$main = file_get_contents("view/partials/content.html");
 		$content = $this->connection->QueryRead($selectQuery);
@@ -60,12 +61,8 @@ class Controller_content {
 		$pagina_beschrijving = $content[0]["pagina_beschrijving"];
 		$steekwoorden = $content[0]["steekwoorden"];
 
-
 		$this->TemplatingSystem->setTemplateData("main-content", $main);
-
 		$this->TemplatingSystem->setTemplateData("page-title", "over ons");
-
-
 
 		$this->TemplatingSystem->setTemplateData("tab_titel", $tab_titel);
 		$this->TemplatingSystem->setTemplateData("pagina_titel", $pagina_titel);
@@ -73,7 +70,6 @@ class Controller_content {
 		$this->TemplatingSystem->setTemplateData("content0", $content0);
 		$this->TemplatingSystem->setTemplateData("pagina_beschrijving", $pagina_beschrijving);
 		$this->TemplatingSystem->setTemplateData("steekwoorden", $steekwoorden);
-
 
 		$this->TemplatingSystem->setTemplateData("content-id", "overons");
 		$this->TemplatingSystem->setTemplateData("appdir", APP_DIR);

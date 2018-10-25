@@ -8,29 +8,33 @@ class Controller_login {
     private $params;
     private $SessionModel;
 
-    function __construct($method, $params = FALSE) {
+    function __construct($method = FALSE, $params = FALSE) {
         $this->SessionModel = new SessionModel;
-        $this->method = $method;
-        if ($params != FALSE) {
-            $this->params = $params;
-        }
+        // $this->method = $method;
+        // if ($params != FALSE) {
+        //     $this->params = $params;
+        // }
         $this->TemplatingSystem = new TemplatingSystem("view/default.tpl");
         $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
     }
 
-    public function runController() {
-        switch ($this->method) {
-            case 'login':
-                return $this->login();
-                break;
-            case 'logout':
-                return $this->logout();
-                break;
+    // public function runController() {
+    //     switch ($this->method) {
+    //         case 'login':
+    //             return $this->login();
+    //             break;
+    //         case 'logout':
+    //             return $this->logout();
+    //             break;
+    //
+    //         default:
+    //             return $this->login();
+    //             break;
+    //     }
+    // }
 
-            default:
-                return $this->login();
-                break;
-        }
+    public function default() {
+        return $this->login();
     }
 
     /**

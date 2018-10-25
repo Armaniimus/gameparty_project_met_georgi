@@ -6,44 +6,49 @@
     {
         private $templatingSystem;
 
-        function __construct($method, $params = FALSE) {
-            $this->method = $method;
-            if ($params != FALSE) {
-                $this->params = $params;
-            }
+        function __construct($method = FALSE, $params = FALSE) {
+            // $this->method = $method;
+            // if ($params != FALSE) {
+            //     $this->params = $params;
+            // }
 
             $this->DataHandler = new DataHandler(DB_NAME, DB_USERNAME, DB_PASS, DB_SERVER_ADRESS, DB_TYPE);
             $this->TemplatingSystem = new TemplatingSystem("View/bios_view.tpl");
             $this->TemplatingSystem->setTemplateData("appdir", APP_DIR);
         }
 
-        public function runController() {
-            switch ($this->method) {
-                case 'create':
-                    return $this->create();
-                    break;
+        // public function runController() {
+        //     switch ($this->method) {
+        //         case 'create':
+        //             return $this->create();
+        //             break;
+        //
+        //         case 'update':
+        //             return $this->update();
+        //             break;
+        //
+        //         case 'delete':
+        //             $this->delete();
+        //             break;
+        //
+        //         case 'read_single':
+        //             return $this->read_single();
+        //             break;
+        //
+        //         case 'bios_overzicht':
+        //             return $this->bios_overzicht();
+        //             break;
+        //
+        //         default:
+        //             return $this->read();
+        //             break;
+        //     }
+        // }
 
-                case 'update':
-                    return $this->update();
-                    break;
-
-                case 'delete':
-                    $this->delete();
-                    break;
-
-                case 'read_single':
-                    return $this->read_single();
-                    break;
-
-                case 'bios_overzicht':
-                    return $this->bios_overzicht();
-                    break;
-
-                default:
-                    return $this->read();
-                    break;
-            }
+        public function default() {
+            $this->read();
         }
+
 
         public function create() {
             $loginBool = $_SESSION["loginBool"];
