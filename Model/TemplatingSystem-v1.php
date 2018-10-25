@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /**
  *
@@ -6,6 +6,11 @@
 class TemplatingSystem {
     public $tplContent;
 
+    /**
+     * this method sets the fileUrl to be used in this class
+     * and does a few checks to make sure its a valid tpl file
+     * @param string this needs te be a valid local url
+     */
     public function __construct($tplUrl = false) {
 
         // $test if template is not empty or null
