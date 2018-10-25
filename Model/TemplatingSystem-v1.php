@@ -53,6 +53,10 @@ class TemplatingSystem {
         return $this->tplContent;
     }
 
+    /**
+     * this method is used to handle the throwExeptions in this class
+     * @return string the error to be thrown
+     */
     private function throwError($errorMessage) {
         echo "<pre>";
         throw new Exception("$errorMessage", 1);
