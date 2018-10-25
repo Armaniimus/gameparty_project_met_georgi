@@ -85,6 +85,9 @@ class Controller_login {
         return $return;
     }
 
+    /**
+     * this method calls the sessionModel to handle the logout
+     */
     public function logout() {
         $this->SessionModel->logout();
         header("Location: ".APP_DIR."/login/login ");
