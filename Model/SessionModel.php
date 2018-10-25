@@ -4,8 +4,12 @@ class SessionModel {
     public function __construct() {}
     public function __destruct() {}
 
-
-    public function HashPassword($password = FALSE) {
+    /**
+     * this method is used to create a passwordhash
+     * @param  string $password  a password you want to hash
+     * @return string            the hash that is returned
+     */
+    public function hashPassword($password = FALSE) {
         if ($password) {
             $passHash = password_hash($password, PASSWORD_DEFAULT);
             return $passHash;
@@ -17,7 +21,15 @@ class SessionModel {
     /***
     * @Description
     * Controls login System (needs to be revisited)*/
-    public function Login($userName = FALSE, $password = FALSE, $passHash = FALSE) {
+
+    /**
+     * this method is used to check if the password can be converted into the supplied passwordHash
+     * @param  string $userName this needs to be the users username
+     * @param  string $password this needs to be the users filled in password
+     * @param  string $passHash this needs to be a valid passwordhash
+     * @return array            the loginbool and password error message are returned
+     */
+    public function login($userName = FALSE, $password = FALSE, $passHash = FALSE) {
         $message = NULL;
         $loggedIn = NULL;
         $passCheck = FALSE;
@@ -55,7 +67,19 @@ class SessionModel {
     * Sets the expireTime of the sessionCookie
     * Sets the time before the garbae collection can collect the session
     * logs user out if the time has expired*/
-    public function SessionSupport() {
+
+    /**
+     * this method sets the following Headers
+     *  session cookie itself
+     *  cookie_httponly // to disable javascript interference with the session
+     *  sets session.cookie_lifetme // to limit how long the session is valid
+     *
+     * this method then checks if the session is new
+     *   if not is checks if its active for to long
+     *      if so it resets the kills the session and creates a new one
+     *   if it is then it sets the current time in the session
+     */
+    public function sessionSupport() {
         // set session vars
         $expireTime = 1800; // 30m
         $maxExpireTime = 10800; //3 hours
@@ -74,7 +98,7 @@ class SessionModel {
             if ($time - $_SESSION['timeout'] <= $expireTime) {
                 $_SESSION['timeout'] = $time;
             } else {
-                $this->Logout();
+                $this->logout();
             }
         } else {
             $_SESSION['timeout'] = $time;
@@ -82,19 +106,17 @@ class SessionModel {
     }
 
 
-    /***
-    * @Description
-    * Kills/destroys the session*/
-    public function Logout() {
+    /**
+    * this method Kills/destroys the session*/
+    public function logout() {
         session_unset();
         session_destroy();
         session_start();
     }
 
-    /***
-    * @Description
+    /**
     * Adds 1 from the product amount in the cart*/
-    public function AddToCart() {
+    public function addToCart() {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
@@ -106,10 +128,9 @@ class SessionModel {
         }
     }
 
-    /***
-    * @Description
+    /**
     * Removes 1 from the product amount in the cart*/
-    public function RemoveFromCart() {
+    public function removeFromCart() {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
@@ -125,10 +146,11 @@ class SessionModel {
         }
     }
 
-    /***
-    * @Description
-    * Generates a numberedArray From the SessionCart */
-    public function WinkelwagenSession() {
+    /**
+    * Generates a numberedArray From the SessionCart
+    * @return array this method returns an array with all items in the cart
+    */
+    public function winkelwagenSession() {
         // if isset products
         if (isset($_SESSION['cart']) ) {
             $array = [];

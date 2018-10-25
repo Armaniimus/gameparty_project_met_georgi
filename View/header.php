@@ -17,8 +17,10 @@
       <a class="headerButtonSingle" href="<?php echo APP_DIR?>/catalogus/contact">
       <button class="headerButtonSingle1" type="button" name="button">Contact</button>
       </a>
-      <a class="headerButtonSingle " href="#">
-      <button class="headerButtonSingle2" type="button" name="button">Login</button>
+      <a class="headerButtonSingle " href="<?php echo APP_DIR?>/login/logout">
+      <button class="headerButtonSingle2" type="button" name="button"><?php if($_SESSION["loginBool"]==1){echo "Loguit";}else{
+        echo "Login";
+      } ?></button>
       </a>
       <a class="headerButtonSingle " href="<?php echo APP_DIR?>/catalogus/catalogus">
       <button class="headerButtonSingle3" type="button" name="button">Catalogus</button>
@@ -34,6 +36,20 @@
       </div>
       </button>
         </div>
+
+        
+        <!-- <div class="adminMenuTriangle">
+          <label class="col-xs-12 adminMenuContent"></label>
+          <label class="col-xs-12 adminMenuContent"></label>
+          <label class="col-xs-9 adminMenuContent"></label>
+          <label class="col-xs-3 adminMenuContent">{adminContent0}</label>
+          <label class="col-xs-7 adminMenuContent"></label>
+          <label class="col-xs-5 adminMenuContent">{adminContent1}</label>
+          <label class="col-xs-5 adminMenuContent"></label>
+          <label class="col-xs-7 adminMenuContent">{adminContent2}</label>
+          <label class="col-xs-3 adminMenuContent"></label>
+          <label class="col-xs-9 adminMenuContent">{adminContent3}</label>
+        </div> -->
       </header>
 
 

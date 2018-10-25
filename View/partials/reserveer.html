@@ -1,0 +1,43 @@
+<div class="cinema-name">
+	<h1>Bioscoop {bioscoopnaam} reserveren</h1>
+
+	<form method="post">
+		<div class="select-container"> <!-- !!!!!!!!!!waar moet deze eindigen? -->
+			<select id="diensten" name="select-dienst" multiple>
+				{tarieven}
+			</select>
+
+			<select id="reserveer-tijden" name="select-tijd" multiple>
+				{tijden}
+			</select>
+
+			<div class="bottom-row">
+				<h3>Voor hoeveel personen wilt u reserveren?*</h3>
+
+				<div class="input-fields">
+					<div class="input-block">
+						<input type="number" name="tot-11" placeholder="Aantal personen van 0 T/m 11 jaar"> (Ticket prijs per persoon per uur)
+					</div>
+
+					<div class="input-block">
+						<input type="number" name="tot-17" placeholder="Aantal personen van 12 T/m 17 jaar"per uur)> (Ticket prijs per persoon
+					</div>
+
+					<div class="input-block">
+						<input type="number" name="na-18"placeholder="Aantal personen van 18+">  (Ticket prijs per persoon per uur)
+					</div>
+				</div>
+
+				<div class="toeslagen">
+					<select name="toeslagenSelect" multiple>
+						{toeslagen}
+					</select>
+				</div>
+			</div>
+
+			<div class="reserveer-container">
+				<input type="submit" value="Naar de volgende stap persoonsgegevens" name="reserveerstap-1">
+			</div>
+		</div><!-- moet die hier eindigen? -->
+	</form>
+</div>

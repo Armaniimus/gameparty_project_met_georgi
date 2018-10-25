@@ -11,14 +11,25 @@
 
         }
 
+        /**
+         * this method is used to create a file with the given content on the given place.
+         * @param  string $url     a string with a valid local url
+         * @param  string $content a string with the content to be saved
+         * @return bool            true, false
+         */
         public function create($url, $content) {
             $myfile = fopen($url, "w") or die("Unable to open file!");
             fwrite($myfile, $content);
             fclose($myfile);
 
-            return $this->result;
+            return true;
         }
 
+        /**
+         * this method is used to read the contents of a file
+         * @param  string $url     a string with a valid local url
+         * @return string          returns the content of the file or the bool false
+         */
         public function read($url) {
             if (file_exists($url)) {
                 $myfile = fopen($url, "r");
@@ -36,7 +47,7 @@
                 }
 
             } else {
-                $result = ">>>ERROR: No file found<<<";
+                $result = false;
             }
 
             return $result;
@@ -55,10 +66,19 @@
             }
         }
 
-        public function delete() {
-            unlink($url);
-            return $result;
+        /**
+         * this method is used to delete a file
+         * @param  string $url     a string with a valid local url
+         * @return bool            true if no error was found else its false
+         */
+        public function delete($url) {
+            if (file_exists($url)) {
+                unlink($url);
+                return TRUE;
+
+            } else {
+                return FALSE;
+            }
         }
-
-
     }
+?>

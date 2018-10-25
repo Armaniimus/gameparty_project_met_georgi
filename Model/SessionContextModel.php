@@ -19,8 +19,14 @@
             $this->SessionModel = new SessionModel();
         }
 
-        public function SessionSupport() {
-            $this->SessionModel->SessionSupport();
+        /**
+         * Deze methode calt een methode voor het creëren van de session
+         * daarnaast zorgt hij dat de 4 basis waarden aanwezig zijn
+         * ook calt hij een methode die de login afhandeling verzorgt
+         * algeheel is hij verantwoordelijk voor het grootste deel flowlogic in deze class
+         */
+        public function sessionSupport() {
+            $this->SessionModel->sessionSupport();
 
             if (!isset($_SESSION["gebruikersNaam"]) ) {
                 $_SESSION["gebruikersNaam"] = NULL;
@@ -41,6 +47,11 @@
             $this->login();
         }
 
+        /**
+         * deze methode spreekt een methode aan die de post data ophaalt
+         * als er post data verstuurd is haalt hij van de database de gerelateerde informatie op
+         * daarna stuurd hij deze door naar een methode die dit in de session zet
+         */
         public function login() {
             $this->getPostData();
 
@@ -58,14 +69,18 @@
             // echo "<br>";
             // echo $this->SessionModel->HashPassword($this->password);
             // echo "<br>";
-
-            return [$this->gebruikersNaam, $loginInfo[0]];
         }
 
+        /**
+         * deze methode calt een methode die de loguit verzorgt
+         */
         public function logout() {
             $this->SessionModel->logout();
         }
 
+        /**
+         * deze methode is zet de $_POST Data in de class parameters
+         */
         private function getPostData() {
             if (!isset($_POST['password']) ) {
                 $_POST['password'] = "";
@@ -78,6 +93,10 @@
             $this->gebruikersNaam = $_POST['username'];
         }
 
+        /**
+         * deze methode haalt data op vanuit de database op basis van de gebruikersnaam in de class
+         * hierna zet hij de opgehaalde data in de class properties
+         */
         private function getDatabaseData() {
             $gebruikersNaam = $this->gebruikersNaam;
 
@@ -108,6 +127,9 @@
             }
         }
 
+        /**
+         * deze methode zet de data uit de class in de session
+         */
         private function setSessionData() {
             $_SESSION["loginBool"] = 1;
             $_SESSION["gebruikersNaam"] = $this->gebruikersNaam;
