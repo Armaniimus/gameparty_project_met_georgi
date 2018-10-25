@@ -46,14 +46,6 @@ class TemplatingSystem {
     }
 
     /**
-     * this method is used to return the tplData after all conversions
-     * @return string the string
-     */
-    private function readTemplateData() {
-        return $this->tplContent;
-    }
-
-    /**
      * this method is used to handle the throwExeptions in this class
      * @return string the error to be thrown
      */
