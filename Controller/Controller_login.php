@@ -33,6 +33,10 @@ class Controller_login {
         }
     }
 
+    /**
+     * this method constructs a webform for the login
+     * @return string the constructed webpage
+     */
     public function login() {
         $loginMsg="";
         $loginBool = $_SESSION["loginBool"];
