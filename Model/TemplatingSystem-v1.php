@@ -45,6 +45,10 @@ class TemplatingSystem {
         $this->tplContent = preg_replace("#\{" . $pattern . "\}#si", $replacement, $this->tplContent); //{blabla changed to ..}
     }
 
+    /**
+     * this method is used to return the tplData after all conversions
+     * @return string the string
+     */
     private function readTemplateData() {
         return $this->tplContent;
     }
