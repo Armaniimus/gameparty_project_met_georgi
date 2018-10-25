@@ -42,7 +42,7 @@ if ($Router->error) {
 }
 
 echo $echo;
-echo $Router->errorMessage;
+// echo $Router->errorMessage;
 // print_r($Router->getFilterPackets());
 // print_r($_SESSION);
 ?>
