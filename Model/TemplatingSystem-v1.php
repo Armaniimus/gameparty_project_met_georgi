@@ -31,10 +31,13 @@ class TemplatingSystem {
         }
     }
 
-    // private function TestTemplate($template) {
-    //
-    // }
-
+    /**
+     * this method is used to replace a specified piece of code in the tpl file with the provided string
+     * example if a piece of code in the tpl file looks like this {hi}
+     * you can replace it to Hello with setTemplateData("hi", "hello");
+     * @param string $pattern     the piece of code needed to be replaced
+     * @param string $replacement the replacement
+     */
     public function setTemplateData($pattern, $replacement) {
         if ($this->readTemplateData() == false) {
             $this->readTemplateData(); // do it
