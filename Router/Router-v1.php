@@ -57,6 +57,7 @@ class Router {
 
     /**
      * this method is used to filter the packets in the class based on the rootUrlStartNumber
+     * and can also be used to be able to find errors
      * @return array this is the filtered array
      */
     public function getFilterPackets() {
@@ -75,7 +76,7 @@ class Router {
 
         // set up the name and path
         $ctrlNameFull = "Controller_$ctrlName";
-        $ctrlPath = "Controller/$ctrlName.php";
+        $ctrlPath = "Controller/$ctrlNameFull.php";
 
         // check if destination exists
         if (file_exists ($ctrlPath) ) {
