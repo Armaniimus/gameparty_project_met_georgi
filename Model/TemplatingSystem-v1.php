@@ -39,8 +39,8 @@ class TemplatingSystem {
      * @param string $replacement the replacement
      */
     public function setTemplateData($pattern, $replacement) {
-        if ($this->readTemplateData() == false) {
-            $this->readTemplateData(); // do it
+        if ($this->getParsedTemplate() == false) {
+            $this->getParsedTemplate(); // do it
         }
         $this->tplContent = preg_replace("#\{" . $pattern . "\}#si", $replacement, $this->tplContent); //{blabla changed to ..}
     }
@@ -63,6 +63,10 @@ class TemplatingSystem {
         echo "</pre>";
     }
 
+    /**
+     * this method is used to return the tplData after all conversions
+     * @return string the string
+     */
     public function getParsedTemplate() {
         return $this->tplContent;
     }
