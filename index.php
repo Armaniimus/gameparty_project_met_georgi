@@ -1,19 +1,19 @@
 <?php
 // router
-require_once 'Router/Router-v1.php';
+require_once 'Router/Router-v2.0.php';
 require_once 'config.php';
 
 // controllers (are dynamicly called)
 
 // genericModels
-require_once "Model/traits/ValidatePHP_ID.php";
-require_once 'Model/DataHandler-v3.2.php';
-require_once 'Model/DataValidator-v3.2.php';
-require_once 'Model/FileHandler-v1.php';
-require_once 'Model/HtmlElements-v1.1.php';
-require_once 'Model/PhpUtilities-v2.php';
-require_once 'Model/SessionModel.php';
-require_once 'Model/TemplatingSystem-v1.php';
+require_once "Model/traits/ValidatePHP_ID-v2.0.php";
+require_once 'Model/DataHandler-v4.0.php';
+require_once 'Model/DataValidator-v4.0.php';
+require_once 'Model/FileHandler-v2.0.php';
+require_once 'Model/HtmlElements-v2.0.php';
+require_once 'Model/PhpUtilities-v3.0.php';
+require_once 'Model/SessionModel-v2.0.php';
+require_once 'Model/TemplatingSystem-v2.0.php';
 
 // customModels
 require_once 'Model/SessionContextModel.php';

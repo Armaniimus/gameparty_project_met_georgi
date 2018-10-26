@@ -45,6 +45,4 @@ trait ValidatePHP_ID {
         }
     }
 }
-
-
- ?>
+?>
