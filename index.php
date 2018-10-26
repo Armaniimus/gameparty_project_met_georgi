@@ -1,6 +1,6 @@
 <?php
 // router
-require_once 'Router/Router-v2.0.php';
+require_once 'Router/Router-v2.2.php';
 require_once 'config.php';
 
 // controllers (are dynamicly called)
